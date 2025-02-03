@@ -6,7 +6,6 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 
 ## Odottaa toteuttamista
 
-- [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle.
 - [ ] (**scene-quote**) Kertoo päivän  mietelauseen ja lainauksen. Mietelause tai lainaus voidaan hakea jostain API-rajapinnan tarjoamasta palvelusta tai ne voi olla kiinteänä listana osana koodia. 
 - [ ] (**scene-news**) Hakee uusimmat uutiset määritetyltä uutissivustolta ja näyttää niistä 1-3 uusinta.
 - [ ] (**scene-stock**) Hakee jostain osakkeiden kurssitietopalvelusta määritetyn osakkeen kurssitiedot ja muodostaa siitä tietonäkymän.
@@ -17,5 +16,7 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 - [ ] (**???**) Eikö yltä löytynyt sinua innostavaa aihetta? Ehdota omaa aihettasi opettajalle. Jos aiheesi hyväksytään, niin nimeä se sopivalla tunnisteella.    
 
 ## Keskeneräiset
+
+- [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle. (Vee)
        
 ## Valmiit ✓
