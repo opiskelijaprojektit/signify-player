@@ -1,0 +1,50 @@
+{
+  "state": "2",
+  "tag": "A1B-2C3",
+  "token": "wannabetoken",
+  "name":  "Hall",
+  "descr": "Main entrance hall",
+  "updated": "2025-01-31 12:34:00",
+  "scenes": [
+    { "id": 1,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/ed0f320c-b6fc-4dd5-a42e-c710f54a6572.jpg",
+          "portrait": "media/b62353db-833f-4042-bab3-795ddf8280c3.jpg"
+        }
+      },
+      "duration": 10000
+    },
+    { "id": 2,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/3a9c996d-5018-4cc4-b816-10f0e33c1cb4.jpg",
+          "portrait": "media/ab519897-902b-481a-8aab-12a16480b643.jpg"
+        }
+      },
+      "duration": 8000
+    },
+    { "id": 6,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/bddb5153-871e-44d3-9116-a5970fbbe091.jpg",
+          "portrait": "media/f50d692c-db3e-4f6c-8d7c-2b82191571ba.jpg"
+        }
+      },
+      "duration": 8000
+    },
+    { "id": 7,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/338cce57-6758-4ac4-bc2e-f39599bd6d7e.jpg",
+          "portrait": "media/f6776f68-24d6-4180-a951-0cbe6a80e13f.jpg"
+        }
+      },
+      "duration": 8000
+    }
+  ]
+}
