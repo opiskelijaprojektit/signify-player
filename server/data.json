@@ -45,6 +45,10 @@
         }
       },
       "duration": 8000
+    },
+    { "id": 8,
+      "type": "weather",
+      "duration": 18000
     }
   ]
 }

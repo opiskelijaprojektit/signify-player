@@ -1,0 +1,38 @@
+.scene_weather {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-color: var(--neutral-lightest);
+}
+
+.weather_screen {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.weather_screen > div {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 200%;
+}
+
+.weather_report {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  font-size: 100%;
+  padding: 1em;
+}
+
+.weather_report > div {
+  padding: 1em;
+}
