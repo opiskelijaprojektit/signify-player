@@ -24,9 +24,9 @@ function Scene(props) {
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
-      case "image":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
+      //case "image":
+      //  return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+      //  break;
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} /></SwiperSlide>)
         break;
