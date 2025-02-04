@@ -17,7 +17,7 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 
 - [ ] (**scene-nameday**) Kertoo kenen nimipäivä on kyseisenä päivänä. Nimipäivätiedot haetaan sopivasta palvelusta. (Sanna)
 - [ ] (**scene-news**) Hakee uusimmat uutiset määritetyltä uutissivustolta ja näyttää niistä 1-3 uusinta. (Leena)
-- [ ] (**scene-quote**) Kertoo päivän  mietelauseen ja lainauksen. Mietelause tai lainaus voidaan hakea jostain API-rajapinnan tarjoamasta palvelusta tai ne voi olla kiinteänä listana osana koodia.
+- [ ] (**scene-quote**) Kertoo päivän  mietelauseen ja lainauksen. Mietelause tai lainaus voidaan hakea jostain API-rajapinnan tarjoamasta palvelusta tai ne voi olla kiinteänä listana osana koodia. (Ada)
 - [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle. (Vee)
        
 ## Valmiit ✓
