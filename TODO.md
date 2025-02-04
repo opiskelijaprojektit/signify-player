@@ -8,13 +8,13 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 
 - [ ] (**scene-calendar**) Näyttää kuluvan kuukauden kalenterin, josta on korostettu kuluva päivä.
 - [ ] (**scene-daysto**) Kertoo kuinka monta päivää on jäljellä annettuun päivään, kuten esimerkiksi jouluun. Käyttäjällä on mahdollista määritellä sekä päivä että taustakuva.
-- [ ] (**scene-vulnerability**) Listaa 3-5 viimeisintä haavoittuvuutta. Haavoittuvuudet voidaan noutaa esimerkiksi Traficomin ylläpitämästä RSS-syötteestä.
 - [ ] (**scene-worldclock**) Näyttää määritettyjen maiden reaaliaikaiset kelloajat. Käyttäjällä on mahdollista määritellä näytettävät maat.
 - [ ] (**???**) Eikö löytynyt sinua innostavaa aihetta? Ehdota omaa aihettasi opettajalle. Jos aiheesi hyväksytään, niin nimeä se sopivalla tunnisteella.    
 
 ## Keskeneräiset
 
 - [ ] (**scene-anniversary**) Kertoo julkisuudessa tunnettujen henkilöiden ja tapahtumien vuosipäivät. Nämä tiedot haetaan sopivasta palvelusta. (Annastiina)
+- [ ] (**scene-book**) Ehdottaa luettavaa kirjaa. Kirjaehdotuksen voi noutaa jostain soveltuvasta palvelusta. Ehdotuksen tulisi pysyä samana koko päivän ajan. (Marjo)
 - [ ] (**scene-fact**) Kertoo päivän faktatiedon, voi olla myös humoristisävytteinen. Faktatieto voidaan hakea jostain palvelusta tai ne voi olla kiinteänä listana osana koodia.
 - [ ] (**scene-joke**) Kertoo päivän vitsin. (Michelle)
 - [ ] (**scene-nameday**) Kertoo kenen nimipäivä on kyseisenä päivänä. Nimipäivätiedot haetaan sopivasta palvelusta. (Sanna)
@@ -25,5 +25,6 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 - [ ] (**scene-tarot**) Esittää päivälle satunnaisen tarot-kortin. (Mirva)
 - [ ] (**scene-today**) Kertoo keskeiset tiedot kuluvasta päivästä, kuten esimerkiksi kuinka mones päivä on menossa ja milloin aurinko nousee ja laskee. (Emilia)
 - [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle. (Vee)
+- [ ] (**scene-vulnerability**) Listaa 3-5 viimeisintä haavoittuvuutta. Haavoittuvuudet voidaan noutaa esimerkiksi Traficomin ylläpitämästä RSS-syötteestä. (Markus)
        
 ## Valmiit ✓
