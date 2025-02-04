@@ -14,6 +14,7 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 
 - [ ] (**scene-anniversary**) Kertoo julkisuudessa tunnettujen henkilöiden ja tapahtumien vuosipäivät. Nämä tiedot haetaan sopivasta palvelusta. (Annastiina)
 - [ ] (**scene-fact**) Kertoo päivän faktatiedon, voi olla myös humoristisävytteinen. Faktatieto voidaan hakea jostain palvelusta tai ne voi olla kiinteänä listana osana koodia.
+- [ ] (**scene-joke**) Kertoo päivän vitsin. (Michelle)
 - [ ] (**scene-nameday**) Kertoo kenen nimipäivä on kyseisenä päivänä. Nimipäivätiedot haetaan sopivasta palvelusta. (Sanna)
 - [ ] (**scene-movie**) Ehdottaa katsottavaa elokuvaa. Elokuvaehdotuksen voi noutaa jostain soveltuvasta palvelusta. Ehdotuksen tulisi pysyä samana koko päivän ajan. (Mira)
 - [ ] (**scene-news**) Hakee uusimmat uutiset määritetyltä uutissivustolta ja näyttää niistä 1-3 uusinta. (Leena)
