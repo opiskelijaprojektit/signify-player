@@ -5,7 +5,7 @@ Tällä sivulla on luettelo toteuttavista toiminnallisuuksista. Sovi luettelosta
 Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- että vaakasuuntaisena. Lisäksi näkymien tulee olla graafisesti selkeitä ja tyylikkäitä.
 
 ## Odottaa toteuttamista
-- [ ] (**scene-today**) Kertoo keskeiset tiedot kuluvasta päivästä, kuten esimerkiksi kuinka mones päivä on menossa ja milloin aurinko nousee ja laskee.
+
 - [ ] (**scene-daysto**) Kertoo kuinka monta päivää on jäljellä annettuun päivään, kuten esimerkiksi jouluun. Käyttäjällä on mahdollista määritellä sekä päivä että taustakuva.
 - [ ] (**scene-vulnerability**) Listaa 3-5 viimeisintä haavoittuvuutta. Haavoittuvuudet voidaan noutaa esimerkiksi Traficomin ylläpitämästä RSS-syötteestä.
 - [ ] (**???**) Eikö löytynyt sinua innostavaa aihetta? Ehdota omaa aihettasi opettajalle. Jos aiheesi hyväksytään, niin nimeä se sopivalla tunnisteella.    
@@ -20,6 +20,7 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 - [ ] (**scene-quote**) Kertoo päivän  mietelauseen ja lainauksen. Mietelause tai lainaus voidaan hakea jostain API-rajapinnan tarjoamasta palvelusta tai ne voi olla kiinteänä listana osana koodia. (Ada)
 - [ ] (**scene-stock**) Hakee jostain osakkeiden kurssitietopalvelusta määritetyn osakkeen kurssitiedot ja muodostaa siitä tietonäkymän. (Valtteri)
 - [ ] (**scene-tarot**) Esittää päivälle satunnaisen tarot-kortin. (Mirva)
+- [ ] (**scene-today**) Kertoo keskeiset tiedot kuluvasta päivästä, kuten esimerkiksi kuinka mones päivä on menossa ja milloin aurinko nousee ja laskee. (Emilia)
 - [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle. (Vee)
        
 ## Valmiit ✓
