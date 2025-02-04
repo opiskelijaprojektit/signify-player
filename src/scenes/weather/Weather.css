@@ -25,13 +25,18 @@
   font-size: 200%;
 }
 
-.weather_report {
+.weather-landscape .weather_report {
   display: flex;
-  justify-content: left;
+  flex: 1;
   flex-direction: row;
-  font-size: 100%;
-  padding: 1em;
 }
+
+.weather-portrait .weather_report  {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 .weather_report > div {
   padding: 1em;

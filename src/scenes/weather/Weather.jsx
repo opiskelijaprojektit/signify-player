@@ -26,15 +26,41 @@ function Weather(props) {
               <div>Nyt</div>
               <div>4°</div>
             </div>
-            <div>
-              <div>12</div>
+            <div className="weather_in_2">
+              <div>8</div>
               <div>5°</div>
             </div>
-            <div>
-              <div>14</div>
+            <div className="weather_in_4">
+              <div>10</div>
               <div>-5°</div>
             </div>
+            <div className="weather_in_6">
+              <div>12</div>
+              <div>-6°</div>
+            </div>
+            <div className="weather_in_8">
+              <div>14</div>
+              <div>-7°</div>
+            </div>
+            <div className="weather_in_10">
+              <div>16</div>
+              <div>-3°</div>
+            </div>
+            <div className="weather_in_12">
+              <div>18</div>
+              <div>-3°</div>
+            </div>
+            <div className="weather_in_14">
+              <div>20</div>
+              <div>-3°</div>
+            </div>
+            <div className="weather_in_16">
+              <div>22</div>
+              <div>-3°</div>
+            </div>
           </div>
+          <div>Lähde: Ilmatieteen laitoksen avoin data,</div>
+          <div>#TODO lisää aineiston nimi</div>
         </div>
       </div>
     </div>
