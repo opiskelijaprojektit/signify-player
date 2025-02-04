@@ -8,6 +8,7 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 
 - [ ] (**scene-daysto**) Kertoo kuinka monta päivää on jäljellä annettuun päivään, kuten esimerkiksi jouluun. Käyttäjällä on mahdollista määritellä sekä päivä että taustakuva.
 - [ ] (**scene-vulnerability**) Listaa 3-5 viimeisintä haavoittuvuutta. Haavoittuvuudet voidaan noutaa esimerkiksi Traficomin ylläpitämästä RSS-syötteestä.
+- [ ] (**scene-worldclock**) Näyttää määritettyjen maiden reaaliaikaiset kelloajat. Käyttäjällä on mahdollista määritellä näytettävät maat.
 - [ ] (**???**) Eikö löytynyt sinua innostavaa aihetta? Ehdota omaa aihettasi opettajalle. Jos aiheesi hyväksytään, niin nimeä se sopivalla tunnisteella.    
 
 ## Keskeneräiset
