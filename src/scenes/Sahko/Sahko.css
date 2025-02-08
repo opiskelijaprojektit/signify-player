@@ -1,0 +1,16 @@
+.sahko-container {
+    text-align: center;
+    background-color: yellow !important; /* 🔹 Testiväri */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.sahko-container h2 {
+    margin-bottom: 10px;
+}
+
+.sahko-container p {
+    font-size: 18px;
+    font-weight: bold;
+}

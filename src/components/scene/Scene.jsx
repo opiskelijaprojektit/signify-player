@@ -6,9 +6,11 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import './Scene.css'
 
+
+
 // Import scene components
 import Image from '../../scenes/image'
-
+import Sahko from '../../scenes/Sahko' // Lisää sähkö komponentin
 /**
  * Scene component, which handles the rendering and switching of scenes.
  *
@@ -20,11 +22,14 @@ function Scene(props) {
   // Create deck of scenes. Each scene component must be located
   // inside a SwiperSlide component. If you add new scenes, the
   // implementation of the Image component will serve as an example.
+
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        case "sahko":  // ✅ Lisätty Sahko-komponentti
+        return (<SwiperSlide key={scene.id}><Sahko /></SwiperSlide>)
         break;
       default:
         return null
