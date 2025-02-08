@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const NoudaHinta = () => {
+    const [prices, setPrices] = useState([]);
     const [lowestPrice, setLowestPrice] = useState(null);
     const [highestPrice, setHighestPrice] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const canvasRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,15 +24,18 @@ const NoudaHinta = () => {
                     throw new Error("Hintatietoja ei saatavilla");
                 }
 
-                // Etsitään päivän halvin tunti
-                const minPrice = data.reduce((min, p) => p.EUR_per_kWh < min.EUR_per_kWh ? p : min, data[0]);
+                setPrices(data);
 
-                // Etsitään päivän kallein tunti
+                // Etsitään päivän halvin ja kallein tunti
+                const minPrice = data.reduce((min, p) => p.EUR_per_kWh < min.EUR_per_kWh ? p : min, data[0]);
                 const maxPrice = data.reduce((max, p) => p.EUR_per_kWh > max.EUR_per_kWh ? p : max, data[0]);
 
                 setLowestPrice(minPrice);
                 setHighestPrice(maxPrice);
                 setLoading(false);
+
+                // Piirretään kaavio
+                drawChart(data);
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
@@ -40,6 +45,56 @@ const NoudaHinta = () => {
         fetchData();
     }, []);
 
+    const drawChart = (data) => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+
+        // Tyhjennetään canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const chartWidth = canvas.width - 40;
+        const chartHeight = canvas.height - 40;
+        const padding = 20;
+
+        // Skaalataan hinnat kaavioon
+        const maxPrice = Math.max(...data.map(p => p.EUR_per_kWh * 100));
+        const minPrice = Math.min(...data.map(p => p.EUR_per_kWh * 100));
+
+        const scaleX = chartWidth / data.length;
+        const scaleY = chartHeight / (maxPrice - minPrice);
+
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+
+        data.forEach((point, index) => {
+            const x = padding + index * scaleX;
+            const y = canvas.height - padding - (point.EUR_per_kWh * 100 - minPrice) * scaleY;
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+
+        ctx.stroke();
+
+        // Piirretään akselit
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, canvas.height - padding);
+        ctx.lineTo(canvas.width - padding, canvas.height - padding);
+        ctx.stroke();
+
+        // Lisätään hintamerkinnät
+        ctx.fillStyle = "black";
+        ctx.font = "12px Arial";
+        ctx.fillText(`${minPrice.toFixed(2)} snt/kWh`, 5, canvas.height - padding);
+        ctx.fillText(`${maxPrice.toFixed(2)} snt/kWh`, 5, padding);
+    };
+
     if (loading) return <p>Ladataan päivän sähkön hintatietoja...</p>;
     if (error) return <p>Virhe ladattaessa: {error}</p>;
 
@@ -48,6 +103,8 @@ const NoudaHinta = () => {
             <h3>Päivän sähkön hintatiedot</h3>
             <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: '2-digit', minute: '2-digit' })}: {lowestPrice.EUR_per_kWh * 100} snt/kWh</p>
             <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: '2-digit', minute: '2-digit' })}: {highestPrice.EUR_per_kWh * 100} snt/kWh</p>
+            <h4>Sähkön hinnan kehitys päivän aikana</h4>
+            <canvas ref={canvasRef} width={500} height={300} style={{ border: "1px solid black" }}></canvas>
         </div>
     );
 };
