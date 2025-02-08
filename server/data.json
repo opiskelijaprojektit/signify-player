@@ -53,8 +53,10 @@
     {
       "id": 20,
       "type": "sahko",
-      "data": {},
+      "data": {
+        "api_key": "TÄHÄN_TULEE_OIKEA_API_AVAIN"
+      },
       "duration": 5000
-    }
+    }   
   ]
 }
