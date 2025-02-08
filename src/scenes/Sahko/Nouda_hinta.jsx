@@ -1,40 +1,47 @@
 import React, { useEffect, useState } from "react";
 
 const NoudaHinta = () => {
-    const [prices, setPrices] = useState([]);
+    const [lowestPrice, setLowestPrice] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // 🔹 Testidata – tämä vaihdetaan oikeaan API-kutsuun myöhemmin
-        const testData = [
-            { time: "00:00", price: 10.5 },
-            { time: "06:00", price: 12.3 },
-            { time: "12:00", price: 14.2 },
-            { time: "18:00", price: 11.8 },
-            { time: "23:59", price: 9.7 }
-        ];
+        const fetchData = async () => {
+            try {
+                const today = new Date().toISOString().split("T")[0]; // Muoto YYYY-MM-DD
+                const response = await fetch(`https://www.sahkonhintatanaan.fi/api/v1/prices/${today.split("-")[0]}/${today.split("-")[1]}-${today.split("-")[2]}.json`);
 
-        // Simuloidaan API-kutsua (tämä korvataan oikealla haulla)
-        setTimeout(() => {
-            setPrices(testData);
-            setLoading(false);
-        }, 2000);
+                if (!response.ok) {
+                    throw new Error("Virhe ladattaessa sähkön hintaa");
+                }
+
+                const data = await response.json();
+
+                if (data.length === 0) {
+                    throw new Error("Hintatietoja ei saatavilla");
+                }
+
+                // Etsitään halvin tunti
+                const minPrice = data.reduce((min, p) => p.EUR_per_kWh < min.EUR_per_kWh ? p : min, data[0]);
+
+                setLowestPrice(minPrice);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
 
-    if (loading) return <p>Ladataan päivän sähkön hintoja...</p>;
+    if (loading) return <p>Ladataan päivän halvinta sähkön hintaa...</p>;
     if (error) return <p>Virhe ladattaessa: {error}</p>;
 
     return (
         <div>
-            <h3>Päivän sähkön hinnat</h3>
-            <ul>
-                {prices.map((item, index) => (
-                    <li key={index}>
-                        {item.time}: {item.price} c/kWh
-                    </li>
-                ))}
-            </ul>
+            <h3>Nykyisen päivän halvin sähkön hinta</h3>
+            <p>{new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: '2-digit', minute: '2-digit' })}: {lowestPrice.EUR_per_kWh * 100} snt/kWh</p>
         </div>
     );
 };
