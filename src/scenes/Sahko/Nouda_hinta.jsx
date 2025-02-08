@@ -26,7 +26,7 @@ const NoudaHinta = () => {
 
                 setPrices(data);
 
-                // Etsitään päivän halvin ja kallein tunti
+                // Etsitään päivän halvin ja kallein tunti ilman pyöristyksiä
                 const minPrice = data.reduce((min, p) => p.EUR_per_kWh < min.EUR_per_kWh ? p : min, data[0]);
                 const maxPrice = data.reduce((max, p) => p.EUR_per_kWh > max.EUR_per_kWh ? p : max, data[0]);
 
@@ -34,7 +34,7 @@ const NoudaHinta = () => {
                 setHighestPrice(maxPrice);
                 setLoading(false);
 
-                // Piirretään kaavio
+                // Piirretään kaavio uusilla tiedoilla
                 drawChart(data);
             } catch (err) {
                 setError(err.message);
@@ -53,24 +53,29 @@ const NoudaHinta = () => {
         // Tyhjennetään canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const chartWidth = canvas.width - 40;
-        const chartHeight = canvas.height - 40;
+        const chartWidth = canvas.width - 40; // Kaavion leveys
+        const chartHeight = canvas.height - 40; // Kaavion korkeus
         const padding = 20;
 
-        // Skaalataan hinnat kaavioon
+        // Haetaan hinnat ilman pyöristyksiä
         const maxPrice = Math.max(...data.map(p => p.EUR_per_kWh * 100));
         const minPrice = Math.min(...data.map(p => p.EUR_per_kWh * 100));
 
-        const scaleX = chartWidth / data.length;
-        const scaleY = chartHeight / (maxPrice - minPrice);
+        // Pyöristetään akselin pykälät lähimpään 5 snt:iin
+        const roundedMax = Math.ceil(maxPrice / 5) * 5;
+        const roundedMin = Math.floor(minPrice / 5) * 5;
 
+        const scaleX = chartWidth / data.length; // X-akselin asteikko
+        const scaleY = chartHeight / (roundedMax - roundedMin); // Y-akselin asteikko
+
+        // Piirretään hintakäyrä ilman pyöristyksiä
         ctx.beginPath();
         ctx.strokeStyle = "blue";
         ctx.lineWidth = 2;
 
         data.forEach((point, index) => {
             const x = padding + index * scaleX;
-            const y = canvas.height - padding - (point.EUR_per_kWh * 100 - minPrice) * scaleY;
+            const y = canvas.height - padding - (point.EUR_per_kWh * 100 - roundedMin) * scaleY;
             if (index === 0) {
                 ctx.moveTo(x, y);
             } else {
@@ -88,11 +93,17 @@ const NoudaHinta = () => {
         ctx.lineTo(canvas.width - padding, canvas.height - padding);
         ctx.stroke();
 
-        // Lisätään hintamerkinnät
+        // Lisätään hintamerkinnät tasaisilla pykälillä (5 snt välein)
         ctx.fillStyle = "black";
         ctx.font = "12px Arial";
-        ctx.fillText(`${minPrice.toFixed(2)} snt/kWh`, 5, canvas.height - padding);
-        ctx.fillText(`${maxPrice.toFixed(2)} snt/kWh`, 5, padding);
+        for (let price = roundedMin; price <= roundedMax; price += 5) {
+            const y = canvas.height - padding - (price - roundedMin) * scaleY;
+            ctx.fillText(`${price} snt/kWh`, 5, y + 5);
+            ctx.beginPath();
+            ctx.moveTo(padding - 5, y);
+            ctx.lineTo(padding + 5, y);
+            ctx.stroke();
+        }
     };
 
     if (loading) return <p>Ladataan päivän sähkön hintatietoja...</p>;
