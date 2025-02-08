@@ -11,8 +11,24 @@ import './Weather.css'
  */
 function Weather(props) {
 
+  // Variable to store the url address.
+  let url;
+
+  // Select the image to be used based on the screen orientation.
+  // By default, a landscape image is used.
+  switch (props.orientation) {
+    case orientations.landscape:
+      url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
+      break
+    case orientations.portrait:
+      url = import.meta.env.VITE_API_ADDRESS + props.url.portrait
+      break
+    default:
+      url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
+  }
+
   return (
-    <div className="scene_weather">
+    <div className="scene_weather" style={{backgroundImage: "url(" + url + ")"}}>
       <div className={props.orientation == orientations.landscape ? "weather_screen weather-landscape" : "weather_screen weather-portrait"}>
         { // If orientation is landscape then add empty div element.
           // This will ensure that the content appears in the right

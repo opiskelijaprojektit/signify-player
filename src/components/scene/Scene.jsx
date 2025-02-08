@@ -28,7 +28,7 @@ function Scene(props) {
       //  return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
       //  break;
       case "weather":
-        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} /></SwiperSlide>)
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
       default:
         return null
