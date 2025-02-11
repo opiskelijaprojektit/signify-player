@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import Anniversary from '../../scenes/anniversary'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -25,6 +26,9 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "anniversary":
+        return (<SwiperSlide key={scene.id}><Anniversary orientation={props.orientation} data={scene.data} /></SwiperSlide>)
         break;
       default:
         return null
