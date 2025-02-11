@@ -6,8 +6,12 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import './Scene.css'
 
+// Import vulnerability components
+import Vulnerability from '../../scenes/vulnerability/'
+
 // Import scene components
 import Image from '../../scenes/image'
+
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -25,6 +29,8 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+      case "vulnerability":
+        return (<SwiperSlide key={scene.id}><Vulnerability orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)  
         break;
       default:
         return null
