@@ -45,6 +45,16 @@
         }
       },
       "duration": 8000
+    },
+    { "id": 8,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/c8e89a64-391e-4464-9d88-449f2532611c.jpg",
+          "portrait": "media/117b6ee6-e578-4dc7-a738-5df7a81ef1b6.jpg"
+        }
+      },
+      "duration": 8000
     }
   ]
 }
