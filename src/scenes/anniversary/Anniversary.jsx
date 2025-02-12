@@ -41,16 +41,37 @@ function Anniversary(props) {
 
     return (
         <div className="scene_anniversary">
-            <h1>{month} {d + nth(d)}</h1>
+            <div className="scene_anniversary_flex">
+                <div className="scene_anniversary_header">
+                    <h1>{month} {d + nth(d)}</h1>
+                </div>
 
-            <h2>Happened today in history:</h2>
-            <p>Sisältö saadaan osoitteesta:<br></br>{events}</p>
+                <div className="scene_anniversary_events">
+                    <h2>Happened today in history:</h2>
+                    <div className="scene_anniversary_events_event">
+                        <div>Vuosi:</div>
+                        <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
+                    </div>                                      
+                </div>
             
-            <h2>Birthdays:</h2>
-            <p>Sisältö saadaan osoitteesta:<br></br>{births}</p>
-            
-            <h2>Deaths:</h2>
-            <p>Sisältö saadaan osoitteesta:<br></br>{deaths}</p>
+                <div className="scene_anniversary_events scene_anniversary_people">
+                    <div className>
+                        <h2>Birthdays:</h2>
+                        <div className="scene_anniversary_events_event scene_anniversary_people_event">
+                            <div className="img"></div>
+                            <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
+                        </div>
+                    </div>
+                    
+                    <div className>
+                        <h2>Deaths:</h2>
+                        <div className="scene_anniversary_events_event scene_anniversary_people_event">                            
+                            <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta.</div>
+                            <div className="img"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
