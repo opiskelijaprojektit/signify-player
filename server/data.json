@@ -47,7 +47,7 @@
       "duration": 8000
     },
     { "id": 8,
-      "type": "image",
+      "type": "vulnerability",
       "data": {
         "url": {
           "landscape": "media/c8e89a64-391e-4464-9d88-449f2532611c.jpg",

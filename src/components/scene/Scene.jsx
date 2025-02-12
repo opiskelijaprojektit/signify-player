@@ -66,7 +66,7 @@ function Scene(props) {
       onSwiper={(swiper) => {
         swiperRef.current = swiper;
       }}
-      loop={true}
+      loop={false}
       effect={'fade'}
       modules={[EffectFade]}>
       {scenedeck}
