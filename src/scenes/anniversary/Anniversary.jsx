@@ -11,13 +11,37 @@ import './Anniversary.css'
  */
 function Anniversary(props) {
 
-    const events = props.data.selected + '02/11'
-    const births = props.data.births + '02/11'
-    const deaths = props.data.deaths + '02/11'
+    // Variable for current day's date.
+    const today = new Date()
+
+    // Variable for month
+    const m = today.getMonth()
+    // ...and with 2-digits.
+    const mmPadded = String(m + 1).padStart(2,"0")
+    // Month as name.
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const month = months[m]
+
+    // Variable for date
+    const d = today.getDate()
+    // ...and with 2-digits.
+    const ddPadded = String(d).padStart(2,"0")
+
+    // Returns the ordinal suffix for a given day number
+    const nth = n => n>10&&n<14 ? "th"      // 11th - 13th
+                     : n%10==1 ? "st"       // 1st, 21st, 31st
+                     : n%10==2 ? "nd"       // 2nd, 22nd
+                     : n%10==3 ? "rd"       // 3rd, 23rd
+                     : "th"                 // All other numbers get th
+
+    // API endpoint URLs for different categories
+    const events = props.data.selected + mmPadded + '/' + ddPadded
+    const births = props.data.births + mmPadded + '/' + ddPadded
+    const deaths = props.data.deaths + mmPadded + '/' + ddPadded
 
     return (
         <div className="scene_anniversary">
-            <h1>February 11th</h1>
+            <h1>{month} {d + nth(d)}</h1>
 
             <h2>Happened today in history:</h2>
             <p>Sisältö saadaan osoitteesta:<br></br>{events}</p>
