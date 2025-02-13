@@ -25,17 +25,29 @@ function Scene(props) {
   // inside a SwiperSlide component. If you add new scenes, the
   // implementation of the Image component will serve as an example.
   const scenedeck = props.scenes.map(scene => {
-    // Select the scene type of the current scene. 
     switch (scene.type) {
       case "image":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        return (
+          <SwiperSlide key={scene.id}>
+            <Image orientation={props.orientation} url={scene.data.url} />
+          </SwiperSlide>
+        );
       case "vulnerability":
-        return (<SwiperSlide key={scene.id}><Vulnerability orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)  
-        break;
+        return (
+          <SwiperSlide key={scene.id}>
+            <Vulnerability 
+              orientation={props.orientation} 
+              url={scene.data.url} 
+              rssUrl={scene.data.rssUrl} 
+              fields={scene.data.fields} 
+            />
+          </SwiperSlide>
+        );
       default:
-        return null
+        return null;
     }
-  })
+  });
+  
 
   // State variable to contain change interval time in millisecons.
   // Start with tge duration of the first scene.
