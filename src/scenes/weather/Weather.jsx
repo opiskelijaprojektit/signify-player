@@ -1,6 +1,5 @@
 import { orientations } from "../../utils/types"   // screen orientation type
 import './Weather.css'
-import { testData } from "./weatherTestData.js"
 import { xml2js, parseStringPromise } from "xml2js"
 import { useState } from 'react'
 import useInterval from '../../utils/useInterval.js'
@@ -24,6 +23,7 @@ function Weather(props) {
 
   const [weatherData, setweatherData] = useState([["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]])
 
+  // Weather data update interval
   const [updateDelay, setUpdateDelay] = useState(0)
 
   // Select the image to be used based on the screen orientation.
@@ -123,6 +123,7 @@ function Weather(props) {
       .then(setUpdateDelay(900000))
   }
 
+  // Set timer to update weather data
   useInterval(getWeatherData, updateDelay)
 
 
