@@ -1,10 +1,10 @@
 .scene_weather {
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
   object-fit: cover;
   background-size: cover;
+  color: var(--neutral-lightest);
 }
 
 .weather_screen {
@@ -12,32 +12,65 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
 }
 
-.weather_screen > div {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 200%;
+.weather_report {
+  background-color: var(--neutral-darker-aplha);
+  width: 75%;
+  height: 75%;
+  font-size: 180%;
 }
 
 .weather-landscape .weather_report {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
+  .weather_table {
+  }
+
+  table {
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-items: center;
+  }
+
+  thead {
+    display:flex;
+    flex-direction: row;
+  }
+  
+  tbody {
+    border: 0.2em solid black;
+    display:flex;
+    flex-direction: row;
+  }
+
+  tr {
+    border: 0.2em solid black;
+    display:flex;
+    flex-direction: column;
+  }
+
+  td, th {
+    padding:1em;
+    border: 0.2em solid black;
+  }
 }
 
 .weather-portrait .weather_report  {
-  display: flex;
-  flex-direction: column;
-}
+  .weather_table {
+    border: 0.2em solid black;
+  }
+  
+  tbody {
+    border: 0.2em solid black;
+  }
 
+  tr {
+    border: 0.2em solid black;
+  }
 
+  td, th {
+    padding:1em;
+    border: 0.2em solid black;
+  }
 
-.weather_report > div {
-  padding: 1em;
 }
