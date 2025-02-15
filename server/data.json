@@ -50,6 +50,8 @@
       "type": "weather",
       "data": {
         "location": "Sastamala",
+        "locale": "fi-FI",
+        "timezone": "Europe/Helsinki",
         "url": {
           "landscape": "media/37583e36-f1e6-4ee7-8609-7a81c3708647.jpg",
           "portrait": "media/1dc5cb85-ffe1-46a9-a5bf-86719238c51b.jpg"
