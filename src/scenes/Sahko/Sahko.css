@@ -1,26 +1,65 @@
-.sahko-nakyma {
+.sahko-container {
     text-align: center;
     padding: 20px;
-    background-color: #f0f0f0; /* Vaaleanharmaa tausta */
+    background: url('/images/Sahko_tausta.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.sahko-nakyma h3, 
-.sahko-nakyma p {
-    font-family: 'Metropolis', sans-serif;
+
+/* Otsikko ja hintatiedot vierekkäin */
+.ylaosa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+/* Otsikko vasemmalle */
+.otsikko {
+    text-align: left;
     color: white;
-    text-shadow: 1px 1px 2px black; /* Musta reunus tekstiin */
+    text-shadow: 1px 1px 2px black;
 }
 
-/* Kaavion uusi koko: lähes koko sivun levyinen mutta säilyttää mittasuhteet */
+/* Hintatiedot oikealle */
+.hintatiedot {
+    text-align: right;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    margin-right: 300px;
+}
+
+/* Kaavion keskitys ja koko */
 .kaavio-container {
-    width: 90vw; /* 90% ikkunan leveydestä */
-    max-width: 1200px; /* Maksimikoko */
-    height: 400px; /* Riittävän korkea */
-    margin: auto;
-    background-color: white; /* Valkoinen tausta kaaviolle */
-    padding: 10px;
-    border-radius: 8px; /* Pyöristetyt reunat */
+    width: 90vw;
+    max-width: 1500px;
+    height: 350px;
+    background-color: rgba(24, 10, 148, 0);
+    padding: 1px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 130px; /* Lisää väliä kaavion ja tekstien väliin */
+    margin-top: -200px; /* Nostaa kaaviota ylöspäin */
 }
+
+
+body {
+    font-family: 'Metropolis', sans-serif;
+    background-size: cover;
+}
+
+.canvas-container text {
+    stroke: black;
+    stroke-width: 2px;
+    paint-order: stroke fill;
+}
+

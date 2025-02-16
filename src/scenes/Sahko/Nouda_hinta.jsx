@@ -67,60 +67,103 @@ const NoudaHinta = () => {
         ),
         datasets: [
             {
-                label: "Sähkön hinta (snt/kWh)",
-                data: prices.map(p => formatPrice(p.EUR_per_kWh * 100)), // Muutetaan euroista senteiksi ja pyöristetään 3 desimaaliin
+                label: "",
+                data: prices.map(p => formatPrice(p.EUR_per_kWh * 100)), 
                 borderColor: "blue",
-                backgroundColor: "rgba(0, 0, 255, 0.2)",
+                backgroundColor: "rgba(10, 10, 147, 0.67)",
                 fill: true,
-                order: 1 // Varmistaa, että tämä on taustalla
+                tension: 0.5,
+                order: 2
             },
             {
-                label: "Nykyhetken hinta",
+                label: "",
                 data: prices.map(p => (new Date(p.time_start).getHours() === new Date().getHours() ? formatPrice(p.EUR_per_kWh * 100) : null)),
                 borderColor: "red",
                 pointBackgroundColor: "red",
-                pointBorderColor: "black", // Musta reunus, jotta näkyy paremmin
-                pointRadius: 8, // Suurempi koko
-                pointHoverRadius: 10, // Kasvaa hoverilla
+                pointBorderColor: "black",
+                pointRadius: 8,
+                pointHoverRadius: 10,
                 fill: false,
                 type: "scatter",
-                order: 2 // Varmistaa, että tämä on päällä
+                order: 1 //punainen piste näkyviin paremmin
             }
         ]
     };
     
-
-    const chartOptions = {
+    
+    
+    
+//Kaavion tekstien ja viivojen väriasetukset
+    const chartOptions = { 
         responsive: true,
         maintainAspectRatio: false,
         scales: {
+            x: {
+                ticks: {
+                    color: "white",
+                    font: {
+                        size: 14,
+                        weight: "bold"
+                    }
+                },
+                grid: {
+                    color: "rgba(255, 255, 255, 0.5)"
+                }
+            },
             y: {
                 beginAtZero: false,
                 ticks: {
-                    stepSize: 5 // Asetetaan akselin pykälät tasaisiksi (5 snt, 10 snt jne.)
+                    stepSize: 5,
+                    color: "white",
+                    font: {
+                        size: 14,
+                        weight: "bold"
+                    }
+                },
+                grid: {
+                    color: "rgba(255, 255, 255, 0.5)"
                 }
             }
         },
-        elements: {
-            point: {
-                z: 10 // Asetetaan punainen pallo korkeimmalle tasolle
+        plugins: {
+            legend: {
+                display: false // **Poistaa kaikki otsikot**
             }
         }
     };
     
+    
+    
+    
+    
+    
+    
+    
 
-    return (
-        <div className="sahko-nakyma">
-            <h3>Päivän sähkön hintatiedot</h3>
-            <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
-            <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
-            <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
-            <h4>Sähkön hinnan kehitys päivän aikana</h4>
-            <div className="kaavio-container">
-                <Line data={chartData} options={chartOptions} />
+    
+
+return (
+    <div className="sahko-container">
+        {/* Kaavio ylimpänä */}
+        <div className="kaavio-container">
+            <Line data={chartData} options={chartOptions} />
+        </div>
+
+        {/* Otsikko ja hintatiedot vierekkäin */}
+        <div className="ylaosa">
+            <h2 className="otsikko">Sähkön hinta tänään {new Date().toLocaleDateString("fi-FI")}</h2>
+            <div className="hintatiedot">
+                <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
+                <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
+                <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
             </div>
         </div>
-    );
+    </div>
+);
+
+    
+    
+    
     
     
 };

@@ -6,11 +6,10 @@ import React from "react";
 
 function Sahko() {
   return (
-      <div className="sahko-container">
-          <h2>Sähkön hinta</h2>
-          <NoudaHinta />
-      </div>
-  );
+    <div>
+       <NoudaHinta />
+    </div>
+);
 }
 
 export default Sahko;
