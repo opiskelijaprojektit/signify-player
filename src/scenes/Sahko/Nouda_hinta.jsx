@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2"; // jos ei kaavi toimi niin: npm install react-chartjs-2 chart.js
 import "chart.js/auto"; // Automaattinen konfigurointi Chart.js:lle
+import "./Sahko.css";
 
 const NoudaHinta = () => {
     const [prices, setPrices] = useState([]);
@@ -70,19 +71,24 @@ const NoudaHinta = () => {
                 data: prices.map(p => formatPrice(p.EUR_per_kWh * 100)), // Muutetaan euroista senteiksi ja pyöristetään 3 desimaaliin
                 borderColor: "blue",
                 backgroundColor: "rgba(0, 0, 255, 0.2)",
-                fill: true
+                fill: true,
+                order: 1 // Varmistaa, että tämä on taustalla
             },
             {
                 label: "Nykyhetken hinta",
                 data: prices.map(p => (new Date(p.time_start).getHours() === new Date().getHours() ? formatPrice(p.EUR_per_kWh * 100) : null)),
                 borderColor: "red",
                 pointBackgroundColor: "red",
-                pointRadius: 5, // Korostetaan nykyhetkeä punaisella pisteellä
+                pointBorderColor: "black", // Musta reunus, jotta näkyy paremmin
+                pointRadius: 8, // Suurempi koko
+                pointHoverRadius: 10, // Kasvaa hoverilla
                 fill: false,
-                type: "scatter" // Korostuspiste
+                type: "scatter",
+                order: 2 // Varmistaa, että tämä on päällä
             }
         ]
     };
+    
 
     const chartOptions = {
         responsive: true,
@@ -94,21 +100,29 @@ const NoudaHinta = () => {
                     stepSize: 5 // Asetetaan akselin pykälät tasaisiksi (5 snt, 10 snt jne.)
                 }
             }
+        },
+        elements: {
+            point: {
+                z: 10 // Asetetaan punainen pallo korkeimmalle tasolle
+            }
         }
     };
+    
 
     return (
-        <div>
+        <div className="sahko-nakyma">
             <h3>Päivän sähkön hintatiedot</h3>
             <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
             <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
             <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
             <h4>Sähkön hinnan kehitys päivän aikana</h4>
-            <div style={{ height: "300px", width: "100%" }}>
+            <div className="kaavio-container">
                 <Line data={chartData} options={chartOptions} />
             </div>
         </div>
     );
+    
+    
 };
 
 export default NoudaHinta;

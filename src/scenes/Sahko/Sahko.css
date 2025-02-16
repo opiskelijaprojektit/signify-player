@@ -1,16 +1,26 @@
-.sahko-container {
+.sahko-nakyma {
     text-align: center;
-    background-color: yellow !important; /* 🔹 Testiväri */
     padding: 20px;
-    border-radius: 10px;
+    background-color: #f0f0f0; /* Vaaleanharmaa tausta */
 }
 
-
-.sahko-container h2 {
-    margin-bottom: 10px;
+.sahko-nakyma h3, 
+.sahko-nakyma p {
+    font-family: 'Metropolis', sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black; /* Musta reunus tekstiin */
 }
 
-.sahko-container p {
-    font-size: 18px;
-    font-weight: bold;
+/* Kaavion uusi koko: lähes koko sivun levyinen mutta säilyttää mittasuhteet */
+.kaavio-container {
+    width: 90vw; /* 90% ikkunan leveydestä */
+    max-width: 1200px; /* Maksimikoko */
+    height: 400px; /* Riittävän korkea */
+    margin: auto;
+    background-color: white; /* Valkoinen tausta kaaviolle */
+    padding: 10px;
+    border-radius: 8px; /* Pyöristetyt reunat */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
