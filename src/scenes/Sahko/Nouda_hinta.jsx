@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2"; // jos ei kaavi toimi niin: npm install react-chartjs-2 chart.js
 import "chart.js/auto"; // Automaattinen konfigurointi Chart.js:lle
 
 const NoudaHinta = () => {
     const [prices, setPrices] = useState([]);
     const [lowestPrice, setLowestPrice] = useState(null);
     const [highestPrice, setHighestPrice] = useState(null);
+    const [currentPrice, setCurrentPrice] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -25,7 +26,6 @@ const NoudaHinta = () => {
                     throw new Error("Hintatietoja ei saatavilla");
                 }
 
-                // Tallennetaan kaikki päivän hinnat
                 setPrices(data);
 
                 // Etsitään päivän halvin ja kallein tunti ilman pyöristyksiä
@@ -34,6 +34,15 @@ const NoudaHinta = () => {
 
                 setLowestPrice(minPrice);
                 setHighestPrice(maxPrice);
+
+                // Haetaan nykyhetken hinta vertaamalla tuntien aikaleimoja
+                const currentTime = new Date();
+                const currentHour = data.find(p => new Date(p.time_start).getHours() === currentTime.getHours());
+
+                if (currentHour) {
+                    setCurrentPrice(currentHour);
+                }
+
                 setLoading(false);
             } catch (err) {
                 setError(err.message);
@@ -47,6 +56,9 @@ const NoudaHinta = () => {
     if (loading) return <p>Ladataan päivän sähkön hintatietoja...</p>;
     if (error) return <p>Virhe ladattaessa: {error}</p>;
 
+    // Apufunktio pyöristämään hintanäytöt 3 desimaaliin
+    const formatPrice = (price) => parseFloat(price).toFixed(3);
+
     // Määritetään kaavion data ja asetukset
     const chartData = {
         labels: prices.map(p =>
@@ -55,10 +67,19 @@ const NoudaHinta = () => {
         datasets: [
             {
                 label: "Sähkön hinta (snt/kWh)",
-                data: prices.map(p => p.EUR_per_kWh * 100), // Muutetaan euroista senteiksi
+                data: prices.map(p => formatPrice(p.EUR_per_kWh * 100)), // Muutetaan euroista senteiksi ja pyöristetään 3 desimaaliin
                 borderColor: "blue",
                 backgroundColor: "rgba(0, 0, 255, 0.2)",
                 fill: true
+            },
+            {
+                label: "Nykyhetken hinta",
+                data: prices.map(p => (new Date(p.time_start).getHours() === new Date().getHours() ? formatPrice(p.EUR_per_kWh * 100) : null)),
+                borderColor: "red",
+                pointBackgroundColor: "red",
+                pointRadius: 5, // Korostetaan nykyhetkeä punaisella pisteellä
+                fill: false,
+                type: "scatter" // Korostuspiste
             }
         ]
     };
@@ -79,8 +100,9 @@ const NoudaHinta = () => {
     return (
         <div>
             <h3>Päivän sähkön hintatiedot</h3>
-            <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {lowestPrice.EUR_per_kWh * 100} snt/kWh</p>
-            <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {highestPrice.EUR_per_kWh * 100} snt/kWh</p>
+            <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
+            <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
+            <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
             <h4>Sähkön hinnan kehitys päivän aikana</h4>
             <div style={{ height: "300px", width: "100%" }}>
                 <Line data={chartData} options={chartOptions} />
