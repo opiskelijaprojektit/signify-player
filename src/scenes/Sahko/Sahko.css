@@ -11,29 +11,26 @@
 }
 
 
-/* Otsikko ja hintatiedot vierekkäin */
-.ylaosa {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
-    margin-bottom: 20px;
-}
 
-/* Otsikko vasemmalle */
+
+/* Otsikko */
 .otsikko {
-    text-align: left;
+    text-align: right;
     color: white;
     text-shadow: 1px 1px 2px black;
+    margin-left: 370px;
+    margin-top: 75px; 
 }
 
-/* Hintatiedot oikealle */
+/* Hintatiedot */
 .hintatiedot {
     text-align: right;
     color: white;
     text-shadow: 1px 1px 2px black;
-    margin-right: 300px;
+    margin-left: 450px;
+    margin-top: 10px;
+    padding-left: 10px;
+
 }
 
 /* Kaavion keskitys ja koko */
@@ -47,8 +44,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 130px; /* Lisää väliä kaavion ja tekstien väliin */
-    margin-top: -200px; /* Nostaa kaaviota ylöspäin */
+    margin-bottom: 1px;
+    margin-top: 20px; 
+
 }
 
 

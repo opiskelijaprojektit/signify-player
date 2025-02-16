@@ -142,24 +142,25 @@ const NoudaHinta = () => {
 
     
 
-return (
-    <div className="sahko-container">
-        {/* Kaavio ylimpänä */}
-        <div className="kaavio-container">
-            <Line data={chartData} options={chartOptions} />
-        </div>
-
-        {/* Otsikko ja hintatiedot vierekkäin */}
-        <div className="ylaosa">
-            <h2 className="otsikko">Sähkön hinta tänään {new Date().toLocaleDateString("fi-FI")}</h2>
-            <div className="hintatiedot">
-                <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
-                <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
-                <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
+    return (
+        <div className="sahko-container">
+            {/* Otsikko ja hintatiedot vierekkäin */}
+            <div className="ylaosa">
+                <h2 className="otsikko">Sähkön hinta tänään {new Date().toLocaleDateString("fi-FI")}</h2>
+                <div className="hintatiedot">
+                    <p><strong>Nykyhetken hinta:</strong> {currentPrice ? `${new Date(currentPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: ${formatPrice(currentPrice.EUR_per_kWh * 100)} snt/kWh` : "Ei saatavilla"}</p>
+                    <p><strong>Halvin tunti:</strong> {new Date(lowestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(lowestPrice.EUR_per_kWh * 100)} snt/kWh</p>
+                    <p><strong>Kallein tunti:</strong> {new Date(highestPrice.time_start).toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}: {formatPrice(highestPrice.EUR_per_kWh * 100)} snt/kWh</p>
+                </div>
+            </div>
+    
+            {/* Kaavio siirretään takaisin alapuolelle */}
+            <div className="kaavio-container">
+                <Line data={chartData} options={chartOptions} />
             </div>
         </div>
-    </div>
-);
+    );
+    
 
     
     
