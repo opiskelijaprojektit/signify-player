@@ -43,12 +43,24 @@ function SceneMovie({ sceneData }) {
   // Kun elokuvan tiedot on haettu renderöidään ruudulle
   return (
     <div className="scene-movie">
-      <div className="movie-name">
-        <h1>{movie.title}</h1>
+    
+      <div className="movie-info">
+        <div className="movie-name">
+          <h1>{movie.title}</h1>
+        </div>
+        <p>{movie.overview}</p>
       </div>
-      <p>{movie.overview}</p>
-      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+
+      <div className="movie-poster">
+        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
       </div>
+
+      {/* TMDB-logo ja attribuutio */}
+      <footer className="tmdb-attribution">
+        <p>Tämä sovellus käyttää TMDB APIa, mutta se ei ole TMDB:n hyväksymä, sertifioima tai sponsoroima.</p>
+        <img src="/images/tmdb-logo.svg" alt="TMDB Logo" />
+      </footer>
+    </div>
   );
 }
 
