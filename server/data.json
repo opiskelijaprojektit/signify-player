@@ -45,6 +45,15 @@
         }
       },
       "duration": 8000
+    },
+    {
+      "id": 8,
+      "type": "movie",
+      "data": {
+        "api_key": "YOURAPIKEY"
+      },
+      "duration": 8000
     }
+
   ]
 }

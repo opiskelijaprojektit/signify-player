@@ -5,6 +5,7 @@ import useInterval from '../../utils/useInterval'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import './Scene.css'
+import SceneMovie from '../../scenes/scene-movie/Scene-movie';
 
 // Import scene components
 import Image from '../../scenes/image'
@@ -25,7 +26,11 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
+      case "movie":
+        return (
+          <SwiperSlide key={scene.id}>
+            {scene.data ? <SceneMovie sceneData={scene.data} /> :<p>Ladataan elokuvan tietoja...</p>}
+          </SwiperSlide>)
       default:
         return null
     }
