@@ -29,6 +29,11 @@ function SceneMovie({ sceneData }) {
 
   return (
     <div className="scene-movie">
+
+      <div className="movie-header">
+        <h2>Movie of the Day</h2>
+      </div>
+      
       <div className="movie-info">
         <div className="movie-name">
           <h1>{storedMovie.movie.title}</h1>
@@ -41,8 +46,8 @@ function SceneMovie({ sceneData }) {
       </div>
 
       <footer className="tmdb-attribution">
-        <p>Tämä sovellus käyttää TMDB APIa, mutta se ei ole TMDB:n hyväksymä, sertifioima tai sponsoroima.</p>
         <img src="/images/tmdb-logo.svg" alt="TMDB Logo" />
+        <p>This application uses the TMDB API but is not endorsed, certified, or otherwise approved by TMDB.</p>
       </footer>
     </div>
   );
