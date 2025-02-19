@@ -14,36 +14,45 @@ function Anniversary(props) {
     // Variable for current day's date.
     const today = new Date()
 
-    // Variable for month
-    const m = today.getMonth()
-    // ...and with 2-digits.
-    const mmPadded = String(m + 1).padStart(2,"0")
-    // Month as name.
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const month = months[m]
+    // Variable for locale.
+    const locale = "fi-FI"
 
-    // Variable for date
-    const d = today.getDate()
-    // ...and with 2-digits.
-    const ddPadded = String(d).padStart(2,"0")
+    // Variable for text language.
+    const lang = locale.substring(0,2)
 
-    // Returns the ordinal suffix for a given day number
-    const nth = n => n>10&&n<14 ? "th"      // 11th - 13th
-                     : n%10==1 ? "st"       // 1st, 21st, 31st
-                     : n%10==2 ? "nd"       // 2nd, 22nd
-                     : n%10==3 ? "rd"       // 3rd, 23rd
-                     : "th"                 // All other numbers get th
+    // The API doesn't support all languages,
+    // unsupported languages default to english.
+    // This language list is updated 19 February 2025
+    // source https://api.wikimedia.org/wiki/Feed_API/Language_support#On_this_day_in_history
+    const apiLang = lang => lang === "de" ? "de"    // German
+                            : lang === "fr" ? "fr"  // French
+                            : lang === "sv" ? "sv"  // Swedish
+                            : lang === "pt" ? "pt"  // Portuguese
+                            : lang === "es" ? "es"  // Spanish
+                            : lang === "ar" ? "ar"  // Arabic
+                            : lang === "bs" ? "bs"  // Bosnian
+                            : lang === "uk" ? "uk"  // Ukranian
+                            : lang === "it" ? "it"  // Italian
+                            : lang === "tr" ? "tr"  // Turkish
+                            : lang === "zh" ? "zh"  // Chinese
+                            : "en"                  // default English
+
+    // Variable for month in 2-digits
+    const month = String(today.getMonth() + 1).padStart(2,"0")
+
+    // Variable for day in 2-digits
+    const day = String(today.getDate()).padStart(2,"0")
 
     // API endpoint URLs for different categories
-    const events = props.data.selected + mmPadded + '/' + ddPadded
-    const births = props.data.births + mmPadded + '/' + ddPadded
-    const deaths = props.data.deaths + mmPadded + '/' + ddPadded
+    const events = props.data.api + apiLang(lang) + '/onthisday/selected/' + month + '/' + day
+    const births = props.data.api + apiLang(lang) + '/onthisday/births/' + month + '/' + day
+    const deaths = props.data.api + apiLang(lang) + '/onthisday/deaths/' + month + '/' + day
 
     return (
         <div className="scene_anniversary">
             <div className="scene_anniversary_flex">
                 <div className="scene_anniversary_header">
-                    <h1>{month} {d + nth(d)}</h1>
+                    <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(today)}</h1>
                 </div>
 
                 <div className="scene_anniversary_events">
@@ -51,9 +60,9 @@ function Anniversary(props) {
                     <div className="scene_anniversary_events_event">
                         <div>Vuosi:</div>
                         <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
-                    </div>                                      
+                    </div>
                 </div>
-            
+
                 <div className="scene_anniversary_events scene_anniversary_people">
                     <div className>
                         <h2>Birthdays:</h2>
@@ -62,10 +71,10 @@ function Anniversary(props) {
                             <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
                         </div>
                     </div>
-                    
+
                     <div className>
                         <h2>Deaths:</h2>
-                        <div className="scene_anniversary_events_event scene_anniversary_people_event">                            
+                        <div className="scene_anniversary_events_event scene_anniversary_people_event">
                             <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta.</div>
                             <div className="img"></div>
                         </div>

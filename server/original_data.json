@@ -49,9 +49,7 @@
         { "id": 8,
             "type": "anniversary",
             "data": {
-            "selected": "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/",
-            "births": "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/births/",
-            "deaths": "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/deaths/"
+                "api": "https://api.wikimedia.org/feed/v1/wikipedia/"
             },
             "duration": 10000
         }
