@@ -139,7 +139,7 @@ function Weather(props) {
                                  windDirection: dataTrimSplit[i][2],
                                  hourlyMaximumGust: dataTrimSplit[i][3],
                                  pop: dataTrimSplit[i][4],
-                                 precipitation1h: dataTrimSplit[i][5],
+                                 precipitation1h: Number(dataTrimSplit[i][5]).toLocaleString(props.locale, {minimumFractionDigits: 1}),
                                  smartSymbol: dataTrimSplit[i][6]
                                 }
       weatherArray.push(weatherDataObject)
@@ -239,131 +239,138 @@ function Weather(props) {
 
   return (
     <div className="scene_weather" style={{backgroundImage: "url(" + url + ")"}}>
-      <div className={props.orientation == orientations.landscape ? "weather_screen weather-landscape" : "weather_screen weather-portrait"}>
-        <div className="weather_report">
-          <div>Säätiedot {props.location}</div>
-          <div>{timestampToDate(weatherData[0].timeStamp, props.locale, props.timeZone)}</div>
-          <div className="weather_table">
-              <table>
+      <div className={props.orientation == orientations.landscape ? "weather_screen_landscape" : "weather_screen_portrait"}>
+        <div className="weather_forecast">
+          <div className="weather_header">
+            <h1>{props.location}</h1>
+            <div>Sääennuste</div>
+            <div>{timestampToDate(weatherData[0].timeStamp, props.locale, props.timeZone)}</div>
+          </div>
+          <div>
+              <table className="weather_table">
                 <thead>
                   <tr>
-                      <th></th>
-                      <th>Lämpötila</th>
-                      <th>Tuuli m/s</th>
-                      <th>Suunta</th>
-                      <th>Puuskat m/s</th>
-                      <th>Sade todennäköisyys</th>
-                      <th>Sademäärä mm (1h)</th>
-                      <th>SmartSymbol</th>
-                    </tr>
+                    <th colSpan={10}>Tunnit</th>
+                  </tr>
+                  <tr id="hour">
+                    <td>{timestampToTime(weatherData[0].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[1].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[2].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[3].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[4].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[5].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[6].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[7].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[8].timeStamp, props.locale, props.timeZone)}</td>
+                    <td>{timestampToTime(weatherData[9].timeStamp, props.locale, props.timeZone)}</td>
+                  </tr>
                 </thead>
                 <tbody id="weatherBody">
                   <tr>
-                    <td>{timestampToTime(weatherData[0].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[0].temp}</td>
-                    <td>{weatherData[0].wind}</td>
+                    <th colSpan={10}>Lämpötila</th>
+                  </tr>
+                  <tr id="temperature">
+                    <td>{Math.round(weatherData[0].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[1].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[2].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[3].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[4].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[5].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[6].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[7].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[8].temp) + "°"}</td>
+                    <td>{Math.round(weatherData[9].temp) + "°"}</td>
+                  </tr>
+                  <tr id="wind">
+                    <th colSpan={10}>Tuuli m/s</th>
+                  </tr>
+                  <tr id="windDirection">
                     <td>{degToDirection(weatherData[0].windDirection)}</td>
-                    <td>{weatherData[0].hourlyMaximumGust}</td>
-                    <td>{weatherData[0].pop}</td>
-                    <td>{weatherData[0].precipitation1h}</td>
-                    <td>{weatherData[0].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[1].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[1].temp}</td>
-                    <td>{weatherData[1].wind}</td>
                     <td>{degToDirection(weatherData[1].windDirection)}</td>
-                    <td>{weatherData[1].hourlyMaximumGust}</td>
-                    <td>{weatherData[1].pop}</td>
-                    <td>{weatherData[1].precipitation1h}</td>
-                    <td>{weatherData[1].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[2].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[2].temp}</td>
-                    <td>{weatherData[2].wind}</td>
                     <td>{degToDirection(weatherData[2].windDirection)}</td>
-                    <td>{weatherData[2].hourlyMaximumGust}</td>
-                    <td>{weatherData[2].pop}</td>
-                    <td>{weatherData[2].precipitation1h}</td>
-                    <td>{weatherData[2].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[3].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[3].temp}</td>
-                    <td>{weatherData[3].wind}</td>
                     <td>{degToDirection(weatherData[3].windDirection)}</td>
-                    <td>{weatherData[3].hourlyMaximumGust}</td>
-                    <td>{weatherData[3].pop}</td>
-                    <td>{weatherData[3].precipitation1h}</td>
-                    <td>{weatherData[3].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[4].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[4].temp}</td>
-                    <td>{weatherData[4].wind}</td>
                     <td>{degToDirection(weatherData[4].windDirection)}</td>
-                    <td>{weatherData[4].hourlyMaximumGust}</td>
-                    <td>{weatherData[4].pop}</td>
-                    <td>{weatherData[4].precipitation1h}</td>
-                    <td>{weatherData[4].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[5].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[5].temp}</td>
-                    <td>{weatherData[5].wind}</td>
                     <td>{degToDirection(weatherData[5].windDirection)}</td>
-                    <td>{weatherData[5].hourlyMaximumGust}</td>
-                    <td>{weatherData[5].pop}</td>
-                    <td>{weatherData[5].precipitation1h}</td>
-                    <td>{weatherData[5].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[6].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[6].temp}</td>
-                    <td>{weatherData[6].wind}</td>
                     <td>{degToDirection(weatherData[6].windDirection)}</td>
-                    <td>{weatherData[6].hourlyMaximumGust}</td>
-                    <td>{weatherData[6].pop}</td>
-                    <td>{weatherData[6].precipitation1h}</td>
-                    <td>{weatherData[6].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[7].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[7].temp}</td>
-                    <td>{weatherData[7].wind}</td>
                     <td>{degToDirection(weatherData[7].windDirection)}</td>
-                    <td>{weatherData[7].hourlyMaximumGust}</td>
-                    <td>{weatherData[7].pop}</td>
-                    <td>{weatherData[7].precipitation1h}</td>
-                    <td>{weatherData[7].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[8].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[8].temp}</td>
-                    <td>{weatherData[8].wind}</td>
                     <td>{degToDirection(weatherData[8].windDirection)}</td>
-                    <td>{weatherData[8].hourlyMaximumGust}</td>
-                    <td>{weatherData[8].pop}</td>
-                    <td>{weatherData[8].precipitation1h}</td>
-                    <td>{weatherData[8].smartSymbol}</td>
-                  </tr>
-                  <tr>
-                    <td>{timestampToTime(weatherData[9].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{weatherData[9].temp}</td>
-                    <td>{weatherData[9].wind}</td>
                     <td>{degToDirection(weatherData[9].windDirection)}</td>
-                    <td>{weatherData[9].hourlyMaximumGust}</td>
-                    <td>{weatherData[9].pop}</td>
+                  </tr>
+                  <tr id="windMs">
+                    <td>{Math.round(weatherData[0].wind)}</td>
+                    <td>{Math.round(weatherData[1].wind)}</td>
+                    <td>{Math.round(weatherData[2].wind)}</td>
+                    <td>{Math.round(weatherData[3].wind)}</td>
+                    <td>{Math.round(weatherData[4].wind)}</td>
+                    <td>{Math.round(weatherData[5].wind)}</td>
+                    <td>{Math.round(weatherData[6].wind)}</td>
+                    <td>{Math.round(weatherData[7].wind)}</td>
+                    <td>{Math.round(weatherData[8].wind)}</td>
+                    <td>{Math.round(weatherData[9].wind)}</td>
+                  </tr>
+                  <tr id="wind">
+                    <th colSpan={10}>Puuskat m/s</th>
+                  </tr>
+                  <tr id="hourlyMaximumGust">
+                    <td>{Math.round(weatherData[0].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[1].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[2].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[3].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[4].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[5].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[6].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[7].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[8].hourlyMaximumGust)}</td>
+                    <td>{Math.round(weatherData[9].hourlyMaximumGust)}</td>
+                  </tr>
+                  <tr id="rainChance">
+                    <th colSpan={10}>Sateen todennäköisyys %</th>
+                  </tr>
+                  <tr id="pop">
+                    <td>{Math.round(weatherData[0].pop)}</td>
+                    <td>{Math.round(weatherData[1].pop)}</td>
+                    <td>{Math.round(weatherData[2].pop)}</td>
+                    <td>{Math.round(weatherData[3].pop)}</td>
+                    <td>{Math.round(weatherData[4].pop)}</td>
+                    <td>{Math.round(weatherData[5].pop)}</td>
+                    <td>{Math.round(weatherData[6].pop)}</td>
+                    <td>{Math.round(weatherData[7].pop)}</td>
+                    <td>{Math.round(weatherData[8].pop)}</td>
+                    <td>{Math.round(weatherData[9].pop)}</td>
+                  </tr>
+                  <tr id="rainAmmount">
+                    <th colSpan={10}>Sademäärä mm (1h)</th>
+                  </tr>
+                  <tr id="precipitation1h">
+                    <td>{weatherData[0].precipitation1h}</td>
+                    <td>{weatherData[1].precipitation1h}</td>
+                    <td>{weatherData[2].precipitation1h}</td>
+                    <td>{weatherData[3].precipitation1h}</td>
+                    <td>{weatherData[4].precipitation1h}</td>
+                    <td>{weatherData[5].precipitation1h}</td>
+                    <td>{weatherData[6].precipitation1h}</td>
+                    <td>{weatherData[7].precipitation1h}</td>
+                    <td>{weatherData[8].precipitation1h}</td>
                     <td>{weatherData[9].precipitation1h}</td>
+                  </tr>
+                  <tr id="smartSymbol">
+                    <td>{weatherData[0].smartSymbol}</td>
+                    <td>{weatherData[1].smartSymbol}</td>
+                    <td>{weatherData[2].smartSymbol}</td>
+                    <td>{weatherData[3].smartSymbol}</td>
+                    <td>{weatherData[4].smartSymbol}</td>
+                    <td>{weatherData[5].smartSymbol}</td>
+                    <td>{weatherData[6].smartSymbol}</td>
+                    <td>{weatherData[7].smartSymbol}</td>
+                    <td>{weatherData[8].smartSymbol}</td>
                     <td>{weatherData[9].smartSymbol}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          <div>
-            Lähde: Ilmatieteen laitoksen avoin data,<br>
-            </br>Meteorologin sääennustedata.
+          <div className="forecast_source">
+            <div>Lähde: Ilmatieteen laitoksen avoin data,</div>
+            <div>Meteorologin sääennustedata.</div>
           </div>
         </div>
       </div>
