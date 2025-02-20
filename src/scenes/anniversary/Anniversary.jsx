@@ -75,25 +75,35 @@ function Anniversary(props) {
                 <div className="scene_anniversary_events">
                     <h2>Happened today in history:</h2>
                     <div className="scene_anniversary_events_event">
-                        <div>Vuosi:</div>
-                        <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii. Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
+                        <div>{anniversaryData.events.selected[0].year}</div>
+                        <div className="text">{anniversaryData.events.selected[0].text}</div>
                     </div>
                 </div>
 
                 <div className="scene_anniversary_events scene_anniversary_people">
-                    <div className>
+                    <div className="scene_anniversary_people_birthday">
                         <h2>Birthdays:</h2>
                         <div className="scene_anniversary_events_event scene_anniversary_people_event">
-                            <div className="img"></div>
-                            <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta. Ja näin se homma toimii.</div>
+                            <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[0].pages[0].thumbnail.source})`}}></div>
+                            <div className="text">
+                                {anniversaryData.births.births[0].text}.
+                                <br></br>
+                                Born in {anniversaryData.births.births[0].year},
+                                <br></br>
+                                {2025 - anniversaryData.births.births[0].year} years.
+                            </div>
                         </div>
                     </div>
 
-                    <div className>
+                    <div className="scene_anniversary_people_death">
                         <h2>Deaths:</h2>
                         <div className="scene_anniversary_events_event scene_anniversary_people_event">
-                            <div className="text">Sisältö saadaan Wikimedian 'On this day'-APIsta.</div>
-                            <div className="img"></div>
+                            <div className="text">
+                                {anniversaryData.deaths.deaths[0].text}.
+                                <br></br>
+                                Died in {anniversaryData.deaths.deaths[0].year}.
+                            </div>
+                            <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[0].pages[0].thumbnail.source})`}}></div>
                         </div>
                     </div>
                 </div>

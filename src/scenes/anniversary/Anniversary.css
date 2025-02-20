@@ -60,12 +60,18 @@
     padding: 1em 0;
 }
 
+.scene_anniversary_events_event {
+    font-size: 1.25em;
+}
+
 .scene_anniversary_people_event .text {
     width: 80%;
 }
 
 .scene_anniversary_people_event .img {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
     background-color: var(--neutral-dark);
+    background-size: cover;
 }
