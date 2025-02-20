@@ -3,6 +3,7 @@ import './Anniversary.css'
 import { getOTDData } from './anniversaryApi.js'
 import { useEffect } from "react"
 import useLocalStorage from "../../utils/useLocalStorage.js"
+import useInterval from "../../utils/useInterval.js"
 
 /**
  * An anniversary component that displays anniversaries
@@ -26,13 +27,10 @@ function Anniversary(props) {
 
     // Makes API call only once a day, 
     // and stores the data in localStorage.
-    useEffect(() => {
+    const fetchData = () => {
         const dateToday = now.toISOString().split('T')[0]
 
-        // If localStorage has anniversaryData,
-        // and date of stored data is today,
-        // and app language matches,
-        // no need for new API call.
+        // Checks if new API call is needed.
         if (anniversaryData && anniversaryData.date === dateToday && anniversaryData.lang === lang) {
             console.log('Käytetään tallennettua dataa.')
             return
@@ -52,7 +50,20 @@ function Anniversary(props) {
                     deaths: deaths_result
                 })
             })
+    }
+
+    // Fetches data when the component loads or dependencies change.
+    useEffect(() => {
+        fetchData()
     }, [props.data.api, lang, month, day])
+
+    // Fetches data when the day changes.
+    useInterval(() => {
+        const atm = new Date()
+        if (atm.getHours() === 0 && atm.getMinutes() === 0) {
+            fetchData()
+        }
+    }, 60 * 1000)
 
     return (
         <div className="scene_anniversary">
