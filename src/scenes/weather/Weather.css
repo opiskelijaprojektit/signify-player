@@ -16,9 +16,7 @@
 
 .weather_report {
   background-color: var(--neutral-darker-aplha);
-  width: 75%;
-  height: 75%;
-  font-size: 180%;
+  font-size: 100%;
 }
 
 .weather-landscape .weather_report {
