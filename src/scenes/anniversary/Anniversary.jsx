@@ -1,5 +1,8 @@
 import { orientations } from "../../utils/types"   // screen orientation type
 import './Anniversary.css'
+import { getOTDData } from './anniversaryApi.js'
+import { useEffect } from "react"
+import useLocalStorage from "../../utils/useLocalStorage.js"
 
 /**
  * An anniversary component that displays anniversaries
@@ -11,48 +14,51 @@ import './Anniversary.css'
  */
 function Anniversary(props) {
 
-    // Variable for current day's date.
-    const today = new Date()
+    // State variables
+    const [anniversaryData, setAnniversaryData] = useLocalStorage('anniversaryData', {})
 
-    // Variable for locale.
-    const locale = "fi-FI"
-
-    // Variable for text language.
+    // Other variables
+    const now = new Date()
+    const month = String(now.getMonth() + 1).padStart(2,"0")
+    const day = String(now.getDate()).padStart(2,"0")
+    const locale = "en-US"
     const lang = locale.substring(0,2)
 
-    // The API doesn't support all languages,
-    // unsupported languages default to english.
-    // This language list is updated 19 February 2025
-    // source https://api.wikimedia.org/wiki/Feed_API/Language_support#On_this_day_in_history
-    const apiLang = lang => lang === "de" ? "de"    // German
-                            : lang === "fr" ? "fr"  // French
-                            : lang === "sv" ? "sv"  // Swedish
-                            : lang === "pt" ? "pt"  // Portuguese
-                            : lang === "es" ? "es"  // Spanish
-                            : lang === "ar" ? "ar"  // Arabic
-                            : lang === "bs" ? "bs"  // Bosnian
-                            : lang === "uk" ? "uk"  // Ukranian
-                            : lang === "it" ? "it"  // Italian
-                            : lang === "tr" ? "tr"  // Turkish
-                            : lang === "zh" ? "zh"  // Chinese
-                            : "en"                  // default English
+    // Makes API call only once a day, 
+    // and stores the data in localStorage.
+    useEffect(() => {
+        const dateToday = now.toISOString().split('T')[0]
 
-    // Variable for month in 2-digits
-    const month = String(today.getMonth() + 1).padStart(2,"0")
+        // If localStorage has anniversaryData,
+        // and date of stored data is today,
+        // and app language matches,
+        // no need for new API call.
+        if (anniversaryData && anniversaryData.date === dateToday && anniversaryData.lang === lang) {
+            console.log('Käytetään tallennettua dataa.')
+            return
+        }
 
-    // Variable for day in 2-digits
-    const day = String(today.getDate()).padStart(2,"0")
-
-    // API endpoint URLs for different categories
-    const events = props.data.api + apiLang(lang) + '/onthisday/selected/' + month + '/' + day
-    const births = props.data.api + apiLang(lang) + '/onthisday/births/' + month + '/' + day
-    const deaths = props.data.api + apiLang(lang) + '/onthisday/deaths/' + month + '/' + day
+        // If localStorage has no data,
+        // or date doesn't match today,
+        // retrieve data from API and store it in localStorage.
+        getOTDData(props.data.api, lang, month, day)
+            .then(([events_result, births_result, deaths_result]) => {
+                console.log('Haettu APIsta!')
+                setAnniversaryData({
+                    date: dateToday,
+                    lang: lang,
+                    events: events_result,
+                    births: births_result,
+                    deaths: deaths_result
+                })
+            })
+    }, [props.data.api, lang, month, day])
 
     return (
         <div className="scene_anniversary">
             <div className="scene_anniversary_flex">
                 <div className="scene_anniversary_header">
-                    <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(today)}</h1>
+                    <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(now)}</h1>
                 </div>
 
                 <div className="scene_anniversary_events">
