@@ -51,24 +51,21 @@
     flex: 1;
 }
 
-.scene_anniversary_events_event {
+.event {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1em;
     padding: 1em 0;
-}
-
-.scene_anniversary_events_event {
     font-size: 1.25em;
 }
 
-.scene_anniversary_people_event .text {
+.people_event .text {
     width: 80%;
 }
 
-.scene_anniversary_people_event .img {
+.people_event .img {
     height: 100px;
     width: 100px;
     border-radius: 50%;

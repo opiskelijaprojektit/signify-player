@@ -74,16 +74,16 @@ function Anniversary(props) {
 
                 <div className="scene_anniversary_events">
                     <h2>Happened today in history:</h2>
-                    <div className="scene_anniversary_events_event">
-                        <div>{anniversaryData.events.selected[0].year}</div>
+                    <div className="event">
+                        <div className="year">{anniversaryData.events.selected[0].year}</div>
                         <div className="text">{anniversaryData.events.selected[0].text}</div>
                     </div>
                 </div>
 
                 <div className="scene_anniversary_events scene_anniversary_people">
-                    <div className="scene_anniversary_people_birthday">
+                    <div className="birthday">
                         <h2>Birthdays:</h2>
-                        <div className="scene_anniversary_events_event scene_anniversary_people_event">
+                        <div className="event people_event">
                             <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[0].pages[0].thumbnail.source})`}}></div>
                             <div className="text">
                                 {anniversaryData.births.births[0].text}.
@@ -95,9 +95,9 @@ function Anniversary(props) {
                         </div>
                     </div>
 
-                    <div className="scene_anniversary_people_death">
+                    <div className="death">
                         <h2>Deaths:</h2>
-                        <div className="scene_anniversary_events_event scene_anniversary_people_event">
+                        <div className="event people_event">
                             <div className="text">
                                 {anniversaryData.deaths.deaths[0].text}.
                                 <br></br>
