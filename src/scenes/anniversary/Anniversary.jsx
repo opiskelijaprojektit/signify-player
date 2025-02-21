@@ -20,6 +20,7 @@ function Anniversary(props) {
 
     // Other variables
     const now = new Date()
+    const thisYear = now.getFullYear()
     const month = String(now.getMonth() + 1).padStart(2,"0")
     const day = String(now.getDate()).padStart(2,"0")
     const locale = "en-US"
@@ -27,7 +28,7 @@ function Anniversary(props) {
 
     // Makes API call only once a day, 
     // and stores the data in localStorage.
-    const fetchData = () => {
+    function fetchData() {
         const dateToday = now.toISOString().split('T')[0]
 
         // Checks if new API call is needed.
@@ -65,6 +66,11 @@ function Anniversary(props) {
         }
     }, 60 * 1000)
 
+    // Indexes for displayed events.
+    const eventIndexes = [0, 1, 2, 3]
+    const birthIndexes = [0, 1]
+    const deathIndexes = [0, 1]
+
     return (
         <div className="scene_anniversary">
             <div className="scene_anniversary_flex">
@@ -72,41 +78,83 @@ function Anniversary(props) {
                     <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(now)}</h1>
                 </div>
 
-                <div className="scene_anniversary_events">
-                    <h2>Happened today in history:</h2>
-                    <div className="event">
-                        <div className="year">{anniversaryData.events.selected[0].year}</div>
-                        <div className="text">{anniversaryData.events.selected[0].text}</div>
-                    </div>
-                </div>
-
-                <div className="scene_anniversary_events scene_anniversary_people">
-                    <div className="birthday">
-                        <h2>Birthdays:</h2>
-                        <div className="event people_event">
-                            <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[0].pages[0].thumbnail.source})`}}></div>
-                            <div className="text">
-                                {anniversaryData.births.births[0].text}.
-                                <br></br>
-                                Born in {anniversaryData.births.births[0].year},
-                                <br></br>
-                                {2025 - anniversaryData.births.births[0].year} years.
+                { !anniversaryData || Object.keys(anniversaryData).length === 0 ? <div>Loading...</div> : 
+                    <div className="scene_anniversary_events_flex">
+                        {/* Checks if there is events to display. */}
+                        { Object.keys(anniversaryData.events.selected).length > 0 ?
+                            <div className="scene_anniversary_events">
+                                <h2>Happened today in history:</h2>
+                                {eventIndexes.map((index) => (
+                                    <div key={index} className="event">
+                                        <div className="year">{anniversaryData.events.selected[index].year}</div>
+                                        <div className="text">{anniversaryData.events.selected[index].text}</div>
+                                        {/* Checks if there is picture to display. */}
+                                        {anniversaryData.events.selected[index].pages[0].thumbnail ? 
+                                            <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[0].thumbnail.source})`}}></div> 
+                                            : anniversaryData.events.selected[index].pages[1].thumbnail ?
+                                            <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[1].thumbnail.source})`}}></div>
+                                            : anniversaryData.events.selected[index].pages[2].thumbnail ?
+                                            <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[2].thumbnail.source})`}}></div>
+                                            : null
+                                        }
+                                    </div>
+                                ))}
                             </div>
-                        </div>
-                    </div>
+                        : <div className="scene_anniversary_events">Nothing has happened on this date.</div> }
 
-                    <div className="death">
-                        <h2>Deaths:</h2>
-                        <div className="event people_event">
-                            <div className="text">
-                                {anniversaryData.deaths.deaths[0].text}.
-                                <br></br>
-                                Died in {anniversaryData.deaths.deaths[0].year}.
+                        {/* Checks if there is births or deaths to display. */}
+                        { Object.keys(anniversaryData.births.births).length == 0 && Object.keys(anniversaryData.deaths.deaths).length == 0 ? null :
+                            <div className="scene_anniversary_events scene_anniversary_people">
+
+                                {/* Checks for birthdays */}
+                                { Object.keys(anniversaryData.births.births).length > 0 ? 
+                                <div className="birthday">
+                                    <h2>Birthdays:</h2>
+                                    {birthIndexes.map((index) => (
+                                        <div key={index} className="event people_event">
+                                            <div className="text">
+                                                {anniversaryData.births.births[index].text}.
+                                                <br />
+                                                Born in {anniversaryData.births.births[index].year}, {thisYear - anniversaryData.births.births[index].year} years ago.
+                                            </div>
+                                            {/* Checks if there is picture to display. */}
+                                            {anniversaryData.births.births[index].pages[0].thumbnail ? 
+                                                <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[index].pages[0].thumbnail.source})`}}></div> 
+                                                : anniversaryData.births.births[index].pages[1].thumbnail ?
+                                                <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[index].pages[1].thumbnail.source})`}}></div>
+                                                : null
+                                            }
+                                        </div>
+                                    ))}
+                                </div>
+                                : null }
+
+                                {/* Checks if anyone died on given date. */}
+                                { Object.keys(anniversaryData.deaths.deaths).length > 0 ? 
+                                <div className="death">
+                                    <h2>Deaths:</h2>
+                                    {deathIndexes.map((index) => (
+                                        <div key={index} className="event people_event">
+                                            <div className="text">
+                                                {anniversaryData.deaths.deaths[index].text}.
+                                                <br />
+                                                Died in {anniversaryData.deaths.deaths[index].year}.
+                                            </div>
+                                            {/* Checks if there is picture to display. */}
+                                            {anniversaryData.deaths.deaths[index].pages[0].thumbnail ? 
+                                                <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[index].pages[0].thumbnail.source})`}}></div> 
+                                                : anniversaryData.deaths.deaths[index].pages[1].thumbnail ?
+                                                <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[index].pages[1].thumbnail.source})`}}></div>
+                                                : null
+                                            }
+                                        </div>
+                                    ))}
+                                </div> 
+                                : null }
                             </div>
-                            <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[0].pages[0].thumbnail.source})`}}></div>
-                        </div>
+                        }
                     </div>
-                </div>
+                }
             </div>
         </div>
     )

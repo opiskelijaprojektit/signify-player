@@ -14,9 +14,8 @@
     height: 100%;
     background-color: rgba(171, 173, 176, 0.5);
     display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-content: center;
+    flex-flow: column;
+    justify-content: flex-start;
 }
 
 .scene_anniversary_header {
@@ -30,10 +29,17 @@
     margin: 1em 2em;
 }
 
+.scene_anniversary_events_flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .scene_anniversary_events {
     margin: 0 2em 2em 2em;
     padding: 2em;
-    height: 60%;
+    height: fit-content;
     max-width: 30em;
     background-color: var(--neutral);
     border: 1em solid;
@@ -41,6 +47,10 @@
     box-shadow: 4px 4px 4px rgba(0,0,0,.6);
     display: flex;
     flex-direction: column;
+}
+
+.scene_anniversary_events h2 {
+    margin-top: 0;
 }
 
 .scene_anniversary_people {
@@ -57,18 +67,23 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1em;
-    padding: 1em 0;
+    padding: 0.5em 0;
     font-size: 1.25em;
 }
 
-.people_event .text {
-    width: 80%;
+.event .text {
+    width: 50%;
 }
 
-.people_event .img {
+.birthday .text,
+.death .text {
+    width: 65%;
+}
+
+.event .img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    background-color: var(--neutral-dark);
+    background-color: var(--neutral);
     background-size: cover;
 }
