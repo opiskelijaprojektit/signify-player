@@ -16,10 +16,10 @@ import useInterval from "../../utils/useInterval.js"
 function Anniversary(props) {
 
     // State variables
-    const [anniversaryData, setAnniversaryData] = useLocalStorage('anniversaryData', {})
+    const [anniversaryData, setAnniversaryData, resetAnniversaryData] = useLocalStorage('anniversaryData', {})
 
     // Other variables
-    const now = new Date()
+    let now = new Date()
     const thisYear = now.getFullYear()
     const month = String(now.getMonth() + 1).padStart(2,"0")
     const day = String(now.getDate()).padStart(2,"0")
@@ -29,7 +29,9 @@ function Anniversary(props) {
     // Makes API call only once a day, 
     // and stores the data in localStorage.
     function fetchData() {
-        const dateToday = now.toISOString().split('T')[0]
+        const dateToday = new Date().toString()
+        console.log(now)
+        console.log(dateToday)
 
         // Checks if new API call is needed.
         if (anniversaryData && anniversaryData.date === dateToday && anniversaryData.lang === lang) {
@@ -62,6 +64,8 @@ function Anniversary(props) {
     useInterval(() => {
         const atm = new Date()
         if (atm.getHours() === 0 && atm.getMinutes() === 0) {
+            resetAnniversaryData()
+            now = new Date()
             fetchData()
         }
     }, 60 * 1000)
@@ -86,14 +90,14 @@ function Anniversary(props) {
                                 <h2>Happened today in history:</h2>
                                 {eventIndexes.map((index) => (
                                     <div key={index} className="event">
-                                        <div className="year">{anniversaryData.events.selected[index].year}</div>
-                                        <div className="text">{anniversaryData.events.selected[index].text}</div>
+                                        <div className="year">{anniversaryData.events.selected[index]?.year ? anniversaryData.events.selected[index].year : null}</div>
+                                        <div className="text">{anniversaryData.events.selected[index]?.text ? anniversaryData.events.selected[index].text : null}</div>
                                         {/* Checks if there is picture to display. */}
-                                        {anniversaryData.events.selected[index].pages[0].thumbnail ? 
+                                        {anniversaryData.events.selected[index]?.pages[0]?.thumbnail ? 
                                             <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[0].thumbnail.source})`}}></div> 
-                                            : anniversaryData.events.selected[index].pages[1].thumbnail ?
+                                            : anniversaryData.events.selected[index]?.pages[1]?.thumbnail ?
                                             <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[1].thumbnail.source})`}}></div>
-                                            : anniversaryData.events.selected[index].pages[2].thumbnail ?
+                                            : anniversaryData.events.selected[index]?.pages[2]?.thumbnail ?
                                             <div className="img" style={{backgroundImage: `url(${anniversaryData.events.selected[index].pages[2].thumbnail.source})`}}></div>
                                             : null
                                         }
@@ -113,14 +117,14 @@ function Anniversary(props) {
                                     {birthIndexes.map((index) => (
                                         <div key={index} className="event people_event">
                                             <div className="text">
-                                                {anniversaryData.births.births[index].text}.
+                                                {anniversaryData.births.births[index]?.text ? anniversaryData.births.births[index].text : null}.
                                                 <br />
-                                                Born in {anniversaryData.births.births[index].year}, {thisYear - anniversaryData.births.births[index].year} years ago.
+                                                Born in {anniversaryData.births.births[index]?.year ? anniversaryData.births.births[index].year : null}, {thisYear - anniversaryData.births.births[index].year ? thisYear - anniversaryData.births.births[index].year : null} years ago.
                                             </div>
                                             {/* Checks if there is picture to display. */}
-                                            {anniversaryData.births.births[index].pages[0].thumbnail ? 
+                                            {anniversaryData.births.births[index]?.pages[0]?.thumbnail ? 
                                                 <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[index].pages[0].thumbnail.source})`}}></div> 
-                                                : anniversaryData.births.births[index].pages[1].thumbnail ?
+                                                : anniversaryData.births.births[index]?.pages[1]?.thumbnail ?
                                                 <div className="img" style={{backgroundImage: `url(${anniversaryData.births.births[index].pages[1].thumbnail.source})`}}></div>
                                                 : null
                                             }
@@ -136,14 +140,14 @@ function Anniversary(props) {
                                     {deathIndexes.map((index) => (
                                         <div key={index} className="event people_event">
                                             <div className="text">
-                                                {anniversaryData.deaths.deaths[index].text}.
+                                                {anniversaryData.deaths.deaths[index]?.text ? anniversaryData.deaths.deaths[index].text : null}.
                                                 <br />
-                                                Died in {anniversaryData.deaths.deaths[index].year}.
+                                                Died in {anniversaryData.deaths.deaths[index]?.year ? anniversaryData.deaths.deaths[index].year : null}.
                                             </div>
                                             {/* Checks if there is picture to display. */}
-                                            {anniversaryData.deaths.deaths[index].pages[0].thumbnail ? 
+                                            {anniversaryData.deaths.deaths[index]?.pages[0]?.thumbnail ? 
                                                 <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[index].pages[0].thumbnail.source})`}}></div> 
-                                                : anniversaryData.deaths.deaths[index].pages[1].thumbnail ?
+                                                : anniversaryData.deaths.deaths[index]?.pages[1]?.thumbnail ?
                                                 <div className="img" style={{backgroundImage: `url(${anniversaryData.deaths.deaths[index].pages[1].thumbnail.source})`}}></div>
                                                 : null
                                             }
