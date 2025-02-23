@@ -62,7 +62,7 @@
 
 .movie-poster img {
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
     margin-top: -50px;
     height: auto;
     border-radius: 10px;
@@ -133,12 +133,12 @@
 
   .movie-poster img {
       width: 90%; /* Pienennetään kuvan leveyttä hieman */
-      max-width: 220px; /* Rajoitetaan kuvan maksimi kokoa */
+      max-width: 200px; /* Rajoitetaan kuvan maksimi kokoa */
   }
 
   .movie-info p {
       font-size: 1rem;
       padding: 8px;
-      margin-bottom: 5px; /* Pienennetään väliä vielä hieman */
+      margin-bottom: 5px; /* Pienennetään väliä hieman */
   }
 }
