@@ -139,7 +139,7 @@ function Weather(props) {
                                  windDirection: dataTrimSplit[i][2],
                                  hourlyMaximumGust: dataTrimSplit[i][3],
                                  pop: dataTrimSplit[i][4],
-                                 precipitation1h: Number(dataTrimSplit[i][5]).toLocaleString(props.locale, {minimumFractionDigits: 1}),
+                                 precipitation1h: Number(dataTrimSplit[i][5]).toLocaleString(props.locale, {minimumFractionDigits: 1, maximumFractionDigits: 1}),
                                  smartSymbol: dataTrimSplit[i][6]
                                 }
       weatherArray.push(weatherDataObject)
