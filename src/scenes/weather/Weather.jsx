@@ -1,6 +1,6 @@
-import { orientations } from "../../utils/types"   // screen orientation type
+import { orientations } from '../../utils/types'   // screen orientation type
 import './Weather.css'
-import { xml2js, parseStringPromise } from "xml2js"
+import { xml2js, parseStringPromise } from 'xml2js'
 import { useState } from 'react'
 import useInterval from '../../utils/useInterval.js'
 
@@ -47,24 +47,24 @@ function Weather(props) {
   }
 
   async function getWeatherXml(data) {
-    let url = "https://opendata.fmi.fi/wfs/fin?"
-            + "service=WFS&version=2.0.0&"
-            + "request=getFeature&storedquery_id="
-            + "fmi::forecast::edited::weather::scandinavia::point::multipointcoverage&"
-            + "place=" + props.location +"&"
-            + "timestep=60&"
-            + "parameters="
-              + "Temperature,"
-              + "WindSpeedMS,"
-              + "winddirection,"
-              + "hourlymaximumgust,"
-              + "pop,"
-              + "precipitation1h,"
-              + "smartsymbol"
-            + "&"
-            + "starttime=" + data.starttime + "&"
-            + "endtime=" + data.endtime + "&"
-    const response = await fetch(url, {cache: "no-store"})
+    let url = 'https://opendata.fmi.fi/wfs/fin?'
+            + 'service=WFS&version=2.0.0&'
+            + 'request=getFeature&storedquery_id='
+            + 'fmi::forecast::edited::weather::scandinavia::point::multipointcoverage&'
+            + 'place=' + props.location + '&'
+            + 'timestep=60&'
+            + 'parameters='
+              + 'Temperature,'
+              + 'WindSpeedMS,'
+              + 'winddirection,'
+              + 'hourlymaximumgust,'
+              + 'pop,'
+              + 'precipitation1h,'
+              + 'smartsymbol'
+            + '&'
+            + 'starttime=' + data.starttime + '&'
+            + 'endtime=' + data.endtime + '&'
+    const response = await fetch(url, {cache: 'no-store'})
     const result = await response.text()
     return result
   }
@@ -86,7 +86,7 @@ function Weather(props) {
       ['gml:DataBlock'][0]
       ['gml:doubleOrNilReasonTupleList'][0]
   
-    let dataSplit = weatherString.split("\n")
+    let dataSplit = weatherString.split('\n')
   
     const dataTrim = []
     for (let i in dataSplit) {
@@ -98,7 +98,7 @@ function Weather(props) {
   
     const dataTrimSplit = []
     for (let i in dataTrim) {
-      dataTrimSplit.push(dataTrim[i].split(" "))
+      dataTrimSplit.push(dataTrim[i].split(' '))
     }
 
     let timeString = data
@@ -111,7 +111,7 @@ function Weather(props) {
       ['gmlcov:SimpleMultiPoint'][0]
       ['gmlcov:positions'][0]
 
-    let timeStringSplit = timeString.split("\n")
+    let timeStringSplit = timeString.split('\n')
 
     const timeDataTrim = []
     for (let i in timeStringSplit) {
@@ -122,7 +122,7 @@ function Weather(props) {
 
     const timeDatasplit_blaa = []
     for (let i in timeDataTrim) {
-      timeDatasplit_blaa.push(timeDataTrim[i].split(" "))
+      timeDatasplit_blaa.push(timeDataTrim[i].split(' '))
     }
 
     const timeData = []
@@ -150,7 +150,7 @@ function Weather(props) {
   function timestampToDate(timestamp, locale, timezone) {
     let date = new Date(timestamp * 1000)
     let options = {
-      dateStyle: "full",
+      dateStyle: 'full',
       timeZone: timezone
     }
     const response = new Intl.DateTimeFormat(locale, options).format(date)
@@ -178,7 +178,7 @@ function Weather(props) {
 
   function handleWeatherUpdate(data) {
     setweatherData(data)
-    console.log("weatherdata set")
+    console.log('weatherdata set')
     console.log(data)
     console.log(weatherData)
     return
@@ -242,7 +242,7 @@ function Weather(props) {
       .then(xmlString => parseXml(xmlString))
       .then(xmlObject => splitWeatherData(xmlObject))
       .then(weatherArray => updateTest(weatherArray))
-      .then(console.log("Weather data updated"))
+      .then(console.log('Weather data updated'))
       .then(setUpdateDelay(1200000))
   }
 
@@ -251,21 +251,21 @@ function Weather(props) {
 
 
   return (
-    <div className="scene_weather" style={{backgroundImage: "url(" + url + ")"}}>
-      <div className={props.orientation == orientations.landscape ? "weather_screen_landscape" : "weather_screen_portrait"}>
-        <div className="weather_forecast">
-          <div className="weather_header">
+    <div className='scene_weather' style={{backgroundImage: 'url(' + url + ')'}}>
+      <div className={props.orientation == orientations.landscape ? 'weather_screen_landscape' : 'weather_screen_portrait'}>
+        <div className='weather_forecast'>
+          <div className='weather_header'>
             <h1>{props.location}</h1>
             <div>Sääennuste</div>
             <div>{timestampToDate(weatherData[0].timeStamp, props.locale, props.timeZone)}</div>
           </div>
           <div>
-              <table className="weather_table">
+              <table className='weather_table'>
                 <thead>
                   <tr>
                     <th colSpan={10}>Tunnit</th>
                   </tr>
-                  <tr id="hour">
+                  <tr id='hour'>
                     <td>{timestampToTime(weatherData[0].timeStamp, props.locale, props.timeZone)}</td>
                     <td>{timestampToTime(weatherData[1].timeStamp, props.locale, props.timeZone)}</td>
                     <td>{timestampToTime(weatherData[2].timeStamp, props.locale, props.timeZone)}</td>
@@ -278,26 +278,26 @@ function Weather(props) {
                     <td>{timestampToTime(weatherData[9].timeStamp, props.locale, props.timeZone)}</td>
                   </tr>
                 </thead>
-                <tbody id="weatherBody">
+                <tbody id='weatherBody'>
                   <tr>
                     <th colSpan={10}>Lämpötila</th>
                   </tr>
-                  <tr id="temperature">
-                    <td>{Math.round(weatherData[0].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[1].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[2].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[3].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[4].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[5].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[6].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[7].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[8].temp) + "°"}</td>
-                    <td>{Math.round(weatherData[9].temp) + "°"}</td>
+                  <tr id='temperature'>
+                    <td>{Math.round(weatherData[0].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[1].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[2].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[3].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[4].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[5].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[6].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[7].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[8].temp) + '°'}</td>
+                    <td>{Math.round(weatherData[9].temp) + '°'}</td>
                   </tr>
-                  <tr id="wind">
+                  <tr id='wind'>
                     <th colSpan={10}>Tuuli m/s</th>
                   </tr>
-                  <tr id="windDirection">
+                  <tr id='windDirection'>
                     <td>{degToArrow(weatherData[0].windDirection)}</td>
                     <td>{degToArrow(weatherData[1].windDirection)}</td>
                     <td>{degToArrow(weatherData[2].windDirection)}</td>
@@ -309,7 +309,7 @@ function Weather(props) {
                     <td>{degToArrow(weatherData[8].windDirection)}</td>
                     <td>{degToArrow(weatherData[9].windDirection)}</td>
                   </tr>
-                  <tr id="windMs">
+                  <tr id='windMs'>
                     <td>{Math.round(weatherData[0].wind)}</td>
                     <td>{Math.round(weatherData[1].wind)}</td>
                     <td>{Math.round(weatherData[2].wind)}</td>
@@ -321,10 +321,10 @@ function Weather(props) {
                     <td>{Math.round(weatherData[8].wind)}</td>
                     <td>{Math.round(weatherData[9].wind)}</td>
                   </tr>
-                  <tr id="wind">
+                  <tr id='wind'>
                     <th colSpan={10}>Puuskat m/s</th>
                   </tr>
-                  <tr id="hourlyMaximumGust">
+                  <tr id='hourlyMaximumGust'>
                     <td>{Math.round(weatherData[0].hourlyMaximumGust)}</td>
                     <td>{Math.round(weatherData[1].hourlyMaximumGust)}</td>
                     <td>{Math.round(weatherData[2].hourlyMaximumGust)}</td>
@@ -336,10 +336,10 @@ function Weather(props) {
                     <td>{Math.round(weatherData[8].hourlyMaximumGust)}</td>
                     <td>{Math.round(weatherData[9].hourlyMaximumGust)}</td>
                   </tr>
-                  <tr id="rainChance">
+                  <tr id='rainChance'>
                     <th colSpan={10}>Sateen todennäköisyys %</th>
                   </tr>
-                  <tr id="pop">
+                  <tr id='pop'>
                     <td>{Math.round(weatherData[0].pop)}</td>
                     <td>{Math.round(weatherData[1].pop)}</td>
                     <td>{Math.round(weatherData[2].pop)}</td>
@@ -351,10 +351,10 @@ function Weather(props) {
                     <td>{Math.round(weatherData[8].pop)}</td>
                     <td>{Math.round(weatherData[9].pop)}</td>
                   </tr>
-                  <tr id="rainAmmount">
+                  <tr id='rainAmmount'>
                     <th colSpan={10}>Sademäärä mm (1h)</th>
                   </tr>
-                  <tr id="precipitation1h">
+                  <tr id='precipitation1h'>
                     <td>{weatherData[0].precipitation1h}</td>
                     <td>{weatherData[1].precipitation1h}</td>
                     <td>{weatherData[2].precipitation1h}</td>
@@ -366,7 +366,7 @@ function Weather(props) {
                     <td>{weatherData[8].precipitation1h}</td>
                     <td>{weatherData[9].precipitation1h}</td>
                   </tr>
-                  <tr id="smartSymbol">
+                  <tr id='smartSymbol'>
                     <td>{weatherData[0].smartSymbol}</td>
                     <td>{weatherData[1].smartSymbol}</td>
                     <td>{weatherData[2].smartSymbol}</td>
@@ -381,7 +381,7 @@ function Weather(props) {
                 </tbody>
               </table>
             </div>
-          <div className="forecast_source">
+          <div className='forecast_source'>
             <div>Lähde: Ilmatieteen laitoksen avoin data,</div>
             <div>Meteorologin sääennustedata.</div>
           </div>
