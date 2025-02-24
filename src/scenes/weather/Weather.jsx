@@ -210,7 +210,7 @@ function Weather(props) {
     return dateData
   }
 
-  // Conver wind direction from degrees
+  // Convert wind direction from degrees
   function degToDirection(deg) {
     return deg <= 22.5 ? 'N'
       : deg <= 67.5 ? 'NE'
