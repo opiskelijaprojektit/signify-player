@@ -223,6 +223,19 @@ function Weather(props) {
       : 'N'
   }
 
+  // Convert wind direction to arrow
+  function degToArrow(deg) {
+    return deg <= 22.5 ? '⇓'
+      : deg <= 67.5 ? '⇙'
+      : deg <= 112.5 ? '⇐'
+      : deg <= 157.5 ? '⇖'
+      : deg <= 202.5 ? '⇑'
+      : deg <= 247.5 ? '⇗'
+      : deg <= 292.5 ? '⇒'
+      : deg <= 337.5 ? '⇘'
+      : '⇓'
+  }
+
   // Update weather data
   function getWeatherData() {
     getWeatherXml(dateToIso())
@@ -285,16 +298,16 @@ function Weather(props) {
                     <th colSpan={10}>Tuuli m/s</th>
                   </tr>
                   <tr id="windDirection">
-                    <td>{degToDirection(weatherData[0].windDirection)}</td>
-                    <td>{degToDirection(weatherData[1].windDirection)}</td>
-                    <td>{degToDirection(weatherData[2].windDirection)}</td>
-                    <td>{degToDirection(weatherData[3].windDirection)}</td>
-                    <td>{degToDirection(weatherData[4].windDirection)}</td>
-                    <td>{degToDirection(weatherData[5].windDirection)}</td>
-                    <td>{degToDirection(weatherData[6].windDirection)}</td>
-                    <td>{degToDirection(weatherData[7].windDirection)}</td>
-                    <td>{degToDirection(weatherData[8].windDirection)}</td>
-                    <td>{degToDirection(weatherData[9].windDirection)}</td>
+                    <td>{degToArrow(weatherData[0].windDirection)}</td>
+                    <td>{degToArrow(weatherData[1].windDirection)}</td>
+                    <td>{degToArrow(weatherData[2].windDirection)}</td>
+                    <td>{degToArrow(weatherData[3].windDirection)}</td>
+                    <td>{degToArrow(weatherData[4].windDirection)}</td>
+                    <td>{degToArrow(weatherData[5].windDirection)}</td>
+                    <td>{degToArrow(weatherData[6].windDirection)}</td>
+                    <td>{degToArrow(weatherData[7].windDirection)}</td>
+                    <td>{degToArrow(weatherData[8].windDirection)}</td>
+                    <td>{degToArrow(weatherData[9].windDirection)}</td>
                   </tr>
                   <tr id="windMs">
                     <td>{Math.round(weatherData[0].wind)}</td>
