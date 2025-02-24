@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
 .scene_weather {
   display: flex;
   flex: auto;
@@ -8,6 +10,7 @@
   justify-content: center;
   align-items: center;
   color: var(--neutral-lightest);
+  font-family: 'Metropolis', sans-serif;
 }
 
 .weather_screen_landscape {
