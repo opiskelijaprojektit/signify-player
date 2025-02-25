@@ -5,8 +5,8 @@ import { useState } from 'react'
 import useInterval from '../../utils/useInterval.js'
 
 /**
- * An weather component that shows current weather conditions
- * on current location.
+ * An weather component that shows weather forecast
+ * for the current location.
  * 
  *
  * @component
@@ -169,19 +169,10 @@ function Weather(props) {
     return result
   }
 
-  const updateTest = (data) => {
-    const n = data
-    setweatherData(n)
-    console.log(data)
-    console.log(weatherData)
-  }
-
-  function handleWeatherUpdate(data) {
+  const handleWeatherUpdate = (data) => {
     setweatherData(data)
-    console.log('weatherdata set')
     console.log(data)
     console.log(weatherData)
-    return
   }
 
   /**
@@ -210,30 +201,30 @@ function Weather(props) {
     return dateData
   }
 
-  // Convert wind direction from degrees
-  function degToDirection(deg) {
-    return deg <= 22.5 ? 'N'
-      : deg <= 67.5 ? 'NE'
-      : deg <= 112.5 ? 'E'
-      : deg <= 157.5 ? 'SE'
-      : deg <= 202.5 ? 'S'
-      : deg <= 247.5 ? 'SW'
-      : deg <= 292.5 ? 'W'
-      : deg <= 337.5 ? 'NW'
-      : 'N'
+  // Convert wind direction from degrees to 8-wind compass rose.
+  const degreeToCompass = (degree) => {
+    return degree <= 22.5 ? 'N' :
+           degree <= 67.5 ? 'NE' :
+           degree <= 112.5 ? 'E' :
+           degree <= 157.5 ? 'SE' :
+           degree <= 202.5 ? 'S' :
+           degree <= 247.5 ? 'SW' :
+           degree <= 292.5 ? 'W' :
+           degree <= 337.5 ? 'NW' :
+           'N'
   }
 
-  // Convert wind direction to arrow
-  function degToArrow(deg) {
-    return deg <= 22.5 ? '⇓'
-      : deg <= 67.5 ? '⇙'
-      : deg <= 112.5 ? '⇐'
-      : deg <= 157.5 ? '⇖'
-      : deg <= 202.5 ? '⇑'
-      : deg <= 247.5 ? '⇗'
-      : deg <= 292.5 ? '⇒'
-      : deg <= 337.5 ? '⇘'
-      : '⇓'
+  // Convert wind direction from degrees to arrow
+  const degreeToArrow = (degree) => {
+    return degree <= 22.5 ? '⇓' :
+           degree <= 67.5 ? '⇙' :
+           degree <= 112.5 ? '⇐' :
+           degree <= 157.5 ? '⇖' :
+           degree <= 202.5 ? '⇑' :
+           degree <= 247.5 ? '⇗' :
+           degree <= 292.5 ? '⇒' :
+           degree <= 337.5 ? '⇘' :
+           '⇓'
   }
 
   // Update weather data
@@ -241,7 +232,7 @@ function Weather(props) {
     getWeatherXml(dateToIso())
       .then(xmlString => parseXml(xmlString))
       .then(xmlObject => splitWeatherData(xmlObject))
-      .then(weatherArray => updateTest(weatherArray))
+      .then(weatherArray => handleWeatherUpdate(weatherArray))
       .then(console.log('Weather data updated'))
       .then(setUpdateDelay(1200000))
   }
@@ -298,16 +289,16 @@ function Weather(props) {
                     <th colSpan={10}>Tuuli m/s</th>
                   </tr>
                   <tr id='windDirection'>
-                    <td>{degToArrow(weatherData[0].windDirection)}</td>
-                    <td>{degToArrow(weatherData[1].windDirection)}</td>
-                    <td>{degToArrow(weatherData[2].windDirection)}</td>
-                    <td>{degToArrow(weatherData[3].windDirection)}</td>
-                    <td>{degToArrow(weatherData[4].windDirection)}</td>
-                    <td>{degToArrow(weatherData[5].windDirection)}</td>
-                    <td>{degToArrow(weatherData[6].windDirection)}</td>
-                    <td>{degToArrow(weatherData[7].windDirection)}</td>
-                    <td>{degToArrow(weatherData[8].windDirection)}</td>
-                    <td>{degToArrow(weatherData[9].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[0].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[1].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[2].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[3].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[4].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[5].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[6].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[7].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[8].windDirection)}</td>
+                    <td>{degreeToArrow(weatherData[9].windDirection)}</td>
                   </tr>
                   <tr id='windMs'>
                     <td>{Math.round(weatherData[0].wind)}</td>
