@@ -46,16 +46,15 @@
       },
       "duration": 8000
     },
-    { "id": 10, 
-      "type": "scenebook",
-      "data" :{
-      "api": "https://openlibrary.org/books/random.json",
-      "url": {
-        "landscape": "media/338cce57-6758-4ac4-bc2e-f39599bd6d7e.jpg",
-        "portrait": "media/f6776f68-24d6-4180-a951-0cbe6a80e13f.jpg"
-      }
+    { "id": 99,
+      "type": "image",
+      "data": {
+        "url": {
+          "landscape": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg",
+          "portrait": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg"
+        }
       },
-      "duration":10000
+      "duration": 8000
     }
   ]
 }

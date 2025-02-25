@@ -5,12 +5,10 @@ import useInterval from '../../utils/useInterval'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import './Scene.css'
+import BookImage from '../../scenes/scenebook'
 
 // Import scene components
-import Image from '../../scenes/Image'
-
-//Tuo scenekirja komponentin
-import Scenebook from '../../scenes/SceneBook'
+import Image from '../../scenes/image'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -29,14 +27,13 @@ function Scene(props) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
-      case "scenebook":
-        return (<SwiperSlide key={scene.id}><Scenebook orientation={props.orientation} url={scene.data.url}/></SwiperSlide>)
-        break;
+        case "bookimage":
+          return (<SwiperSlide key={scene.id}><BookImage orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+          break;
       default:
         return null
     }
   })
-
 
   // State variable to contain change interval time in millisecons.
   // Start with tge duration of the first scene.

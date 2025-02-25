@@ -1,53 +1,36 @@
 import { orientations } from "../../utils/types"   // screen orientation type
-import React from 'react';
 import './SceneBook.css'
 
+/**
+ * An image component that scales an image to fill the entire
+ * display area. The image to be used is selected based on
+ * the screen orientation.
+ *
+ * @component
+ * @author Pekka Tapio Aalto
+ */
+function BookImage(props) {
 
-//testaan miten saa kirjankannen apilla haettua
-async function fetchImage(url) {
-    const img = new Image();
-    return new Promise((res, rej) => {
-        img.onload = () => res(img);
-        img.onerror = e => rej(e);
-        img.src = url;
-    });
-}
-const img = await fetchImage('https://openlibrary.org/books/random.json');
-const w = img.width;
-const h = img.height;
+  // Variable to store the url address.
+  let url;
 
+  // Select the image to be used based on the screen orientation.
+  // By default, a landscape image is used.
+  switch (props.orientation) {
+    case orientations.landscape:
+      url = props.url.landscape
+      break
+    case orientations.portrait:
+      url = props.url.portrait
+      break
+    default:
+      url = props.url.landscape
+  }
 
-// Functional component otsikko
-function Book(props) {
-
-  //jotain kuvaa yläreunaan
-const image = document.createElement("img");
-image.src = "images/kirjahylly.jpg";
-
-//testaan tarviiko tämän
-switch (props.orientation) {
-  case orientations.landscape:
-    url = props.url.landscape
-    break
-  case orientations.portrait:
-    url = props.url.portrait
-    break
-  default:
-    url = props.url.landscape
-}
-
-  //otsikkoa
+  // Return image as an img-element.
   return (
-    <div>
-      <h1>Book of the Day</h1>
-      <p>TODO laita openlibrary random api</p>
-      <p>TODO laita kirjan kuva ja perustietoja</p>
-      <p>TODO laita joku otsikko kuva</p>
-      <p>TODO laita värit tyylikkäästi</p>
-      <p>TODO asettele hyvin kaikki paikoilleen </p>
-    </div>
-  );
+    <img className="scene_image" src={import.meta.env.VITE_API_ADDRESS + url} />
+  )  
 }
 
-
-export default Book;
+export default BookImage
