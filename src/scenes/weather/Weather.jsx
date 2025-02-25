@@ -1,6 +1,6 @@
 import { orientations } from '../../utils/types'   // screen orientation type
 import './Weather.css'
-import { xml2js, parseStringPromise } from 'xml2js'
+import { parseStringPromise } from 'xml2js'
 import { useState } from 'react'
 import useInterval from '../../utils/useInterval.js'
 
@@ -18,16 +18,7 @@ function Weather(props) {
   let url;
 
   const [weatherData, setweatherData] = useState([
-    {id: 0, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 1, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 2, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 3, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 4, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 5, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 6, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 7, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 8, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''},
-    {id: 9, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''}
+    {id: 0, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''}
   ])
 
   // Weather data update interval
@@ -171,8 +162,8 @@ function Weather(props) {
 
   const handleWeatherUpdate = (data) => {
     setweatherData(data)
-    console.log(data)
-    console.log(weatherData)
+    //console.log(data)
+    //console.log(weatherData)
   }
 
   /**
@@ -193,7 +184,7 @@ function Weather(props) {
     let starttime = date.toISOString()
     starttime = starttime.split('.')[0] + 'Z'
 
-    date.setHours(date.getHours() + 10)
+    date.setHours(date.getHours() + 9)
     let endtime = date.toISOString()
     endtime = endtime.split('.')[0] + 'Z'
 
@@ -257,16 +248,9 @@ function Weather(props) {
                     <th colSpan={10}>Tunnit</th>
                   </tr>
                   <tr id='hour'>
-                    <td>{timestampToTime(weatherData[0].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[1].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[2].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[3].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[4].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[5].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[6].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[7].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[8].timeStamp, props.locale, props.timeZone)}</td>
-                    <td>{timestampToTime(weatherData[9].timeStamp, props.locale, props.timeZone)}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{timestampToTime(item.timeStamp, props.locale, props.timeZone)}</td>
+                    ))}
                   </tr>
                 </thead>
                 <tbody id='weatherBody'>
@@ -274,100 +258,51 @@ function Weather(props) {
                     <th colSpan={10}>Lämpötila</th>
                   </tr>
                   <tr id='temperature'>
-                    <td>{Math.round(weatherData[0].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[1].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[2].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[3].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[4].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[5].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[6].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[7].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[8].temp) + '°'}</td>
-                    <td>{Math.round(weatherData[9].temp) + '°'}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{Math.round(item.temp) + '°'}</td>
+                    ))}
                   </tr>
                   <tr id='wind'>
                     <th colSpan={10}>Tuuli m/s</th>
                   </tr>
                   <tr id='windDirection'>
-                    <td>{degreeToArrow(weatherData[0].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[1].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[2].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[3].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[4].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[5].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[6].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[7].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[8].windDirection)}</td>
-                    <td>{degreeToArrow(weatherData[9].windDirection)}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{degreeToArrow(item.windDirection)}</td>
+                    ))}
                   </tr>
                   <tr id='windMs'>
-                    <td>{Math.round(weatherData[0].wind)}</td>
-                    <td>{Math.round(weatherData[1].wind)}</td>
-                    <td>{Math.round(weatherData[2].wind)}</td>
-                    <td>{Math.round(weatherData[3].wind)}</td>
-                    <td>{Math.round(weatherData[4].wind)}</td>
-                    <td>{Math.round(weatherData[5].wind)}</td>
-                    <td>{Math.round(weatherData[6].wind)}</td>
-                    <td>{Math.round(weatherData[7].wind)}</td>
-                    <td>{Math.round(weatherData[8].wind)}</td>
-                    <td>{Math.round(weatherData[9].wind)}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{Math.round(item.wind)}</td>
+                    ))}
                   </tr>
                   <tr id='wind'>
                     <th colSpan={10}>Puuskat m/s</th>
                   </tr>
                   <tr id='hourlyMaximumGust'>
-                    <td>{Math.round(weatherData[0].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[1].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[2].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[3].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[4].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[5].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[6].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[7].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[8].hourlyMaximumGust)}</td>
-                    <td>{Math.round(weatherData[9].hourlyMaximumGust)}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{Math.round(item.hourlyMaximumGust)}</td>
+                    ))}
                   </tr>
                   <tr id='rainChance'>
                     <th colSpan={10}>Sateen todennäköisyys %</th>
                   </tr>
                   <tr id='pop'>
-                    <td>{Math.round(weatherData[0].pop)}</td>
-                    <td>{Math.round(weatherData[1].pop)}</td>
-                    <td>{Math.round(weatherData[2].pop)}</td>
-                    <td>{Math.round(weatherData[3].pop)}</td>
-                    <td>{Math.round(weatherData[4].pop)}</td>
-                    <td>{Math.round(weatherData[5].pop)}</td>
-                    <td>{Math.round(weatherData[6].pop)}</td>
-                    <td>{Math.round(weatherData[7].pop)}</td>
-                    <td>{Math.round(weatherData[8].pop)}</td>
-                    <td>{Math.round(weatherData[9].pop)}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{Math.round(item.pop)}</td>
+                    ))}
                   </tr>
                   <tr id='rainAmmount'>
                     <th colSpan={10}>Sademäärä mm (1h)</th>
                   </tr>
                   <tr id='precipitation1h'>
-                    <td>{weatherData[0].precipitation1h}</td>
-                    <td>{weatherData[1].precipitation1h}</td>
-                    <td>{weatherData[2].precipitation1h}</td>
-                    <td>{weatherData[3].precipitation1h}</td>
-                    <td>{weatherData[4].precipitation1h}</td>
-                    <td>{weatherData[5].precipitation1h}</td>
-                    <td>{weatherData[6].precipitation1h}</td>
-                    <td>{weatherData[7].precipitation1h}</td>
-                    <td>{weatherData[8].precipitation1h}</td>
-                    <td>{weatherData[9].precipitation1h}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{item.precipitation1h}</td>
+                    ))}
                   </tr>
                   <tr id='smartSymbol'>
-                    <td>{weatherData[0].smartSymbol}</td>
-                    <td>{weatherData[1].smartSymbol}</td>
-                    <td>{weatherData[2].smartSymbol}</td>
-                    <td>{weatherData[3].smartSymbol}</td>
-                    <td>{weatherData[4].smartSymbol}</td>
-                    <td>{weatherData[5].smartSymbol}</td>
-                    <td>{weatherData[6].smartSymbol}</td>
-                    <td>{weatherData[7].smartSymbol}</td>
-                    <td>{weatherData[8].smartSymbol}</td>
-                    <td>{weatherData[9].smartSymbol}</td>
+                    {weatherData.map(item => (
+                      <td key={item.id}>{item.smartSymbol}</td>
+                    ))}
                   </tr>
                 </tbody>
               </table>
