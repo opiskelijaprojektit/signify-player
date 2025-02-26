@@ -17,12 +17,12 @@ function Weather(props) {
   // Initialize the variables.
   let url;
 
-  const [weatherData, setweatherData] = useState([
-    {id: 0, timeStamp: 0, temp: '', wind: '', windDirection: '', hourlyMaximumGust: '', pop: '', precipitation1h: '', smartSymbol: ''}
-  ])
+  const [weatherData, setweatherData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Weather data update interval
-  const [updateDelay, setUpdateDelay] = useState(0)
+  // Forecast update interval.
+  const [updateDelay, setUpdateDelay] = useState(5000)
 
   // Select the image to be used based on the screen orientation.
   // By default, a landscape image is used.
@@ -37,7 +37,10 @@ function Weather(props) {
       url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
   }
 
-  async function getWeatherXml(data) {
+  // Get forecast data from FMI
+  async function fetchForecastXml() {
+    let startEnd = dateToIso()
+    let testUrl = 'https://httpstat.us/400'
     let url = 'https://opendata.fmi.fi/wfs/fin?'
             + 'service=WFS&version=2.0.0&'
             + 'request=getFeature&storedquery_id='
@@ -53,19 +56,29 @@ function Weather(props) {
               + 'precipitation1h,'
               + 'smartsymbol'
             + '&'
-            + 'starttime=' + data.starttime + '&'
-            + 'endtime=' + data.endtime + '&'
-    const response = await fetch(url, {cache: 'no-store'})
-    const result = await response.text()
-    return result
+            + 'starttime=' + startEnd.starttime + '&'
+            + 'endtime=' + startEnd.endtime + '&'
+
+    let response = await fetch(url, {cache: 'no-store'})
+    if (response.status == 200) {
+      return response.text()
+    } else {
+      throw new Error(`HTTP error: Status ${response.status}`)
+    }
   }
 
-  async function parseXml(xmlString) {
-    const response = await parseStringPromise(xmlString)
-    const result = await response
-    return result
+  // Parse forecast XML to object.
+  function parseXml(xmlString) {
+    let response
+    try {
+      response = parseStringPromise(xmlString)
+      return response
+    } catch(err) {
+      throw new Error(`Trouble parsing XML: ${err}`)
+    }
   }
 
+  // Get usefull data from XML object.
   function splitWeatherData(data) {
     let weatherString = data
       ['wfs:FeatureCollection']
@@ -162,8 +175,6 @@ function Weather(props) {
 
   const handleWeatherUpdate = (data) => {
     setweatherData(data)
-    //console.log(data)
-    //console.log(weatherData)
   }
 
   /**
@@ -192,6 +203,7 @@ function Weather(props) {
     return dateData
   }
 
+  /*
   // Convert wind direction from degrees to 8-wind compass rose.
   const degreeToCompass = (degree) => {
     return degree <= 22.5 ? 'N' :
@@ -204,6 +216,7 @@ function Weather(props) {
            degree <= 337.5 ? 'NW' :
            'N'
   }
+  */
 
   // Convert wind direction from degrees to arrow
   const degreeToArrow = (degree) => {
@@ -218,19 +231,33 @@ function Weather(props) {
            '⇓'
   }
 
-  // Update weather data
-  function getWeatherData() {
-    getWeatherXml(dateToIso())
-      .then(xmlString => parseXml(xmlString))
-      .then(xmlObject => splitWeatherData(xmlObject))
-      .then(weatherArray => handleWeatherUpdate(weatherArray))
-      .then(console.log('Weather data updated'))
-      .then(setUpdateDelay(1200000))
+  // Define an forecast update action
+  async function forecastUpdate() {
+    let xml
+    let xmlString
+    let xmlObject
+    console.log('Forecast update started.')
+    try {
+      xml = await fetchForecastXml()
+      console.log('Forecast XML fetched.')
+      xmlString = await parseXml(xml)
+      console.log('Forecast XML parsed.')
+      xmlObject = splitWeatherData(xmlString)
+      handleWeatherUpdate(xmlObject)
+      setError(null)
+      console.log('Forecast updated.')
+    } catch(err) {
+      console.error(err)
+      setError(err.message)
+    } finally {
+      setUpdateDelay(1200000)
+      setLoading(false)
+      console.log('Next forecast update in 20 minutes.')
+    }
   }
 
-  // Set timer to update weather data
-  useInterval(getWeatherData, updateDelay)
-
+  // Set forecast update interval
+  useInterval(forecastUpdate, updateDelay)
 
   return (
     <div className='scene_weather' style={{backgroundImage: 'url(' + url + ')'}}>
@@ -239,20 +266,29 @@ function Weather(props) {
           <div className='weather_header'>
             <h1>{props.location}</h1>
             <div>Sääennuste</div>
-            <div>{timestampToDate(weatherData[0].timeStamp, props.locale, props.timeZone)}</div>
+            <div>
+              {loading && (
+                <div>Ladataan sääennustetta</div>
+              )}
+              {error && <div>{error}</div>}
+            </div>
+            {weatherData && (
+              <div>{timestampToDate(weatherData[0].timeStamp, props.locale, props.timeZone)}</div>
+            )}
           </div>
           <div>
+            {weatherData && (
               <table className='weather_table'>
-                <thead>
-                  <tr>
-                    <th colSpan={10}>Tunnit</th>
-                  </tr>
-                  <tr id='hour'>
-                    {weatherData.map(item => (
-                      <td key={item.id}>{timestampToTime(item.timeStamp, props.locale, props.timeZone)}</td>
-                    ))}
-                  </tr>
-                </thead>
+                  <thead>
+                    <tr>
+                      <th colSpan={10}>Tunnit</th>
+                    </tr>
+                    <tr id='hour'>
+                      {weatherData.map(item => (
+                        <td key={item.id}>{timestampToTime(item.timeStamp, props.locale, props.timeZone)}</td>
+                      ))}
+                    </tr>
+                  </thead>
                 <tbody id='weatherBody'>
                   <tr>
                     <th colSpan={10}>Lämpötila</th>
@@ -306,7 +342,8 @@ function Weather(props) {
                   </tr>
                 </tbody>
               </table>
-            </div>
+            )}
+          </div>
           <div className='forecast_source'>
             <div>Lähde: Ilmatieteen laitoksen avoin data,</div>
             <div>Meteorologin sääennustedata.</div>
