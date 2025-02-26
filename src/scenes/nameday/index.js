@@ -1,2 +1,2 @@
 
-//export tähän
+export { default } from './NameDay.jsx'
