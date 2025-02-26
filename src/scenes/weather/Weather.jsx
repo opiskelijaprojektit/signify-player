@@ -231,13 +231,35 @@ function Weather(props) {
            '⇓'
   }
 
+  // Get update times
+  function getTimeToNextUpdate() {
+    const now = new Date()
+    const next = new Date(now)
+    // Get next update date,
+    // 30 seconds past next hour.
+    next.setMinutes(0)
+    next.setSeconds(30)
+    next.setMilliseconds(0)
+    next.setHours(next.getHours() + 1)
+    // Convert dates to milliseconds.
+    let timeNow = now.getTime()
+    let timeNext = next.getTime()
+    // Calculate milliseconds to next update.
+    let time = timeNext-timeNow
+    const data = {lastUpdate: now, nextUpdate: next, timeToNext: time}
+    return data
+  }
+
   // Define an forecast update action
   async function forecastUpdate() {
+    let updateTime
     let xml
     let xmlString
     let xmlObject
     console.log('Forecast update started.')
     try {
+      updateTime = getTimeToNextUpdate()
+      setUpdateDelay(updateTime.timeToNext)
       xml = await fetchForecastXml()
       console.log('Forecast XML fetched.')
       xmlString = await parseXml(xml)
@@ -246,13 +268,17 @@ function Weather(props) {
       handleWeatherUpdate(xmlObject)
       setError(null)
       console.log('Forecast updated.')
+      console.log(`Next update at ${updateTime.nextUpdate}`)
     } catch(err) {
       console.error(err)
       setError(err.message)
-    } finally {
       setUpdateDelay(1200000)
+      console.log('Forecast update failed.')
+      console.log('Next forecast update try in 20 minutes.')
+    } finally {
+      //setUpdateDelay(1200000)
       setLoading(false)
-      console.log('Next forecast update in 20 minutes.')
+      //console.log('Next forecast update in 20 minutes.')
     }
   }
 
