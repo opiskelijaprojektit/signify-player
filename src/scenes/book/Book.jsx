@@ -1,5 +1,5 @@
 import { orientations } from "../../utils/types"   // screen orientation type
-import './SceneBook.css'
+import './Book.css'
 
 /**
  * An image component that scales an image to fill the entire
@@ -9,7 +9,7 @@ import './SceneBook.css'
  * @component
  * @author Pekka Tapio Aalto
  */
-function BookImage(props) {
+function Book(props) {
 
   // Variable to store the url address.
   let url;
@@ -29,8 +29,8 @@ function BookImage(props) {
 
   // Return image as an img-element.
   return (
-    <img className="scene_image" src={import.meta.env.VITE_API_ADDRESS + url} />
+    <img className="scene_book" src={import.meta.env.VITE_API_ADDRESS + url} />
   )  
 }
 
-export default BookImage
+export default Book

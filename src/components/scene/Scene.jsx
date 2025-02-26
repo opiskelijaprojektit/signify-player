@@ -5,7 +5,7 @@ import useInterval from '../../utils/useInterval'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import './Scene.css'
-import BookImage from '../../scenes/scenebook'
+import Book from '../../scenes/book'
 
 // Import scene components
 import Image from '../../scenes/image'
@@ -27,8 +27,8 @@ function Scene(props) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
-        case "bookimage":
-          return (<SwiperSlide key={scene.id}><BookImage orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        case "book":
+          return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
           break;
       default:
         return null
