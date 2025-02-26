@@ -5,85 +5,89 @@
     background-color: var(--neutral);
     background-image: url("images/bg_anniversary.jpg");
     background-size: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.scene_anniversary_flex {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(171, 173, 176, 0.5);
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-}
-
-.scene_anniversary_header {
-    width: 100%;
-    height: fit-content;
-    text-align: end;
-}
-
-.scene_anniversary_header h1 {
-    font-size: 3em;
-    margin: 1em 2em;
-}
-
-.scene_anniversary_events_flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.scene_anniversary_events {
-    margin: 0 2em 2em 2em;
-    padding: 2em;
-    height: fit-content;
-    max-width: 30em;
-    background-color: var(--neutral);
-    border: 1em solid;
-    border-color: var(--neutral-darker-aplha) var(--neutral-darker);
-    box-shadow: 4px 4px 4px rgba(0,0,0,.6);
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.scene_anniversary_events h2 {
-    margin-top: 0;
+/* Header styling */
+
+.scene_anniversary_header {
+    width: 100%;
+    text-align: center;
 }
 
-.scene_anniversary_people {
-    margin-right: 5em;
+.scene_anniversary_header h1 {
+    font-size: 5vh;
+    margin: 0;
+    padding-top: 10vh;
 }
 
-.scene_anniversary_events > div {
-    flex: 1;
+/* Content styling starts here */
+
+.scene_anniversary_content {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.scene_anniversary_content h2 {
+    margin: 0;
+    font-size: 2.35vh;
+    font-weight: 600;
+    text-align: center;
+}
+
+.scene_anniversary_events {
+    box-sizing: border-box;
+    position: absolute;
+    padding: 1%;
+    font-size: 1.8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Event styling */
+
+.events {
+    width: 21%;
+    height: 53.5%;
+    top: 27%;
+    left: 26%;
 }
 
 .event {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
     gap: 1em;
     padding: 0.5em 0;
-    font-size: 1.25em;
 }
 
-.event .text {
-    width: 50%;
-}
-
-.birthday .text,
-.death .text {
-    width: 65%;
+.img_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .event .img {
-    height: 100px;
-    width: 100px;
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background-color: var(--neutral);
     background-size: cover;
+}
+
+/* Birthday and death styling */
+
+.people {
+    width: 19.5%;
+    height: 51%;
+    top: 31%;
+    left: 54%;
+}
+
+.people_event .text {
+    align-self: center;
 }
