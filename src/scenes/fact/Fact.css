@@ -43,3 +43,30 @@
   width: 60%;
   max-width: 600px;
 }
+
+.overlay-title-vertical {
+  position: absolute;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--neutral-lightest);
+  padding: 10px 20px;
+  font-size: 5rem;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Metropolis", sans-serif;
+}
+
+.overlay-text-vertical {
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--neutral-lightest);
+  padding: 10px 20px;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Metropolis", sans-serif;
+  width: 60%;
+  max-width: 600px;
+}

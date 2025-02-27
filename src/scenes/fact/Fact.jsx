@@ -122,8 +122,18 @@ function Fact(props) {
    */
   return (
     <div className="scene-container">
-      <h2 className="overlay-title">Random fact of the day:</h2>
-      <p className="overlay-text">
+      <h2
+        className={`overlay-title${
+          props.orientation === "landscape" ? "" : "-vertical"
+        }`}
+      >
+        Fact of the day:
+      </h2>
+      <p
+        className={`overlay-text${
+          props.orientation === "landscape" ? "" : "-vertical"
+        }`}
+      >
         {loading ? "Loading..." : error ? error : randomFact}
       </p>
       <img
