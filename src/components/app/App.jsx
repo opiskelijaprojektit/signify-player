@@ -48,6 +48,7 @@ function App() {
     // Get the content attached to the device.
     getScenes(playerSettings.token).then(
       scenedata => {
+        console.log("Fetched scenes:", scenedata.scenes);
         // Check if content is attached to the device.
         if (scenedata.scenes.length == 0) {
           // There is no content attached to the device,
@@ -73,6 +74,14 @@ function App() {
     )
   } 
 
+  useEffect(() => {
+    setTimeout(() => {
+      setScreen(screens.scene); // Force scene mode
+      setScenes([{ id: "test", type: "worldclock", data: { countries: [{ code: "US", label: "USA", timezone: "America/New_York" }] } }]);
+    }, 3000);
+  }, []);
+
+  /*
   // Perform the initialisation of the component. Find out what
   // display mode the component is initially set to.
   useEffect(()=>{
@@ -106,6 +115,7 @@ function App() {
       }) 
     }
   },[])
+*/
 
   // Define an update action, which is called on a case-by-case
   // basis at different update intervals.

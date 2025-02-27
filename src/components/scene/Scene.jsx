@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import WorldClock from '../../scenes/worldclock'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -23,13 +24,13 @@ function Scene(props) {
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
-      case "image":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+     case "image":
+      return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
       case "worldclock":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        return (<SwiperSlide key={scene.id}><WorldClock orientation={props.orientation} data={scene.data} /></SwiperSlide>)
         break;
       default:
-        return null
+        return null;
     }
   })
 
