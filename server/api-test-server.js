@@ -12,7 +12,7 @@ import path from 'path'
 const __dirname = import.meta.dirname;
 
 // Import hash calculation function.
-import { calculateHash } from '../src/utils/functions.js'
+import { calculateHash } from './functions.js'
 
 // Store the server port from environment variables.
 const port = process.env.SERVER_PORT
