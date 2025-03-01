@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Jos käytät Axiosia, varmista että se on asennettu
+import axios from 'axios';
 
-const Joke = () => {
-  const [joke, setJoke] = useState('');
+const Joke = ({ setJoke }) => {
   const [loading, setLoading] = useState(true);
 
-  // Funktio vitsin hakemiseksi API:sta
+  
   const fetchJoke = async () => {
     try {
       const response = await axios.get('https://icanhazdadjoke.com/', {
         headers: { Accept: 'application/json' },
       });
-      setJoke(response.data.joke);
+      setJoke(response.data.joke);  
       setLoading(false);
     } catch (error) {
       console.error('Error fetching joke:', error);
@@ -19,20 +18,18 @@ const Joke = () => {
     }
   };
 
-  // Käynnistetään vitsin haku heti kun komponentti on ladattu
   useEffect(() => {
     fetchJoke();
-  }, []);
+  }, []);  
 
   return (
     <div>
       {loading ? (
         <p>Loading joke...</p>
-      ) : (
-        <p>{joke}</p>
-      )}
+      ) : null} {/* You can add a loading state if you want */}
     </div>
   );
 };
 
 export default Joke;
+

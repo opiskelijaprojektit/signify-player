@@ -1,37 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import Scene from "../scene/Scene";
 import './App.css';
-import Joke from './Joke';  // Corrected path to Joke.jsx
+import Joke from './Joke'; 
 
 
-// JSON file
 import scenesData from '/server/data.json';
 
 const App = () => {
-  const [joke, setJoke] = useState(''); 
-
-  // Fetch the joke from the API
-  const fetchJoke = async () => {
-    try {
-      const response = await axios.get('https://icanhazdadjoke.com/', {
-        headers: { Accept: 'application/json' },
-      });
-      setJoke(response.data.joke);
-    } catch (error) {
-      console.error('Error fetching joke:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchJoke();
-  }, []);
+  const [joke, setJoke] = useState('');  
 
   return (
     <div className="App">
       <h1>Today's Joke</h1>
 
-      {/* Pass the joke to the Scene component */}
+      {/* Pass the setJoke function to Joke.jsx so it can fetch the joke */}
+      <Joke setJoke={setJoke} />
+
+      {/* Pass the joke to Scene.jsx */}
       <Scene scenes={scenesData.scenes} joke={joke} orientation="landscape" />
     </div>
   );
