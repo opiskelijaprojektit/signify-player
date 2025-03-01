@@ -105,3 +105,10 @@
   object-fit: cover;  /* Ensure the image covers the area without distortion */
   
 }
+
+.loading-joke {
+  text-align: center; /* Keskittää tekstin */
+  font-size: 1.5rem; /* Voit säätää fonttikokoa */
+  color: #333; /* Väri voi olla mitä tahansa, säädä tarvittaessa */
+  margin-top: 20px; /* Lisää tilaa ylhäältä */
+}

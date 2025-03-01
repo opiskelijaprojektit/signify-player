@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 const Joke = ({ setJoke }) => {
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +26,7 @@ const Joke = ({ setJoke }) => {
   return (
     <div>
       {loading ? (
-        <p>Loading joke...</p>
+        <p className="loading-joke">Loading joke...</p>
       ) : null} {/* You can add a loading state if you want */}
     </div>
   );
