@@ -93,4 +93,15 @@
   margin: 0 auto;  /* Centers the image in the container */
 }
 
+.image-container {
+  width: 100%;  /* Set the width of the container */
+  height: 900px;  /* Set a fixed height */
+  overflow: hidden;  /* Hide any parts of the image that overflow */
+}
 
+.image-container img {
+  width: 50%;  /* Make the image fill the width of the container */
+  height: 60%;  /* Make the image fill the height of the container */
+  object-fit: cover;  /* Ensure the image covers the area without distortion */
+  
+}

@@ -5,31 +5,9 @@ import useInterval from '../../utils/useInterval';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import './Scene.css';
-import axios from 'axios';
+
 
 function Scene(props) {
-  const [apiJoke, setApiJoke] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  // Fetching joke from API
-  const fetchJoke = async () => {
-    try {
-      const response = await axios.get('https://icanhazdadjoke.com/', {
-        headers: { Accept: 'application/json' },
-      });
-      setApiJoke(response.data.joke);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching joke:', error);
-      setLoading(false);
-    }
-  };
-
-  // Fetch joke when component mounts
-  useEffect(() => {
-    fetchJoke();
-  }, []);
-
   const [sceneDuration, setSceneDuration] = useState(props.scenes[0].duration);
   const swiperRef = useRef();
 
@@ -75,11 +53,12 @@ function Scene(props) {
 
   return (
     <div className="scene-container">
+      {/* Now use the joke passed from App.jsx */}
       <div className="api-joke-container">
-        {loading ? (
-          <p>Loading joke...</p>
+        {props.joke ? (
+          <p>{props.joke}</p>
         ) : (
-          <p>{apiJoke}</p>
+          <p>Loading joke...</p>
         )}
       </div>
 
@@ -98,3 +77,4 @@ function Scene(props) {
 }
 
 export default Scene;
+

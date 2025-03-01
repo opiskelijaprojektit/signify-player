@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Scene from "../scene/Scene";
 import './App.css';
+import Joke from './Joke';  // Corrected path to Joke.jsx
 
-// Assuming this is where your JSON file comes from
+
+// JSON file
 import scenesData from '/server/data.json';
 
 const App = () => {
-  const [joke, setJoke] = useState(''); // Store the joke
+  const [joke, setJoke] = useState(''); 
 
   // Fetch the joke from the API
   const fetchJoke = async () => {
@@ -15,13 +17,12 @@ const App = () => {
       const response = await axios.get('https://icanhazdadjoke.com/', {
         headers: { Accept: 'application/json' },
       });
-      setJoke(response.data.joke); // Update the joke state
+      setJoke(response.data.joke);
     } catch (error) {
       console.error('Error fetching joke:', error);
     }
   };
 
-  // Fetch the joke when the component mounts
   useEffect(() => {
     fetchJoke();
   }, []);
@@ -30,10 +31,11 @@ const App = () => {
     <div className="App">
       <h1>Today's Joke</h1>
 
-      {/* Pass the scenes from JSON and the joke to the Scene component */}
+      {/* Pass the joke to the Scene component */}
       <Scene scenes={scenesData.scenes} joke={joke} orientation="landscape" />
     </div>
   );
 };
 
 export default App;
+
