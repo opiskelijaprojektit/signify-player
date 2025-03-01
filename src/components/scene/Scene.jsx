@@ -1,71 +1,100 @@
-import { useRef, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectFade } from 'swiper/modules'
-import useInterval from '../../utils/useInterval'
-import 'swiper/css'
-import 'swiper/css/effect-fade'
-import './Scene.css'
+import { useRef, useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade } from 'swiper/modules';
+import useInterval from '../../utils/useInterval';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import './Scene.css';
+import axios from 'axios';
 
-// Import scene components
-import Image from '../../scenes/image'
+function Scene(props) {
+  const [apiJoke, setApiJoke] = useState('');
+  const [loading, setLoading] = useState(true);
 
-/**
- * Scene component, which handles the rendering and switching of scenes.
- *
- * @component
- * @author Pekka Tapio Aalto
- */
-function Scene(props) {    
-
-  // Create deck of scenes. Each scene component must be located
-  // inside a SwiperSlide component. If you add new scenes, the
-  // implementation of the Image component will serve as an example.
-  const scenedeck = props.scenes.map(scene => {
-    // Select the scene type of the current scene. 
-    switch (scene.type) {
-      case "image":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
-      default:
-        return null
+  // Fetching joke from API
+  const fetchJoke = async () => {
+    try {
+      const response = await axios.get('https://icanhazdadjoke.com/', {
+        headers: { Accept: 'application/json' },
+      });
+      setApiJoke(response.data.joke);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching joke:', error);
+      setLoading(false);
     }
-  })
+  };
 
-  // State variable to contain change interval time in millisecons.
-  // Start with tge duration of the first scene.
-  const [sceneDuration, setSceneDuration] = useState(props.scenes[0].duration)
+  // Fetch joke when component mounts
+  useEffect(() => {
+    fetchJoke();
+  }, []);
 
-  // Create a reference handle for Swiper.
+  const [sceneDuration, setSceneDuration] = useState(props.scenes[0].duration);
   const swiperRef = useRef();
 
-  // Performs a change of scene and updates the duration if necessary.
-  //  - Change to the next scene.
-  //  - Find out the index number of the new scene in the scenes array.
-  //  - Update change duration if necessary.
+  // Scene change handler
   function handleSceneChange() {
-    swiperRef.current.slideNext()
-    const currentScene = swiperRef.current.realIndex
-    if (props.scenes[currentScene].duration && sceneDuration != props.scenes[currentScene].duration) {
-      setSceneDuration(props.scenes[currentScene].duration)
+    swiperRef.current.slideNext();
+    const currentScene = swiperRef.current.realIndex;
+    if (props.scenes[currentScene].duration && sceneDuration !== props.scenes[currentScene].duration) {
+      setSceneDuration(props.scenes[currentScene].duration);
     }
   }
 
-  // Start a timer, which takes care of the scene change.
-  // Timer uses custom React Hooks function.
-  useInterval(handleSceneChange, sceneDuration)
+  useInterval(handleSceneChange, sceneDuration);
 
-  // Return the Swiper-component.
+  // Generate the scene deck (Jokes and Images)
+  const scenedeck = props.scenes.map((scene) => {
+    switch (scene.type) {
+      case "joke":
+        return (
+          <SwiperSlide key={scene.id}>
+            <div className="joke-container">
+              <div className="joke-text">{scene.data.text}</div>
+              <div className="joke-author">{scene.data.author}</div>
+            </div>
+          </SwiperSlide>
+        );
+      case "image":
+        return (
+          <SwiperSlide key={scene.id}>
+            <div className="image-container">
+              <img
+                src={scene.data.url.landscape} // Use landscape image URL for now
+                alt={`scene-${scene.id}`}
+                className="image"
+              />
+            </div>
+          </SwiperSlide>
+        );
+      default:
+        return null;
+    }
+  });
+
   return (
-    <Swiper
-      onSwiper={(swiper) => {
-        swiperRef.current = swiper;
-      }}
-      loop={true}
-      effect={'fade'}
-      modules={[EffectFade]}>
-      {scenedeck}
-    </Swiper>
-  )
+    <div className="scene-container">
+      <div className="api-joke-container">
+        {loading ? (
+          <p>Loading joke...</p>
+        ) : (
+          <p>{apiJoke}</p>
+        )}
+      </div>
+
+      <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        loop={true}
+        effect={'fade'}
+        modules={[EffectFade]}
+      >
+        {scenedeck}
+      </Swiper>
+    </div>
+  );
 }
 
-export default Scene
+export default Scene;
