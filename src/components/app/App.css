@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Text:ital@0;1&family=Montserrat+Underline:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Rubik+Vinyl&family=Sigmar&family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet');
+
+
 :root {
   --warning: #ad2831;
   --primary: #17bebb;
@@ -19,13 +22,20 @@ html,
 body {
   position: relative;
   height: 100%;
+  
 }
 
 body {
-  background: var(--neutral-light);
-  color: var(--neutral-darkest);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  background: var(--neutral-darkest);
+  color: var(--neutral-light);
+  font-family: Sigmar;
+  font-size: 10px;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
