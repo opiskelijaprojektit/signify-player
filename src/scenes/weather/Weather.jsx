@@ -37,10 +37,15 @@ function Weather(props) {
       url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
   }
 
+  function getSymbolUrl(name) {
+    let symbol = name + '.svg'
+    return new URL(`../../assets/symbols/SmartSymbol/light/${symbol}`, import.meta.url).href
+  }
+
   // Get forecast data from FMI
   async function fetchForecastXml() {
     let startEnd = dateToIso()
-    let testUrl = 'https://httpstat.us/400'
+    //let testUrl = 'https://httpstat.us/400'
     let url = 'https://opendata.fmi.fi/wfs/fin?'
             + 'service=WFS&version=2.0.0&'
             + 'request=getFeature&storedquery_id='
@@ -261,14 +266,14 @@ function Weather(props) {
       updateTime = getTimeToNextUpdate()
       setUpdateDelay(updateTime.timeToNext)
       xml = await fetchForecastXml()
-      console.log('Forecast XML fetched.')
+      //console.log('Forecast XML fetched.')
       xmlString = await parseXml(xml)
-      console.log('Forecast XML parsed.')
+      //console.log('Forecast XML parsed.')
       xmlObject = splitWeatherData(xmlString)
       handleWeatherUpdate(xmlObject)
       setError(null)
       console.log('Forecast updated.')
-      console.log(`Next update at ${updateTime.nextUpdate}`)
+      console.log(`Next Forecast update at ${updateTime.nextUpdate}`)
     } catch(err) {
       console.error(err)
       setError(err.message)
@@ -276,9 +281,7 @@ function Weather(props) {
       console.log('Forecast update failed.')
       console.log('Next forecast update try in 20 minutes.')
     } finally {
-      //setUpdateDelay(1200000)
       setLoading(false)
-      //console.log('Next forecast update in 20 minutes.')
     }
   }
 
@@ -363,7 +366,7 @@ function Weather(props) {
                   </tr>
                   <tr id='smartSymbol'>
                     {weatherData.map(item => (
-                      <td key={item.id}>{item.smartSymbol}</td>
+                      <td key={item.id}><img src={getSymbolUrl(item.smartSymbol)} /></td>
                     ))}
                   </tr>
                 </tbody>
@@ -371,8 +374,12 @@ function Weather(props) {
             )}
           </div>
           <div className='forecast_source'>
-            <div>Lähde: Ilmatieteen laitoksen avoin data,</div>
+            <div>Lähde:</div>
+            <div>Ilmatieteen laitoksen avoin data,</div>
             <div>Meteorologin sääennustedata.</div>
+            <div><br /></div>
+            <div>Sääsymbolit:</div>
+            <div>Ilmatieteen laitos, SmartSymbols</div>
           </div>
         </div>
       </div>
