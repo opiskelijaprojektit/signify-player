@@ -1,0 +1,79 @@
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
+* {
+  font-family: 'Metropolis', sans-serif;
+}
+
+.scene_news {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  background-image: url(/server/media/landscape-marita-kavelashvili-ugnrXk1129g-unsplash.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 80vw;
+  height: 90vh;
+  max-height: 90vh;
+  max-width: 90vh;
+  margin: auto;
+  overflow: auto;
+  border: solid 4px rgba(255, 255, 255, 0.9);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.article_image {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  height: 50%;
+}
+
+.article_image img {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article_content {
+  padding: 0.1em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.1em;
+  flex-grow: 1;
+}
+
+.article_title {
+  line-height: 1.5;
+}
+
+.article_description p {
+  font-size: large;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.article_date {
+  font-style: italic;
+  font-size: small;
+}
+
+.article_source {
+  font-size: small;
+  font-weight: bold;
+}
