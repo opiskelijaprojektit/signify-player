@@ -16,6 +16,15 @@
       },
       "duration": 10000
     },
+    { "id": 3,
+      "type": "news",
+      "data": {
+        "baseUrl": "https://api.thenewsapi.com/v1/news/top?api_token=",
+        "key": "YOURAPIKEYHERE",
+        "query": "&limit=1&locale=gb"
+      },
+      "duration": 10000
+    },
     { "id": 2,
       "type": "image",
       "data": {
