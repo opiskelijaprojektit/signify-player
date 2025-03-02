@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import News from '../../scenes/news/News'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -25,6 +26,10 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "news": 
+        console.log('news URL:', scene.data.key); // tarkistustulostus
+        return (<SwiperSlide key={scene.id}><News url={scene.data.baseUrl + scene.data.key + scene.data.query} /></SwiperSlide>)
         break;
       default:
         return null
