@@ -25,7 +25,7 @@ function News(props) {
 
     // Formats the date 
     const formatDate = news?.published_at 
-        ? new Intl.DateTimeFormat('en-FI', { dateStyle : 'full' }).format(new Date(news.published_at))
+        ? new Intl.DateTimeFormat('en-FI', { dateStyle : 'full', timeStyle: 'short' }).format(new Date(news.published_at))
         : "Date unavailable";
 
     return news ? ( 
@@ -43,7 +43,7 @@ function News(props) {
                         <p>{news.description}</p>
                     </div>
                     <div className='article_date'>
-                        <p>{formatDate}</p>
+                        <p>Published: {formatDate}</p>
                     </div>
                     <div className='article_source'>
                         <p>{news.source}</p>

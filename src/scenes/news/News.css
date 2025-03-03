@@ -18,14 +18,15 @@
 .article {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.92);
   width: 80vw;
   height: 90vh;
   max-height: 90vh;
   max-width: 90vh;
   margin: auto;
   overflow: auto;
-  border: solid 4px rgba(255, 255, 255, 0.9);
+  border: solid 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5%;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
