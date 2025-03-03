@@ -1,0 +1,66 @@
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
+.scene_weather {
+  display: flex;
+  flex: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  color: var(--neutral-lightest);
+  font-family: 'Metropolis', sans-serif;
+}
+
+.weather_screen_landscape {
+  font-size: 2vmin;
+}
+
+.weather_screen_portrait {
+  font-size: 2.5vmin;
+}
+
+.weather_forecast {
+  background-color: var(--neutral-darker-aplha);
+  padding:1em;
+  border-radius: 50px;
+}
+
+.weather_header {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:1em;
+}
+
+.weather_table {
+  background-color: var(--neutral-darker);
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tbody {
+  border: 0.2em solid black;
+}
+
+tr {
+  border: 0 solid black;
+}
+
+td, th {
+  padding:0.5em;
+  border: 0.2em solid black;
+}
+
+.forecast_source {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding:1em;
+}
