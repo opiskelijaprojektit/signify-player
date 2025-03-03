@@ -107,6 +107,14 @@ function App() {
     }
   },[])
 
+  useEffect(()=>{
+    if (screen==screens.registered) {
+      const url = window.location.href +
+                  import.meta.env.VITE_API_ADDRESS + "demo?tag=" + playerSettings.tag
+      console.log("You can register this device in demo mode by visiting the address " + url)
+    }
+  },[screen])
+
   // Define an update action, which is called on a case-by-case
   // basis at different update intervals.
   useInterval(()=>{
