@@ -28,7 +28,6 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
       case "news": 
-        console.log('news URL:', scene.data.key); // tarkistustulostus
         return (<SwiperSlide key={scene.id}><News url={scene.data.baseUrl + scene.data.key + scene.data.query} /></SwiperSlide>)
         break;
       default:
