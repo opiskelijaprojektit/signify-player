@@ -28,13 +28,13 @@ function Weather(props) {
   // By default, a landscape image is used.
   switch (props.orientation) {
     case orientations.landscape:
-      url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
+      url = import.meta.env.VITE_MEDIA_ADDRESS + props.url.landscape
       break
     case orientations.portrait:
-      url = import.meta.env.VITE_API_ADDRESS + props.url.portrait
+      url = import.meta.env.VITE_MEDIA_ADDRESS + props.url.portrait
       break
     default:
-      url = import.meta.env.VITE_API_ADDRESS + props.url.landscape
+      url = import.meta.env.VITE_MEDIA_ADDRESS + props.url.landscape
   }
 
   function getSymbolUrl(name) {
