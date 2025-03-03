@@ -15,14 +15,13 @@ import useInterval from '../../utils/useInterval.js'
 function Weather(props) {
 
   // Initialize the variables.
+  const [weatherData, setweatherData] = useState(null)    // Forecast data
+  const [loading, setLoading] = useState(true)            // Is first forecast update still loading.
+  const [error, setError] = useState(null)                // Set current error.
+  const [updateDelay, setUpdateDelay] = useState(5000)    // Forecast update interval.
+
+  // Variable to store the url address.
   let url;
-
-  const [weatherData, setweatherData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  // Forecast update interval.
-  const [updateDelay, setUpdateDelay] = useState(5000)
 
   // Select the image to be used based on the screen orientation.
   // By default, a landscape image is used.
@@ -37,12 +36,14 @@ function Weather(props) {
       url = import.meta.env.VITE_MEDIA_ADDRESS + props.url.landscape
   }
 
+  // Get an url for a weather symbol based on its number.
   function getSymbolUrl(name) {
     let symbol = name + '.svg'
     return new URL(`../../assets/symbols/SmartSymbol/light/${symbol}`, import.meta.url).href
   }
 
-  // Get forecast data from FMI
+  // Get forecast data from FMI.
+  // Returns data as a string.
   async function fetchForecastXml() {
     let startEnd = dateToIso()
     //let testUrl = 'https://httpstat.us/400'
@@ -72,7 +73,7 @@ function Weather(props) {
     }
   }
 
-  // Parse forecast XML to object.
+  // Parse forecast XML from string to object.
   function parseXml(xmlString) {
     let response
     try {
@@ -83,8 +84,10 @@ function Weather(props) {
     }
   }
 
-  // Get usefull data from XML object.
+  // Get usefull data from forecast XML object.
+  // Returns an array containing forecast data as objects.
   function splitWeatherData(data) {
+    // Get forecast data excluding timestamps from data.
     let weatherString = data
       ['wfs:FeatureCollection']
       ['wfs:member'][0]
@@ -95,21 +98,26 @@ function Weather(props) {
       ['gml:DataBlock'][0]
       ['gml:doubleOrNilReasonTupleList'][0]
   
+    // Split data based on newlines.
     let dataSplit = weatherString.split('\n')
   
+    // Remove whitespace from both sides of the strings.
     const dataTrim = []
     for (let i in dataSplit) {
       dataTrim.push(dataSplit[i].trim())
     };
   
+    // Remove first an last elements from array. Those contain no usefull data.
     dataTrim.shift()
     dataTrim.pop()
   
+    // Split data using space as a separator.
     const dataTrimSplit = []
     for (let i in dataTrim) {
       dataTrimSplit.push(dataTrim[i].split(' '))
     }
 
+    // Get timestamps from data.
     let timeString = data
       ['wfs:FeatureCollection']
       ['wfs:member'][0]
@@ -120,25 +128,32 @@ function Weather(props) {
       ['gmlcov:SimpleMultiPoint'][0]
       ['gmlcov:positions'][0]
 
+    // Split data based on newlines.
     let timeStringSplit = timeString.split('\n')
 
+    // Remove whitespace from both sides of the strings.
     const timeDataTrim = []
     for (let i in timeStringSplit) {
       timeDataTrim.push(timeStringSplit[i].trim())
     }
+
+    // Remove first an last elements from array. Those contain no usefull data.
     timeDataTrim.shift()
     timeDataTrim.pop()
 
-    const timeDatasplit_blaa = []
+    // Split data using space as a separator.
+    const timestampData = []
     for (let i in timeDataTrim) {
-      timeDatasplit_blaa.push(timeDataTrim[i].split(' '))
+      timestampData.push(timeDataTrim[i].split(' '))
     }
 
+    // Separate timestamps from other data.
     const timeData = []
-    for (let i in timeDatasplit_blaa) {
-      timeData.push(timeDatasplit_blaa[i][3])
+    for (let i in timestampData) {
+      timeData.push(timestampData[i][3])
     }
 
+    // Make an array containing both timestamps and forecast data.
     const weatherArray = []
     for (let i in timeData) {
       const weatherDataObject = {id: i,
@@ -156,6 +171,7 @@ function Weather(props) {
     return weatherArray
   }
 
+  // Converts timestamp to human readable date.
   function timestampToDate(timestamp, locale, timezone) {
     let date = new Date(timestamp * 1000)
     let options = {
@@ -167,6 +183,7 @@ function Weather(props) {
     return result
   }
 
+  // Converts timestamp to 2-digit hour.
   function timestampToTime(timestamp, locale, timezone) {
     let date = new Date(timestamp * 1000)
     let options = {
@@ -178,6 +195,7 @@ function Weather(props) {
     return result
   }
 
+  // Handler to update weatherdata.
   const handleWeatherUpdate = (data) => {
     setweatherData(data)
   }
@@ -208,22 +226,7 @@ function Weather(props) {
     return dateData
   }
 
-  /*
-  // Convert wind direction from degrees to 8-wind compass rose.
-  const degreeToCompass = (degree) => {
-    return degree <= 22.5 ? 'N' :
-           degree <= 67.5 ? 'NE' :
-           degree <= 112.5 ? 'E' :
-           degree <= 157.5 ? 'SE' :
-           degree <= 202.5 ? 'S' :
-           degree <= 247.5 ? 'SW' :
-           degree <= 292.5 ? 'W' :
-           degree <= 337.5 ? 'NW' :
-           'N'
-  }
-  */
-
-  // Convert wind direction from degrees to arrow
+  // Converts wind direction from degrees to arrow.
   const degreeToArrow = (degree) => {
     return degree <= 22.5 ? '⇓' :
            degree <= 67.5 ? '⇙' :
@@ -236,7 +239,7 @@ function Weather(props) {
            '⇓'
   }
 
-  // Get update times
+  // Get update times.
   function getTimeToNextUpdate() {
     const now = new Date()
     const next = new Date(now)
@@ -255,7 +258,7 @@ function Weather(props) {
     return data
   }
 
-  // Define an forecast update action
+  // Define an forecast update action.
   async function forecastUpdate() {
     let updateTime
     let xml
@@ -263,13 +266,14 @@ function Weather(props) {
     let xmlObject
     console.log('Forecast update started.')
     try {
+      // Get time to next update and set it.
       updateTime = getTimeToNextUpdate()
       setUpdateDelay(updateTime.timeToNext)
+      // Get forecast update.
       xml = await fetchForecastXml()
-      //console.log('Forecast XML fetched.')
       xmlString = await parseXml(xml)
-      //console.log('Forecast XML parsed.')
       xmlObject = splitWeatherData(xmlString)
+      // Set new forecast data.
       handleWeatherUpdate(xmlObject)
       setError(null)
       console.log('Forecast updated.')
