@@ -1,7 +1,7 @@
 import { orientations } from "../../utils/types"
-import "./Fact.css"
 import { useEffect, useState } from "react"
 import useLocalStorage from "../../utils/useLocalStorage"
+import "./Fact.css"
 
 /**
  * A component that displays a random fact of the day overlayed
@@ -9,7 +9,7 @@ import useLocalStorage from "../../utils/useLocalStorage"
  * orientation.
  *
  * @component
- * @param {Object} props- Component propperties
+ * @param {Object} props- Component properties
  * @param {Object} props.url - URL addresses for the images
  * @param {string} props.url.landscape - URL address for the landscape image
  * @param {string} props.url.portrait - URL address for the portrait image
@@ -137,7 +137,7 @@ function Fact(props) {
         {loading ? "Loading..." : error ? error : randomFact}
       </p>
       <img
-        className="scene_fact"
+        className="scene-fact"
         src={import.meta.env.VITE_API_ADDRESS + url}
       />
     </div>
