@@ -4,7 +4,7 @@
     font-family: 'Metropolis', 'Helvetica', 'Arial', sans-serif;
     color: var(--neutral-darker);
     background-color: var(--neutral);
-    background-image: url("./bg_anniversary.jpg");
+    background-image: url("./bg_anniversary_landscape.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -36,7 +36,6 @@
     margin: 0;
     font-size: 2.35vh;
     font-weight: 600;
-    text-align: center;
 }
 
 .scene_anniversary_events {
@@ -61,23 +60,29 @@
 .event {
     display: flex;
     flex-direction: row;
-    gap: 1em;
     padding: 0.5em 0;
 }
 
-.img_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .event .img {
-    box-sizing: border-box;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
+    box-sizing: content-box;
+    min-height: 8vh;
+    min-width: 8vh;
+    border-radius: 5%;
     background-color: var(--neutral);
     background-size: cover;
+    background-position: center;
+}
+
+.event .year {
+    padding-right: 0.5em;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+}
+
+.event .text {
+    padding-left: 0.5em;
 }
 
 /* Birthday and death styling */
@@ -91,4 +96,17 @@
 
 .people_event .text {
     align-self: center;
+}
+
+.death h2 {
+    text-align: right;
+}
+
+.death .text {
+    text-align: right;
+    padding: 0 0.5em 0 0;
+}
+
+.death .year {
+    padding: 0 0 0 0.5em;
 }
