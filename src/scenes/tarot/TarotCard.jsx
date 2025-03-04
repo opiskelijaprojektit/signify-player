@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import tarotMeanings from "./Meanings";
 
 const getDailyCard = () => {
     const today = new Date().toISOString().split("T")[0];
