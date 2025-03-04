@@ -49,7 +49,7 @@
     { "id": 8,
       "type": "book",
       "data": {
-        "url": {
+       "url": {
           "landscape": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg",
           "portrait": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg"
         }
