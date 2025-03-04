@@ -1,3 +1,4 @@
+// An array of Tarot card objects, each containing the card's name, its meaning, a personalized reading, and the path to its image.
 const tarotMeanings = [
     {
         name: "The Fool",
@@ -451,4 +452,5 @@ const tarotMeanings = [
     }
 ];
 
+// Exports the tarotMeanings array so it can be used in other parts of the application.
 export default tarotMeanings;

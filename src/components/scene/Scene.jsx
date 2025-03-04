@@ -8,6 +8,8 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+
+// Imports the TarotCard component
 import TarotCard from '../../scenes/tarot/TarotCard'
 
 /**
