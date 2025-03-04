@@ -45,6 +45,11 @@
         }
       },
       "duration": 8000
+    },
+    {
+      "id": 13,
+      "type": "tarot",
+      "duration": 12000
     }
   ]
 }
