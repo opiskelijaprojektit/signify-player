@@ -1,0 +1,25 @@
+Credits & License Information for "Daily Tarot Card Reading"
+
+Background Image:
+
+	Photographer: Nik Shuliahin
+	Source: Unsplash (https://unsplash.com/photos/gray-stainless-steel-armor-JOzv_pAkcMk)
+	License: Unsplash License
+	License Link: https://unsplash.com/license
+	Disclaimer: The image's rights remain under Unsplash's terms (not MIT)
+	Attribution: Not required, but appreciated.
+
+
+Tarot Deck:
+
+	Name: The Rider-Waite Tarot Deck (1909)
+	Creators: Arthur Edward Waite, Pamela Colman Smith
+	Public Domain Status: This work is in the public domain
+	Source: Internet Archive (https://archive.org/details/rider-waite-tarot)
+	License: Creative Commons Public Domain Mark 1.0 Universal
+	License Link: https://creativecommons.org/publicdomain/mark/1.0/
+
+
+Tarot Texts:
+
+	Texts were created by me and you can use them freely.

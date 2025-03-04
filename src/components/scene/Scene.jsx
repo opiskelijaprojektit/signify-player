@@ -9,6 +9,9 @@ import './Scene.css'
 // Import scene components
 import Image from '../../scenes/image'
 
+// Imports the TarotCard component
+import TarotCard from '../../scenes/tarot/TarotCard'
+
 /**
  * Scene component, which handles the rendering and switching of scenes.
  *
@@ -25,6 +28,8 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        case "tarot":
+          return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
         break;
       default:
         return null
