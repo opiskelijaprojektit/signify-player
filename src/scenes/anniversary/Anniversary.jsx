@@ -1,4 +1,4 @@
-import { orientations } from "../../utils/types"   // screen orientation type
+import { orientations } from "../../utils/types"
 import { getOTDData } from './anniversaryApi.js'
 import { useEffect } from "react"
 import useLocalStorage from "../../utils/useLocalStorage.js"
@@ -14,29 +14,29 @@ import useInterval from "../../utils/useInterval.js"
  */
 function Anniversary(props) {
 
+    // Determines which styles are used, based on screen orientation.
     props.orientation == orientations.landscape ? import('./Anniversary_landscape.css') : import('./Anniversary_portrait.css')
 
-    // State variables
+    // Local storage variable for API data.
     const [anniversaryData, setAnniversaryData, resetAnniversaryData] = useLocalStorage('anniversaryData', {})
 
-    // Other variables
+    // Date variables
     let now = new Date()
     const thisYear = now.getFullYear()
     const month = String(now.getMonth() + 1).padStart(2,"0")
     const day = String(now.getDate()).padStart(2,"0")
+
+    // Localization variables.
     const locale = "en-US"
     const lang = locale.substring(0,2)
 
-    // Makes API call only once a day, 
+    // Makes API call, 
     // and stores the data in localStorage.
     function fetchData() {
-        const dateToday = new Date().toString()
-        console.log(now)
-        console.log(dateToday)
+        const dateToday = new Date().toDateString()
 
         // Checks if new API call is needed.
         if (anniversaryData && anniversaryData.date === dateToday && anniversaryData.lang === lang) {
-            console.log('Käytetään tallennettua dataa.')
             return
         }
 
@@ -45,7 +45,6 @@ function Anniversary(props) {
         // retrieve data from API and store it in localStorage.
         getOTDData(props.data.api, lang, month, day)
             .then(([events_result, births_result, deaths_result]) => {
-                console.log('Haettu APIsta!')
                 setAnniversaryData({
                     date: dateToday,
                     lang: lang,
@@ -61,6 +60,7 @@ function Anniversary(props) {
         fetchData()
     }, [props.data.api, lang, month, day])
 
+    // Checks every minute if the day has changed.
     // Fetches data when the day changes.
     useInterval(() => {
         const atm = new Date()
@@ -107,8 +107,9 @@ function Anniversary(props) {
                     : <div className="scene_anniversary_events">Nothing has happened on this date.</div> }
 
                     {/* Checks if there is births or deaths to display. */}
-                    { Object.keys(anniversaryData.births.births).length == 0 && Object.keys(anniversaryData.deaths.deaths).length == 0 ? <div className="scene_anniversary_events people no_data">Either no births or deaths occurred today, or your language does not support birth and death data.</div> :
-                        <div className="scene_anniversary_events people">
+                    { Object.keys(anniversaryData.births.births).length == 0 && Object.keys(anniversaryData.deaths.deaths).length == 0 ? 
+                        <div className="scene_anniversary_events people no_data">Either no births or deaths occurred today, or your language does not support birth and death data.</div> 
+                        : <div className="scene_anniversary_events people">
 
                             {/* Checks for birthdays */}
                             { Object.keys(anniversaryData.births.births).length > 0 ? 
