@@ -14,7 +14,7 @@ import useInterval from "../../utils/useInterval.js"
  */
 function Anniversary(props) {
 
-    props.orientation == orientations.landscape ? import('./Anniversary_landscape.css') : null
+    props.orientation == orientations.landscape ? import('./Anniversary_landscape.css') : import('./Anniversary_portrait.css')
 
     // State variables
     const [anniversaryData, setAnniversaryData, resetAnniversaryData] = useLocalStorage('anniversaryData', {})
@@ -107,7 +107,7 @@ function Anniversary(props) {
                     : <div className="scene_anniversary_events">Nothing has happened on this date.</div> }
 
                     {/* Checks if there is births or deaths to display. */}
-                    { Object.keys(anniversaryData.births.births).length == 0 && Object.keys(anniversaryData.deaths.deaths).length == 0 ? null :
+                    { Object.keys(anniversaryData.births.births).length == 0 && Object.keys(anniversaryData.deaths.deaths).length == 0 ? <div className="scene_anniversary_events people no_data">Either no births or deaths occurred today, or your language does not support birth and death data.</div> :
                         <div className="scene_anniversary_events people">
 
                             {/* Checks for birthdays */}
