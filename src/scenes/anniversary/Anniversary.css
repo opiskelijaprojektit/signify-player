@@ -3,7 +3,7 @@
 .scene_anniversary {
     font-family: 'Metropolis', 'Helvetica', 'Arial', sans-serif;
     background-color: var(--neutral);
-    background-image: url("images/bg_anniversary.jpg");
+    background-image: url("./bg_anniversary.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
