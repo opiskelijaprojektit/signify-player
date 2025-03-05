@@ -7,7 +7,7 @@ import 'swiper/css/effect-fade'
 import './Scene.css'
 
 // Lisää book komponentin
-import Book from '../../scenes/book'
+import Book from '../../scenes/book/Book'
 
 // Import scene components
 import Image from '../../scenes/image'
@@ -30,7 +30,7 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
         case "book":
-          return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+          return (<SwiperSlide key={scene.id}><Book /></SwiperSlide>)
           break;
       default:
         return null

@@ -4,3 +4,33 @@
     font-family: 'Metropolis', sans-serif;
 }
 
+.scene_book {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+body {
+    font-family: 'Metropolis', sans-serif;
+    background-image: url('/images/kirjahylly.jpg');
+    background-size: cover; /* Makes sure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Makes background image fixed on scroll */
+  }
+  
+  h1 {
+    background-color: lightblue; /* Sets background color to light blue */
+    font-family: 'Metropolis', sans-serif;/* Uses Metropolis font for h1 */
+  }
+  
+  .container {
+    border-radius: 15px; /* Rounds the corners of the container */
+    border: 1px solid gray; /* Adds a gray border */
+    padding: 20px; /* Adds padding inside the container */
+    margin: 0 auto; /* Centers the container horizontally */
+    max-width: 1200px; /* Limits the maximum width of the container */
+  }
+  
+  

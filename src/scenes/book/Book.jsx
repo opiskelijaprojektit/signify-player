@@ -1,29 +1,47 @@
+import React, { useState, useEffect } from "react";
 import { orientations } from "../../utils/types"   // screen orientation type
 import './Book.css'
-import React from "react";
 
-function Book (props) {
-  
-    // Variable to store the url address.
-    let url;
-  
-    // Select the image to be used based on the screen orientation.
-    // By default, a landscape image is used.
-    switch (props.orientation) {
-      case orientations.landscape:
-        url = props.url.landscape
-        break
-      case orientations.portrait:
-        url = props.url.portrait
-        break
-      default:
-        url = props.url.landscape
-    }
-  
-    // Return image as an img-element.
+const Book = () => {
+  const [book, setBook] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("https://gutendex.com/books/84/") // Replace with the desired book ID
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);  // Log the fetched data to see its structure
+        setBook(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("Failed to load book data.");
+      });
+  }, []);
+
   return (
-      <img className="scene_book" src={import.meta.env.VITE_API_ADDRESS + url} />
-    )  
-  }
+    <div className="container">
+      <h1>Book of the day</h1>
+      <p>Project Gutenberg free e-book</p>
+      <div>
+        {error ? (
+          <p>{error}</p>
+        ) : book ? (
+          <div>
+            <h2>{book.title}</h2>
+            <p>{book.authors ? book.authors.map((author) => author.name).join(", ") : "Unknown author"}</p>
+            { book.formats&& book.formats["image/jpeg"] && (
+              <div>
+                <img src={book.formats["image/jpeg"]} alt={book.title} style={{ width: "200px" }} />
+              </div>
+            )}
+          </div>
+        ) : (
+          <p>Loading book...</p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default Book;
