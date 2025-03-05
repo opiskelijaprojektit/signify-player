@@ -138,7 +138,7 @@ function Fact(props) {
       </p>
       <img
         className="scene-fact"
-        src={import.meta.env.VITE_API_ADDRESS + url}
+        src={import.meta.env.VITE_MEDIA_ADDRESS + url}
       />
     </div>
   )
