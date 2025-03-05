@@ -30,11 +30,7 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
         case "book":
-          return (<SwiperSlide key={scene.id} className="book_slide">
-            <div className="book-details">
-            <Image className="scene_book" orientation={props.orientation} url={scene.data.url} />
-            <Book className="book_text"/></div>
-            </SwiperSlide>)
+          return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
           break;
       default:
         return null
