@@ -37,59 +37,59 @@ html {
 }
 
 .overlay-title {
-  position: absolute !important;
-  top: 10vh !important;
-  left: 25% !important;
-  transform: translateX(-50%) !important;
+  position: absolute;
+  top: 10vh;
+  left: 25%;
+  transform: translateX(-50%);
   /*color: var(--neutral-lightest);*/
-  color: #fff !important;
-  padding: 10px 20px !important;
-  font-size: clamp(2rem, 3.5vw, 5rem) !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  font-family: "Metropolis", sans-serif !important;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: clamp(3rem, 4vw, 6rem);
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Metropolis", sans-serif;
 }
 
 .overlay-text {
-  position: absolute !important;
-  top: 20vh !important;
-  left: 24% !important;
-  transform: translateX(-50%) !important;
+  position: absolute;
+  top: 22vh;
+  left: 25%;
+  transform: translateX(-50%);
   /*color: var(--neutral-lightest);*/
-  color: #fff !important;
-  padding: 10px 20px !important;
-  font-size: clamp(0.5rem, 2vw, 2.5rem) !important;
-  text-align: center !important;
-  font-family: "Metropolis", sans-serif !important;
-  width: 60% !important;
-  max-width: 600px !important;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: clamp(0.5rem, 2vw, 2.5rem);
+  text-align: center;
+  font-family: "Metropolis", sans-serif;
+  width: 60%;
+  max-width: 600px;
 }
 
 .overlay-title-vertical {
-  position: absolute !important;
-  top: 20vh !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
   /*color: var(--neutral-lightest);*/
-  color: #fff !important;
-  padding: 10px 20px !important;
-  font-size: 5rem !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  font-family: "Metropolis", sans-serif !important;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 6rem;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Metropolis", sans-serif;
 }
 
 .overlay-text-vertical {
-  position: absolute !important;
-  top: 30vh !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  transform: translateX(-50%);
   /*color: var(--neutral-lightest);*/
-  color: #fff !important;
-  padding: 10px 20px !important;
-  font-size: 2rem !important;
-  text-align: center !important;
-  font-family: "Metropolis", sans-serif !important;
-  width: 60% !important;
-  max-width: 600px !important;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: "Metropolis", sans-serif;
+  width: 60%;
+  max-width: 600px;
 }
