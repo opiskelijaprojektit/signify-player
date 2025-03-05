@@ -30,7 +30,7 @@ function News(props) {
             }) 
             .catch(error => console.error("Error fetching news data:", error));
     }
-    
+
     // Makes the API call and updates the news every 15 minutes, 
     // which is the rough limit for the free plan of The News API (100 request/day).
     useInterval(getNews, 900000); 
@@ -47,22 +47,21 @@ function News(props) {
     return news ? ( 
         <div className="scene_news">
             <div className="article">
-                <div className='article_image'>
-                    <img src={news.image_url} alt={news.title}/>
+                <img className="article_image" src={news.image_url} alt={news.title} />
+                <br/>
+                <div className='article_title'>
+                    <span>{news.title}</span>
                 </div>
-                <div className='article_content'>
-                    <div className='article_title'>
-                        <h1>{news.title}</h1>
-                    </div>
-                    <div className='article_description'>
-                        <p>{news.description}</p>
-                    </div>
-                    <div className='article_date'>
-                        <p>Published: {formatDate}</p>
-                    </div>
-                    <div className='article_source'>
-                        <p>{news.source}</p>
-                    </div>
+                <br/>
+                <div className='article_description'>
+                    <span>{news.description}</span>
+                </div>
+                <br/>
+                <div className='article_date'>
+                    <span>Published: {formatDate}</span>
+                </div>                    
+                <div className='article_source'>
+                    <span>{news.source}</span>
                 </div>
             </div>
         </div>
