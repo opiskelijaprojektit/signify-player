@@ -6,15 +6,18 @@ import useInterval from "../../utils/useInterval.js"
 
 /**
  * An anniversary component that displays anniversaries
- * of notable people and events using 
- * Wikimedia's "On this day" API.
+ * of notable people and events using Wikimedia's "On this day" API.
+ * This scene is designed for 16:9 screens only.  
+ * Content retrieved from the API can be displayed in any language supported by the API,
+ * the header date is localized using Intl.DateTimeFormat object,
+ * however, all static text in the code is currently available only in English.
  *
  * @component
  * @author Annastiina Koivu
  */
 function Anniversary(props) {
 
-    // Determines which styles are used, based on screen orientation.
+    // Determines which stylesheet is used, based on screen orientation.
     props.orientation == orientations.landscape ? import('./Anniversary_landscape.css') : import('./Anniversary_portrait.css')
 
     // Local storage variable for API data.
@@ -27,11 +30,10 @@ function Anniversary(props) {
     const day = String(now.getDate()).padStart(2,"0")
 
     // Localization variables.
-    const locale = "en-US"
+    const locale = props.data.locale
     const lang = locale.substring(0,2)
 
-    // Makes API call, 
-    // and stores the data in localStorage.
+    // Determines wheter data is retrieved from localStorage or API.
     function fetchData() {
         const dateToday = new Date().toDateString()
 
@@ -42,7 +44,7 @@ function Anniversary(props) {
 
         // If localStorage has no data,
         // or date doesn't match today,
-        // retrieve data from API and store it in localStorage.
+        // retrieves data from API and stores it in localStorage.
         getOTDData(props.data.api, lang, month, day)
             .then(([events_result, births_result, deaths_result]) => {
                 setAnniversaryData({
