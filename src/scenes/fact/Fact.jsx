@@ -127,7 +127,7 @@ function Fact(props) {
           props.orientation === "landscape" ? "" : "-vertical"
         }`}
       >
-        Fact of the day:
+        {error ? "" : "Fact of the day:"}
       </h2>
       <p
         className={`overlay-text${
