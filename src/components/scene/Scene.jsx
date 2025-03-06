@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import Quote from '../../scenes/quote'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -25,6 +26,9 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "quote":
+        return (<SwiperSlide key={scene.id}><Quote orientation={props.orientation} /></SwiperSlide>)
         break;
       default:
         return null
