@@ -7,8 +7,9 @@ import "swiper/css/effect-fade"
 import "./Scene.css"
 
 // Import scene components
-import Image from "../../scenes/image"
 import Fact from "../../scenes/fact"
+import Image from '../../scenes/image'
+import Weather from '../../scenes/weather'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -37,6 +38,9 @@ function Scene(props) {
           </SwiperSlide>
         )
         break
+      case "weather":
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
+        break;
       default:
         return null
     }
