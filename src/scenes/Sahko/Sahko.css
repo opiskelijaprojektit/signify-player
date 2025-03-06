@@ -1,3 +1,9 @@
+/*
+ * @file Sahko.css
+ * @description Tämä tiedosto määrittelee sähkön hintanäkymän ulkoasun ja tyylit.
+ * @author Vesa Pellikka
+ */
+
 .sahko-container {
     text-align: center;     /* Kaikki tekstit keskitetään */
     padding: 20px;          /* Lisätään sisämarginaali */

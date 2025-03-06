@@ -1,4 +1,9 @@
-
+/**
+ * @file Nouda_hinta.jsx
+ * @description Tämä komponentti hakee sähkön hintatiedot API:sta ja visualisoi ne kaaviona.
+ * @author Vesa Pellikka
+ */ 
+ 
  //Tuodaan Reactin tarvittavat hookit ja komponentit
  //- `React` tarvitaan JSX-syntaksin käyttämiseen.
  //- `useEffect`: Hook, joka suorittaa sivuvaikutuksia, kuten API-haun komponentin latautuessa.

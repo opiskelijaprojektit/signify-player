@@ -1,3 +1,9 @@
+/**
+ * @file Sahko.jsx
+ * @description Tämä komponentti toimii sähkön hintanäkymän pääelementtinä ja sisältää `NoudaHinta`-komponentin.
+ * @author Vesa Pellikka
+ */
+
 import NoudaHinta from "./Nouda_hinta"; // Tuodaan sähkön hintakomponentti
 import "./Sahko.css"; // Tuodaan komponentin tyylit
 import React from "react"; //`React`: Tarvitaan JSX-syntaksin käyttämiseen.
