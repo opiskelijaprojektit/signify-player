@@ -1,12 +1,13 @@
-import { useRef, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectFade } from 'swiper/modules'
-import useInterval from '../../utils/useInterval'
-import 'swiper/css'
-import 'swiper/css/effect-fade'
-import './Scene.css'
+import { useRef, useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { EffectFade } from "swiper/modules"
+import useInterval from "../../utils/useInterval"
+import "swiper/css"
+import "swiper/css/effect-fade"
+import "./Scene.css"
 
 // Import scene components
+import Fact from "../../scenes/fact"
 import Image from '../../scenes/image'
 import Weather from '../../scenes/weather'
 
@@ -16,17 +17,27 @@ import Weather from '../../scenes/weather'
  * @component
  * @author Pekka Tapio Aalto
  */
-function Scene(props) {    
-
+function Scene(props) {
   // Create deck of scenes. Each scene component must be located
   // inside a SwiperSlide component. If you add new scenes, the
   // implementation of the Image component will serve as an example.
-  const scenedeck = props.scenes.map(scene => {
-    // Select the scene type of the current scene. 
+  const scenedeck = props.scenes.map((scene) => {
+    // Select the scene type of the current scene.
     switch (scene.type) {
       case "image":
-        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
+        return (
+          <SwiperSlide key={scene.id}>
+            <Image orientation={props.orientation} url={scene.data.url} />
+          </SwiperSlide>
+        )
+        break
+      case "fact":
+        return (
+          <SwiperSlide key={scene.id}>
+            <Fact orientation={props.orientation} url={scene.data.url} />
+          </SwiperSlide>
+        )
+        break
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
@@ -40,7 +51,7 @@ function Scene(props) {
   const [sceneDuration, setSceneDuration] = useState(props.scenes[0].duration)
 
   // Create a reference handle for Swiper.
-  const swiperRef = useRef();
+  const swiperRef = useRef()
 
   // Performs a change of scene and updates the duration if necessary.
   //  - Change to the next scene.
@@ -49,7 +60,10 @@ function Scene(props) {
   function handleSceneChange() {
     swiperRef.current.slideNext()
     const currentScene = swiperRef.current.realIndex
-    if (props.scenes[currentScene].duration && sceneDuration != props.scenes[currentScene].duration) {
+    if (
+      props.scenes[currentScene].duration &&
+      sceneDuration != props.scenes[currentScene].duration
+    ) {
       setSceneDuration(props.scenes[currentScene].duration)
     }
   }
@@ -62,11 +76,12 @@ function Scene(props) {
   return (
     <Swiper
       onSwiper={(swiper) => {
-        swiperRef.current = swiper;
+        swiperRef.current = swiper
       }}
       loop={true}
-      effect={'fade'}
-      modules={[EffectFade]}>
+      effect={"fade"}
+      modules={[EffectFade]}
+    >
       {scenedeck}
     </Swiper>
   )
