@@ -64,24 +64,31 @@ const NoudaHinta = () => {
              /**                       
                `fetchData`-funktio on **asynkroninen (`async`)**, mikä tarkoittaa,
                että se suorittaa verkkopyynnön ilman, että se estää muun koodin etenemistä.
+                 - **Päivämäärän tarkistus:** Varmistetaan, että data haetaan vain kerran päivässä.
+                 - **Ajastin (`setInterval`):** Päivittää tiedot 30 sekunnin välein, mutta ei tee turhia hakuja, jos tiedot ovat jo ajan tasalla.
                - `await`-avainsana käytetään verkkopyynnön (`fetch`) ja JSON-parsinnan yhteydessä,
                  jotta data voidaan hakea asynkronisesti ja odottaa sen valmistumista ennen jatkamista.
                - Tämä varmistaa, että React ei renderöi komponenttia ennen kuin tarvittava data on saatavilla.
              */
         const fetchData = async () => {
+            // Haetaan nykyinen päivämäärä muodossa YYYY-MM-DD
+        const today = new Date().toISOString().split("T")[0];
+
+        // Tarkistetaan, onko tiedot jo päivitetty tänään
+        if (lastFetchedDate === today) {
+            console.log("Tiedot ovat jo ajantasaiset, ei tehdä uutta hakua.");
+            return;
+        }
             try {
-                //Nykyinen päivä muodossa YYYY-MM-DD
-                const today = new Date().toISOString().split("T")[0]; 
-               
-                // **Kutsutaan APIa sähkön hintatietojen hakemiseksi**
+                // Kutsutaan APIa sähkön hintatietojen hakemiseksi
                 const response = await fetch(`https://www.sahkonhintatanaan.fi/api/v1/prices/${today.split("-")[0]}/${today.split("-")[1]}-${today.split("-")[2]}.json`);
 
-                // **Tarkistetaan, onnistuiko API-pyyntö (200 OK)**
+                // Tarkistetaan, onnistuiko API-pyyntö (200 OK)
                 if (!response.ok) {
                     throw new Error("Virhe ladattaessa sähkön hintaa");// Virheen käsittely
                 }
                 
-                // **Muunnetaan API-vastaus JSON-muotoon**
+                // Muunnetaan API-vastaus JSON-muotoon
                 const data = await response.json();
 
                 //Jos dataa ei ole saatavilla, näytetään virheilmoitus
