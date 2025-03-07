@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import WorldClock from '../../scenes/worldclock'
 import Weather from '../../scenes/weather'
 
 /**
@@ -24,12 +25,12 @@ function Scene(props) {
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
+      case "WorldClock":
+        return (<SwiperSlide key={scene.id}><WorldClock format={scene.data.format} timezone={scene.data.timezone} /></SwiperSlide>)
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
-        break;
       default:
         return null
     }
