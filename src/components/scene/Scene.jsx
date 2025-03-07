@@ -9,6 +9,7 @@ import './Scene.css'
 // Import scene components
 import Image from '../../scenes/image'
 import WorldClock from '../../scenes/worldclock'
+import Weather from '../../scenes/weather'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -28,6 +29,8 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><WorldClock format={scene.data.format} timezone={scene.data.timezone} /></SwiperSlide>)
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+      case "weather":
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
       default:
         return null
     }
