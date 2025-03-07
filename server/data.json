@@ -14,7 +14,7 @@
           "portrait": "media/b62353db-833f-4042-bab3-795ddf8280c3.jpg"
         }
       },
-      "duration": 10000
+      "duration": null
     },
     { "id": 2,
       "type": "image",
@@ -24,7 +24,7 @@
           "portrait": "media/ab519897-902b-481a-8aab-12a16480b643.jpg"
         }
       },
-      "duration": 8000
+      "duration": null
     },
     { "id": 6,
       "type": "image",
@@ -34,7 +34,7 @@
           "portrait": "media/f50d692c-db3e-4f6c-8d7c-2b82191571ba.jpg"
         }
       },
-      "duration": 8000
+      "duration": null
     },
     { "id": 7,
       "type": "image",
@@ -44,7 +44,15 @@
           "portrait": "media/f6776f68-24d6-4180-a951-0cbe6a80e13f.jpg"
         }
       },
-      "duration": 8000
-    }
+      "duration": null
+    },
+  { "id": 8,
+    "type": "WorldClock",
+    "data": {
+      "format": "HH:mm:ss",
+      "timezone": "await fetchTime(playerSettings.token)"
+    },
+    "duration": null
+  }
   ]
 }

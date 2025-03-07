@@ -24,13 +24,12 @@ function Scene(props) {
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
-     case "image":
-      return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-      case "worldclock":
-        return (<SwiperSlide key={scene.id}><WorldClock orientation={props.orientation} data={scene.data} /></SwiperSlide>)
-        break;
+      case "WorldClock":
+        return (<SwiperSlide key={scene.id}><WorldClock format={scene.data.format} timezone={scene.data.timezone} /></SwiperSlide>)
+      case "image":
+        return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
       default:
-        return null;
+        return null
     }
   })
 
