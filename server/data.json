@@ -58,6 +58,10 @@
         }
       },
       "duration": 10000
+    },
+    { "id": 9,
+      "type": "tarot",
+      "duration": 12000    
     }
   ]
 }
