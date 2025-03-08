@@ -17,8 +17,17 @@ import useInterval from "../../utils/useInterval.js"
  */
 function Anniversary(props) {
 
-    // Determines which stylesheet is used, based on screen orientation.
-    props.orientation == orientations.landscape ? import('./Anniversary_landscape.css') : import('./Anniversary_portrait.css')
+    // Variable to store background image url.
+    let bg_img_url
+    // Determines which stylesheet and background image is used, 
+    // based on screen orientation.
+    if (props.orientation == orientations.landscape) {
+        import('./Anniversary_landscape.css')
+        bg_img_url = import.meta.env.VITE_MEDIA_ADDRESS + props.data.url.landscape
+    } else if (props.orientation == orientations.portrait) {
+        import('./Anniversary_portrait.css')
+        bg_img_url = import.meta.env.VITE_MEDIA_ADDRESS + props.data.url.portrait
+    }
 
     // Local storage variable for API data.
     const [anniversaryData, setAnniversaryData, resetAnniversaryData] = useLocalStorage('anniversaryData', {})
@@ -79,7 +88,7 @@ function Anniversary(props) {
     const deathIndexes = [0, 2]
 
     return (
-        <div className="scene_anniversary">
+        <div className="scene_anniversary" style={{backgroundImage: `url(${bg_img_url})`}}>
             <div className="scene_anniversary_header">
                 <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(now)}</h1>
             </div>
