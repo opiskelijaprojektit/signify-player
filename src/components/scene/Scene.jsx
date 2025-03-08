@@ -32,7 +32,7 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id} className="nameday_slide">
           <div className="nameday_wrapper">
            <Image className="nameday_picture" orientation={props.orientation} url={scene.data.url} />
-           <NameDay className="nameday_text" />
+           <NameDay className="nameday_text" apiurl={scene.data.urlapi} />
           </div>
         </SwiperSlide>)
         break;

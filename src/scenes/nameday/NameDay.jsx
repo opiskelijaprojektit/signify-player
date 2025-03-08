@@ -9,35 +9,12 @@ import React, { useState, useEffect } from 'react'
  * @author Sanna Aspiola
  */
 
-const NameDay = () => {
+const NameDay = (props) => {
 
-  // Fetches API url from JSON file.
-  const [namedaydata, setNamedaydata] = useState({urlapi: ""})
-  // Saves API url.
-  const [apiurl, setApiUrl] = useState("")
+  // Gets Nameday API url-address from JSON.
+  const apiurl = props.apiurl
   // Saves today's nameday data from API.
   const [namedayToday, setNamedayToday] = useState({nameday: []})
-
-  // Fetches nameday data from JSON file.
-  useEffect(() => {
-    fetch("http://localhost:3000/scenes")
-    .then((response) => response.json())
-    .then((data) => {
-      const namedayScene = data.scenes.find(scene => scene.id === 11);
-      if (namedayScene) {
-        setNamedaydata(namedayScene.data);
-      }
-    })
-    .catch((error) => console.error("Fetching data from JSON file failed: ", error));
-  }, []);
-
-  // Sets API url to apiurl.
-  useEffect(() => {
-    if (namedaydata.urlapi) {
-      setApiUrl(namedaydata.urlapi)
-    }
-  }, [namedaydata.urlapi])
-
   // Defines the values of region.
   const params = { "country": "fi", "timezone": "Europe/Helsinki" }
   // Defines the headers for API request.
