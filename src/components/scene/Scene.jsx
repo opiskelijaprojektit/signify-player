@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import Weather from '../../scenes/weather'
 
 // Imports the TarotCard component
 import TarotCard from '../../scenes/tarot/TarotCard'
@@ -30,6 +31,9 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         case "tarot":
           return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
+        break;
+      case "weather":
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
       default:
         return null

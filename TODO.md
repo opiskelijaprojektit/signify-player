@@ -24,8 +24,9 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 - [ ] (**scene-stock**) Hakee jostain osakkeiden kurssitietopalvelusta määritetyn osakkeen kurssitiedot ja muodostaa siitä tietonäkymän. (Valtteri)
 - [ ] (**scene-tarot**) Esittää päivälle satunnaisen tarot-kortin. (Mirva)
 - [ ] (**scene-today**) Kertoo keskeiset tiedot kuluvasta päivästä, kuten esimerkiksi kuinka mones päivä on menossa ja milloin aurinko nousee ja laskee. (Emilia)
-- [ ] (**scene-weather**) Hakee paikalliset säätiedot jostain sääpalvelun API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle. (Vee)
 - [ ] (**scene-worldclock**) Näyttää määritettyjen maiden reaaliaikaiset kelloajat. Käyttäjällä on mahdollista määritellä näytettävät maat. (Henrik)
 - [ ] (**scene-vulnerability**) Listaa 3-5 viimeisintä haavoittuvuutta. Haavoittuvuudet voidaan noutaa esimerkiksi Traficomin ylläpitämästä RSS-syötteestä. (Markus)
        
 ## Valmiit ✓
+
+- [X] (**scene/weather**) Hakee paikalliset säätiedot FMI:n API-rajapinnasta ja muodostaa niistä kokonaisuuden näytölle.
