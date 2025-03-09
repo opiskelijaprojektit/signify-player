@@ -44,9 +44,9 @@ const API_URL = "http://localhost:3000/scenes"
     }
   }, []); // Empty dependency array ensures this runs only once when component mounts
 
-  return (
+ return (
    
-<div className="book" style={{ backgroundImage: `url(${backgroundImage})` }}>
+  <div className="book" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={props.orientation == orientations.landscape ? "book_screen book-landscape" : "book_screen book-portrait"}>
         { // If orientation is landscape then add empty div element.
           // This will ensure that the content appears in the right
@@ -74,7 +74,7 @@ const API_URL = "http://localhost:3000/scenes"
   </footer>
         </div>
       )}
-    </div>
+     </div>
     </div>
   );
 };
