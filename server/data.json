@@ -50,11 +50,12 @@
       "type": "book",
       "data": {
         "url": {
-          "landscape": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg",
-          "portrait": "media/dc12d13b-7b60-49b5-a238-b3fc898207f7.jpg"
-        }    
-      },
-      "duration": 8000
+          "landscape": "",
+          "portrait":  ""
+        },
+        "API_URL": "https://gutendex.com/books"
+         }, 
+        "duration": 8000
     }
   ]
 }

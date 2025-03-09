@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { orientations } from "../../utils/types"   // screen orientation type
 import './Book.css'
+import backgroundImage from './kirjahylly.jpg'
 
-const Book = () => {
+
+const Book = (props) => {
+
   const [book, setBook] = useState(null); // State for storing the fetched book
   const [loading, setLoading] = useState(true); // State for managing loading status
+
+// URL for the API that provides the random book
+const API_URL = "http://localhost:3000/scenes"
 
   // Function to fetch book data from the API
   const fetchBooks = async () => {
     try {
-      const response = await fetch("https://gutendex.com/books"); // Fetch book data from API
+      const response = await fetch(API_URL); // Fetch book data from API
       const data = await response.json(); // Convert response to JSON
       const randomBook = data.results[Math.floor(Math.random() * data.results.length)]; // Get a random book from results
       setBook(randomBook); // Set the selected book in state
@@ -39,24 +45,34 @@ const Book = () => {
   }, []); // Empty dependency array ensures this runs only once when component mounts
 
   return (
-    <div className="container">
+   
+<div className="book" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className={props.orientation == orientations.landscape ? "book_screen book-landscape" : "book_screen book-portrait"}>
+        { // If orientation is landscape then add empty div element.
+          // This will ensure that the content appears in the right
+          // half of the screen.
+          props.orientation == orientations.landscape && <div></div> }
+        </div>
+    
+  <div className="container">
+    
       <h1>Book of the day</h1>
       <p>Project Gutenberg free e-book</p>
       {loading ? <p>Loading...</p> : null} {/* Show loading message while data is being fetched */}
       {book && (
-        <div>
+  <div className="book-details">
           <h2>Random Book:</h2>
           <p>{book.title}</p>
           <p>by {book.authors.map((author) => author.name).join(", ")}</p> {/* Display book authors */}
           {book.formats && book.formats["image/jpeg"] && (
-            <div>
-              <img src={book.formats["image/jpeg"]} alt={book.title} style={{ width: "200px" }} /> {/* Display book cover image */}
+  <div className="cover-image">
+          <img src={book.formats["image/jpeg"]} alt={book.title} style={{ width: "200px" }} /> {/* Display book cover image */}
             </div>
           )}
         </div>
       )}
     </div>
+    </div>
   );
 };
-
 export default Book;
