@@ -5,13 +5,12 @@ text {
 }
 
 h1 {
-  background-color: lightblue; /* Sets background color to light blue */
+  background-color: antiquewhite; /* Sets background color */
   font-family: 'Metropolis', sans-serif;/* Uses Metropolis font for h1 */
   font-size: 38px; /*Increases the font size*/
 }
 
 .backgroundImage {
-   
     background-size: cover; /* Makes sure the image covers the entire background */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-position: center; /* Centers the image */
@@ -32,7 +31,7 @@ h1 {
     margin: 0 auto; /* Centers the container horizontally */
     max-width: 1200px; /* Limits the maximum width of the container */
     background-color: rgba(211, 211, 211, 0.5); /* Set background color to light grey and make it 50% transparent */
-    font-size: 18px; /*Increases the font size*/
+    font-size: 28px; /*Increases the font size*/
     font-family: 'Metropolis', sans-serif; /* Uses Metropolis font */
 }
 

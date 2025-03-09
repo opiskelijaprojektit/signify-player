@@ -69,6 +69,7 @@ const API_URL = "http://localhost:3000/scenes"
             </div>
           )}
   <footer className="site-details">
+    <br></br>
     <p>This e-book is from Project Gutenberg.</p>
   </footer>
         </div>
