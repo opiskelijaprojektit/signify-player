@@ -15,14 +15,13 @@ h1 {
     background-size: cover; /* Makes sure the image covers the entire background */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-position: center; /* Centers the image */
-    background-size: contain; /* Ensures the whole image is visible without cropping */
     position: relative; /* Allows for positioning of child elements if needed */
     width: 100%; /* Ensures the background container spans the entire width */
     height: 100vh; /* Ensures the element takes full viewport height */
 }
   
 .container {
-    text-align: center; /* Center the text */
+    text-align: center; /* Centers the text */
     border-radius: 15px; /* Rounds the corners of the container */
     border: 1px solid gray; /* Adds a gray border */
     padding: 20px; /* Adds padding inside the container */
@@ -30,21 +29,22 @@ h1 {
     max-width: 1200px; /* Limits the maximum width of the container */
     background-color: rgba(211, 211, 211, 0.5); /* Set background color to light grey and make it 50% transparent */
     font-size: 18px; /*Increases the font size*/
+    font-family: 'Metropolis', sans-serif; /* Uses Metropolis font */
 }
 
 .book-details {
-    margin-top: 40px; /* Add some space above the book details */
+    margin-top: 40px; /* Adds some space above the book details */
     text-align: center; /* Center the details */
 }
 
 .cover-image {
-    margin-top: 40px; /* Add some space above the cover image */
-    text-align: center; /* Center the cover image */
+    margin-top: 40px; /* Adds some space above the cover image */
+    text-align: center; /* Centers the cover image */
 }
 
   .cover-image img {
-    border-radius: 10px; /* Round the corners of the cover image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the cover image */
+    border-radius: 10px; /* Rounds the corners of the cover image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the cover image */
 }
   
   

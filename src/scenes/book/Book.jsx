@@ -57,18 +57,20 @@ const API_URL = "http://localhost:3000/scenes"
   <div className="container">
     
       <h1>Book of the day</h1>
-      <p>Project Gutenberg free e-book</p>
       {loading ? <p>Loading...</p> : null} {/* Show loading message while data is being fetched */}
       {book && (
   <div className="book-details">
-          <h2>Random Book:</h2>
-          <p>{book.title}</p>
-          <p>by {book.authors.map((author) => author.name).join(", ")}</p> {/* Display book authors */}
+          <p>Random Book:</p>
+          <h2>{book.title}</h2>
+          <h2>by {book.authors.map((author) => author.name).join(", ")}</h2> {/* Display book authors */}
           {book.formats && book.formats["image/jpeg"] && (
   <div className="cover-image">
           <img src={book.formats["image/jpeg"]} alt={book.title} style={{ width: "200px" }} /> {/* Display book cover image */}
             </div>
           )}
+  <footer className="site-details">
+    <p>This e-book is from Project Gutenberg.</p>
+  </footer>
         </div>
       )}
     </div>
