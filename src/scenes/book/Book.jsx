@@ -15,7 +15,7 @@ const API_URL = "http://localhost:3000/scenes"
   // Function to fetch book data from the API
   const fetchBooks = async () => {
     try {
-      const response = await fetch(API_URL); // Fetch book data from API
+      const response = await fetch("https://gutendex.com/books"); // Fetch book data from API
       const data = await response.json(); // Convert response to JSON
       const randomBook = data.results[Math.floor(Math.random() * data.results.length)]; // Get a random book from results
       setBook(randomBook); // Set the selected book in state

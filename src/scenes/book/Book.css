@@ -22,6 +22,10 @@ h1 {
   
 .container {
     text-align: center; /* Centers the text */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Vertically center items */
+    width: 100%; /* Ensures the background container spans the entire width */
+    height: 100vh; /* Ensures the element takes full viewport height */
     border-radius: 15px; /* Rounds the corners of the container */
     border: 1px solid gray; /* Adds a gray border */
     padding: 20px; /* Adds padding inside the container */
