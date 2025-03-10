@@ -58,6 +58,11 @@
         }
       },
       "duration": 8000
+    },
+    {
+      "id": 6,
+      "type": "status",
+      "duration": 10000
     }
   ]
 }
