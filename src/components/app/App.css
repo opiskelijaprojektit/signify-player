@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
 :root {
   --warning: #ad2831;
   --primary: #17bebb;
@@ -7,7 +9,7 @@
   --neutral: #abadb0;
   --neutral-dark: #636669;
   --neutral-darker: #252627;
-  --neutral-darker-aplha: rgba(33,33,33,0.7);
+  --neutral-darker-alpha: rgba(33,33,33,0.7);
   --neutral-darkest: #000000;
 }
 
@@ -22,9 +24,9 @@ body {
 }
 
 body {
-  background: var(--neutral-light);
-  color: var(--neutral-darkest);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  background: var(--neutral-darkest);
+  color: var(--neutral-light);
+  font-family: 'Metropolis', sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;

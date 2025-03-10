@@ -10,6 +10,8 @@ import './Scene.css'
 import Image from '../../scenes/image'
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
+import Status from '../../scenes/status'
+import Weather from '../../scenes/weather'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -30,11 +32,17 @@ function Scene(props) {
         break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
-          <div className="nameday_wrapper">
-           <Image className="nameday_picture" orientation={props.orientation} url={scene.data.url} />
-           <NameDay className="nameday_text" apiurl={scene.data.urlapi} />
-          </div>
-        </SwiperSlide>)
+            <div className="nameday_wrapper">
+              <Image className="nameday_picture" orientation={props.orientation} url={scene.data.url} />
+              <NameDay className="nameday_text" apiurl={scene.data.urlapi} />
+            </div>
+          </SwiperSlide>)
+        break;
+      case "status":
+        return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} /></SwiperSlide>)
+        break;
+      case "weather":
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
       default:
         return null

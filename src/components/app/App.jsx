@@ -32,6 +32,7 @@ function App() {
   const [currentHash, setCurrentHash] = useState('')                         // hash of the current content
   const [playerSettings, setPlayerSettings] = useLocalStorage(app_name, {})  // application configurations
   const [checkDelay, setCheckDelay] = useState(null)                         // interval time of the checks
+  const [startTime, setStartTime] = useState(Date.now())                     // app's start time
 
   // Get interval times from environment variables.
   const interval_registed = Number(String(import.meta.env.VITE_APP_INTERVAL_REGISTERED))
@@ -107,6 +108,14 @@ function App() {
     }
   },[])
 
+  useEffect(()=>{
+    if (screen==screens.registered) {
+      const url = window.location.href +
+                  import.meta.env.VITE_API_ADDRESS + "demo?tag=" + playerSettings.tag
+      console.log("You can register this device in demo mode by visiting the address " + url)
+    }
+  },[screen])
+
   // Define an update action, which is called on a case-by-case
   // basis at different update intervals.
   useInterval(()=>{
@@ -150,7 +159,7 @@ function App() {
       return (<Splash name={playerSettings.name} orientation={orientation} />)
       break;
     case screens.scene:
-      return (<Scene scenes={scenes} orientation={orientation} />)
+      return (<Scene scenes={scenes} orientation={orientation} startTime={startTime} />)
       break;
     default:
       return (<Splash notfound />)
