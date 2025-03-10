@@ -8,6 +8,8 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import NameDay from '../../scenes/nameday'
+import '../../scenes/nameday/Nameday.css'
 import Status from '../../scenes/status'
 import Weather from '../../scenes/weather'
 
@@ -27,6 +29,14 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "nameday":
+        return (<SwiperSlide key={scene.id} className="nameday_slide">
+            <div className="nameday_wrapper">
+              <Image className="nameday_picture" orientation={props.orientation} url={scene.data.url} />
+              <NameDay className="nameday_text" apiurl={scene.data.urlapi} />
+            </div>
+          </SwiperSlide>)
         break;
       case "status":
         return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} /></SwiperSlide>)
