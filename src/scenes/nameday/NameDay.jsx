@@ -11,8 +11,8 @@ import React, { useState, useEffect } from 'react'
 
 const NameDay = (props) => {
 
-  // Gets Nameday API url-address from JSON.
-  const apiurl = props.apiurl
+  // Set the API url-address.
+  const apiurl = "https://nameday.abalin.net/api/V1/today"
   // Saves today's nameday data from API.
   const [namedayToday, setNamedayToday] = useState({nameday: []})
   // Defines the values of region.
@@ -61,13 +61,12 @@ const NameDay = (props) => {
       })
       .catch((error) => console.error("Fetching data from API failed: ", error));
 
-  } catch (error) {
-    console.error("Invalid URL: ", error);
-  }
-}, [apiurl])
-
+    } catch (error) {
+      console.error("Invalid URL: ", error);
+    }
+  }, [apiurl])
      
-  const header = "Best Wishes on Your Name Day!"
+  const header = props.header
   const year = new Date().getFullYear()
   
   // Return the NameDay-component.

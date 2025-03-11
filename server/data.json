@@ -36,9 +36,7 @@
           "landscape":"media/61221625-e0a9-4237-866a-24d9e549081d.jpg",
           "portrait": "media/e19f7257-030c-4363-b927-3f900f897af6.jpg"
         },
-        "date": "2025-02-08",
-        "names": ["Laina", "Heikki"],
-        "urlapi": "https://nameday.abalin.net/api/V1/today"
+        "header": "Best Wishes on Your Name Day!"
       },
       "duration": 8000
     },
