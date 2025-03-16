@@ -1,4 +1,4 @@
-.calendar{
+.calendar-app{
   width: 60%;
   min-width: 90vmin;
   aspect-ratio: 3 / 2;
@@ -12,7 +12,7 @@
   transform-style: preserve-3d;
 }
 
-.calendar::after {
+.calendar-app::after {
   content: '';
   position: absolute;
   bottom: -12rem;
