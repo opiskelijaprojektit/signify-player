@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import Stock from '../../scenes/stock'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -25,6 +26,9 @@ function Scene(props) {
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "stock":
+        return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)
         break;
       default:
         return null
