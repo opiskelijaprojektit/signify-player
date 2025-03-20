@@ -40,6 +40,14 @@
       },
       "duration": 8000
     },
+    { "id": 8,
+      "type": "stock",
+      "data": {
+        "apikey": "YOUR_API_KEY",
+        "symbol": "KO" 
+      },
+      "duration": 8000
+    },
     { "id": 4,
       "type": "image",
       "data": {

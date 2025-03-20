@@ -11,6 +11,7 @@ import Image from '../../scenes/image'
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
 import Status from '../../scenes/status'
+import Stock from '../../scenes/stock'
 import Weather from '../../scenes/weather'
 
 /**
@@ -41,6 +42,8 @@ function Scene(props) {
       case "status":
         return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} /></SwiperSlide>)
         break;
+      case "stock":
+        return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
