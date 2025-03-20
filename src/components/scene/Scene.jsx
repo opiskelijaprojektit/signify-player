@@ -8,7 +8,11 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
+import NameDay from '../../scenes/nameday'
+import '../../scenes/nameday/Nameday.css'
+import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
+import Weather from '../../scenes/weather'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -27,8 +31,21 @@ function Scene(props) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
+      case "nameday":
+        return (<SwiperSlide key={scene.id} className="nameday_slide">
+            <div className="nameday_wrapper">
+              <Image className="nameday_picture" orientation={props.orientation} url={scene.data.url} />
+              <NameDay className="nameday_text" header={scene.data.header} />
+            </div>
+          </SwiperSlide>)
+        break;
+      case "status":
+        return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} /></SwiperSlide>)
+        break;
       case "stock":
         return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)
+      case "weather":
+        return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
       default:
         return null
