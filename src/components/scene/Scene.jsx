@@ -40,7 +40,7 @@ function Scene(props) {
           </SwiperSlide>)
         break;
       case "status":
-        return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} /></SwiperSlide>)
+        return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} version={props.version} /></SwiperSlide>)
         break;
       case "stock":
         return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)

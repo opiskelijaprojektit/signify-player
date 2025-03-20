@@ -64,7 +64,7 @@ app.post('/check', (req, res) => {
 app.get('/scenes', (req, res) => {
   const data = loadData()
   const hash = calculateHash(JSON.stringify(data.scenes))
-  res.json({hash: hash, updated: data.updated, scenes: data.scenes})
+  res.json({hash: hash, updated: data.updated, scenes: data.scenes, version: process.env.VITE_APP_VERSION})
 })
 
 // Wrong endpoint in request.

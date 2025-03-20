@@ -50,7 +50,7 @@ function Status(props) {
         </div>
         <div>
           <h2>Version</h2>
-          <div>{import.meta.env.VITE_APP_VERSION}</div>
+          <div>FE {import.meta.env.VITE_APP_VERSION} | BE {props.version}</div>
         </div>
       </div>
     </Container>
