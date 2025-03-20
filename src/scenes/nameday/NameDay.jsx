@@ -11,12 +11,16 @@ import React, { useState, useEffect } from 'react'
 
 const NameDay = (props) => {
 
+  // Set the locale.
+  const locale = "fi-FI"
   // Set the API url-address.
-  const apiurl = "https://nameday.abalin.net/api/V1/today"
+  const apiurl = "https://nameday.abalin.net/api/V2/today"
   // Saves today's nameday data from API.
-  const [namedayToday, setNamedayToday] = useState({nameday: []})
-  // Defines the values of region.
-  const params = { "country": "fi", "timezone": "Europe/Helsinki" }
+  const [namedayToday, setNamedayToday] = useState({data: []})
+  const [lastFetched, setLastFetched] = useState()
+  // Defines the values of region. These are not needed anymore 
+  // on V2 API interface.
+  // const params = { "country": "fi", "timezone": "Europe/Helsinki" }
   // Defines the headers for API request.
   const headers = {
     "Content-Type": "application/json",
@@ -31,7 +35,9 @@ const NameDay = (props) => {
 
     try {
       const fetchUrl = new URL(apiurl)
-      Object.keys(params).forEach(key => fetchUrl.searchParams.append(key, params[key]));
+
+      // Not needed anymore.
+      // Object.keys(params).forEach(key => fetchUrl.searchParams.append(key, params[key]));
 
       const lastFetch = localStorage.getItem("nameday_lastFetch")
       const today = new Date().toISOString().split("T")[0]
@@ -40,7 +46,8 @@ const NameDay = (props) => {
       //console.log("Today's date:", today) // Debug
       if (lastFetch === today && cachedData) {
             setNamedayToday(JSON.parse(cachedData))
-            console.log("Using cached data in NameDay-component: ", cachedData)
+            setLastFetched(lastFetch)
+            console.log("Using cached data in NameDay-component.")
             return      
       }
 
@@ -58,23 +65,24 @@ const NameDay = (props) => {
         localStorage.setItem("nameday_data", JSON.stringify(data))
         localStorage.setItem("nameday_lastFetch", today)
         setNamedayToday(data)
+        setLastFetched(today)
       })
       .catch((error) => console.error("Fetching data from API failed: ", error));
 
     } catch (error) {
       console.error("Invalid URL: ", error);
     }
-  }, [apiurl])
+  }, [])
      
   const header = props.header
-  const year = new Date().getFullYear()
-  
+  const date = new Date(lastFetched).toLocaleDateString(locale)
+
   // Return the NameDay-component.
   return (
     <div className="nameday_text">
       <h2 className="nameday_header">{header}</h2>
-      <p className="nameday_date">{namedayToday.day + "." + namedayToday.month + "." + year}<br /></p>
-      <p className="nameday_names">{namedayToday.nameday.fi}</p>
+      <p className="nameday_date">{date}<br /></p>
+      <p className="nameday_names">{namedayToday.data.fi}</p>
     </div>
   )
 }
