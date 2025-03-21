@@ -1,5 +1,4 @@
 .scene_stock {
-    background-image: url("server/media/stock2.jpg");
     font-weight: bold;
     font-family: 'Metropolis', sans-serif;
     display: block;
@@ -10,12 +9,11 @@
     padding-top: 70px;
   }
 
-
 .scene_stock > .scene_stock_h1 {
     font-size: 50px;
     display: flex;
     justify-content: center;
-    background-color: #85BB65;
+    background-color: var(--secondary);
     max-width: 40%;
     margin: auto;
     margin-top: 75px;
@@ -26,12 +24,11 @@
     font-size: 35px;
     display: flex;
     justify-content: center;
-    background-color: #85BB65;
+    background-color: var(--secondary);
     max-width: 40%;
     margin: auto;
     margin-top: 10px;
     border-radius: 15px;
-
 }
 
 .scene_stock > .scene_stock_price {
@@ -39,7 +36,7 @@
     display: flex;
     text-align: center;
     justify-content: center;
-    background-color: #85BB65;
+    background-color: var(--secondary);
     max-width: 40%;
     margin: auto;
     margin-top: 10px;
