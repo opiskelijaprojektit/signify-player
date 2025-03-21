@@ -1,28 +1,4 @@
-import crypto from 'node:crypto'
 import { orientations } from './types.js'
-
-/**
- * Hashes given text and returns it.
- *
- * @example
- *   // Generate MD5 hash.
- *   const hash = calculateHash('saippuakauppias')
- *   // Generate SHA256 hash.
- *   const hash = calculateHash('saippuakauppias', 'sha256')
- *  
- * @param   {string} stringToHash
- *          String to be hashed.
- * @param   {string} algorithm
- *          Hash algorithm to be used.
- * @returns {string}
- *          Hashed string.
- */
-function calculateHash(stringToHash, algorithm='md5') {
-  return crypto.createHash(algorithm)
-               .update(stringToHash)
-               .digest('hex')
-               .toString()
-}
 
 /**
  * Get and return the value of the display parameter 
@@ -69,4 +45,4 @@ function getOrientation(width, height) {
   }
 }
 
-export { calculateHash, getDisplay, getOrientation }
+export { getDisplay, getOrientation }
