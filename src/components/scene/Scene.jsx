@@ -10,6 +10,7 @@ import './Scene.css'
 import Image from '../../scenes/image'
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
+import Sahko from '../../scenes/Sahko'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
 import Weather from '../../scenes/weather'
@@ -25,12 +26,12 @@ function Scene(props) {
   // Create deck of scenes. Each scene component must be located
   // inside a SwiperSlide component. If you add new scenes, the
   // implementation of the Image component will serve as an example.
+
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
             <div className="nameday_wrapper">
@@ -38,6 +39,9 @@ function Scene(props) {
               <NameDay className="nameday_text" header={scene.data.header} />
             </div>
           </SwiperSlide>)
+        break;
+      case "sahko":
+        return (<SwiperSlide key={scene.id}><Sahko /></SwiperSlide>)
         break;
       case "status":
         return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} version={props.version} /></SwiperSlide>)
