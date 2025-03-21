@@ -14,6 +14,7 @@ import Electricity from '../../scenes/Electricity'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
 import Weather from '../../scenes/weather'
+import Vulnerability from '../../scenes/vulnerability/'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -28,13 +29,13 @@ function Scene(props) {
   // implementation of the Image component will serve as an example.
 
   const scenedeck = props.scenes.map(scene => {
-    // Select the scene type of the current scene. 
     switch (scene.type) {
       case "electricity":
         return (<SwiperSlide key={scene.id}><Electricity /></SwiperSlide>)
         break;
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
             <div className="nameday_wrapper">
@@ -48,14 +49,18 @@ function Scene(props) {
         break;
       case "stock":
         return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)
+        break;
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
+      case "vulnerability":
+        return (<SwiperSlide key={scene.id}><Vulnerability orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
       default:
-        return null
+        return null;
     }
-  })
-
+  });
+  
   // State variable to contain change interval time in millisecons.
   // Start with tge duration of the first scene.
   const [sceneDuration, setSceneDuration] = useState(props.scenes[0].duration)

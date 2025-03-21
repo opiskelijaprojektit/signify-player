@@ -1,12 +1,20 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: './',
   build: {
     outDir: '../public',
     emptyOutDir: false
-  }
+  },
+  server: {
+    proxy: {
+      '/rss': {
+        target: 'https://www.kyberturvallisuuskeskus.fi',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/rss/, '/sites/default/files/rss/vulns.xml'),
+      },
+    },
+  }  
 })
