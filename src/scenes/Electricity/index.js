@@ -6,6 +6,6 @@
 
 //Viedään `Sahko.jsx`-komponentti muualle sovellukseen
 // - Tämä tiedosto toimii lyhennettynä vientipisteenä (`index.js`), jolloin 
-// komponenttia voi tuoda yksinkertaisemmin muissa tiedostoissa
+//   komponenttia voi tuoda yksinkertaisemmin muissa tiedostoissa
 //- Tämä parantaa koodin selkeyttä ja helpottaa moduulirakenteen hallintaa.
-export { default } from './Sahko.jsx'
+export { default } from './electricity.jsx'

@@ -59,7 +59,6 @@
       },
       "duration": 8000
     },
-    {
     { "id": 5,
       "type": "image",
       "data": {
@@ -70,7 +69,6 @@
       },
       "duration": 8000
     },
-    {
     { "id": 6,
       "type": "image",
       "data": {
@@ -83,10 +81,7 @@
     },
     {
       "id": 9,
-      "type": "sahko",
-      "data": {
-        "api_key": "YOUR_API_KEY"
-      },
+      "type": "electricity",
       "duration": 8000
     },
     {

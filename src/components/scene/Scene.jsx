@@ -10,7 +10,7 @@ import './Scene.css'
 import Image from '../../scenes/image'
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
-import Sahko from '../../scenes/Sahko'
+import Electricity from '../../scenes/Electricity'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
 import Weather from '../../scenes/weather'
@@ -30,6 +30,9 @@ function Scene(props) {
   const scenedeck = props.scenes.map(scene => {
     // Select the scene type of the current scene. 
     switch (scene.type) {
+      case "electricity":
+        return (<SwiperSlide key={scene.id}><Electricity /></SwiperSlide>)
+        break;
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
       case "nameday":
@@ -39,9 +42,6 @@ function Scene(props) {
               <NameDay className="nameday_text" header={scene.data.header} />
             </div>
           </SwiperSlide>)
-        break;
-      case "sahko":
-        return (<SwiperSlide key={scene.id}><Sahko /></SwiperSlide>)
         break;
       case "status":
         return (<SwiperSlide key={scene.id}><Status orientation={props.orientation} startTime={props.startTime} version={props.version} /></SwiperSlide>)

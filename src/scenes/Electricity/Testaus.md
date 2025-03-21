@@ -61,7 +61,7 @@ curl -X GET "https://www.sahkohinta-api.fi/api/v1/halpa?tunnit=1&tulos=haja&aika
 
 
 
-3️## Sovelluksen perustoimintojen testaus
+## Sovelluksen perustoimintojen testaus
 
 Testaa sovelluksen päätoiminnot ja varmista, että se hakee ja näyttää sähkön hinnat oikein.
 
