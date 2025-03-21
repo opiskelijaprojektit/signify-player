@@ -56,6 +56,9 @@ const NoudaHinta = () => {
         // Päivitetään `setError(err.message)`, jos virhe tapahtuu.
     const [error, setError] = useState(null);
 
+    // `lastFetchedData`: Viimeisin tietojen latauspäivä.
+    // Asetetaan `setLastFetchedData(today)`, kun tiedot on haettu ja tallennettu.
+    const [lastFetchedDate, setLastFetchedDate] = useState(null);
 
 
 
@@ -103,6 +106,7 @@ const NoudaHinta = () => {
 
                 // **Tallennetaan haetut hintatiedot `prices`-tilamuuttujaan**
                 setPrices(data);
+                setLastFetchedDate(today);
 
                 // Etsitään päivän halvin ja kallein tunti
                 // - `reduce()`-metodi käy läpi kaikki hintatunnit ja löytää alimman sekä korkeimman arvon
