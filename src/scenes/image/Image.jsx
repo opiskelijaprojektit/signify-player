@@ -29,7 +29,7 @@ function Image(props) {
 
   // Return image as an img-element.
   return (
-    <img className="scene_image" src={import.meta.env.VITE_API_ADDRESS + url} />
+    <img className="scene_image" src={import.meta.env.VITE_MEDIA_ADDRESS + url} />
   )  
 }
 
