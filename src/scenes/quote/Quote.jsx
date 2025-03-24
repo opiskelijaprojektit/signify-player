@@ -1,6 +1,7 @@
 import './Quote.css'
 import backgroundImage from './bg_quote.jpg'
 import Quotes from './quotes.json'
+import Container from '../../components/container/Container'
 
 /**
  * A component that displays an inspirational quote that changes daily.
@@ -19,7 +20,7 @@ function Quote(props) {
   
   // Return the Quote component
   return (
-    <div className="quote" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <Container className="quote" backgroundImage={backgroundImage}>
       <div className="quote_header">
         <h1>Quote of the Day</h1>
       </div>
@@ -33,7 +34,7 @@ function Quote(props) {
         <p>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a>
         </p>
       </div>
-    </div>
+    </Container>
   )  
 }
 
