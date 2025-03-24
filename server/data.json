@@ -93,6 +93,10 @@
       },
       "duration": 8000
     },
+    { "id": 11,
+      "type": "quote",      
+      "duration": 8000
+    },
     {
       "id": 7,
       "type": "status",
