@@ -23,10 +23,10 @@ Muista, että jokainen alla luetelluista näkymistä tulee toimia sekä pysty- e
 - [ ] (**scene-tarot**) Esittää päivälle satunnaisen tarot-kortin. (Mirva)
 - [ ] (**scene-today**) Kertoo keskeiset tiedot kuluvasta päivästä, kuten esimerkiksi kuinka mones päivä on menossa ja milloin aurinko nousee ja laskee. (Emilia)
 - [ ] (**scene-worldclock**) Näyttää määritettyjen maiden reaaliaikaiset kelloajat. Käyttäjällä on mahdollista määritellä näytettävät maat. (Henrik)
-
        
 ## Valmiit ✓
 
+- [X] (**scene/electricity**) Tulostaa kuluvan päivän nykyisen, kalleimman ja halvimman hinnan hintakaavion kanssa.
 - [X] (**scene/nameday**) Kertoo kenen nimipäivä on kyseisenä päivänä. Nimipäivätiedot haetaan sopivasta palvelusta.
 - [X] (**scene/quote**) Kertoo päivän  mietelauseen ja lainauksen. Mietelause tai lainaus voidaan hakea jostain API-rajapinnan tarjoamasta palvelusta tai ne voi olla kiinteänä listana osana koodia.
 - [X] (**scene/stock**) Hakee jostain osakkeiden kurssitietopalvelusta määritetyn osakkeen kurssitiedot ja muodostaa siitä tietonäkymän.
