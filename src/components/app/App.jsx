@@ -32,6 +32,8 @@ function App() {
   const [currentHash, setCurrentHash] = useState('')                         // hash of the current content
   const [playerSettings, setPlayerSettings] = useLocalStorage(app_name, {})  // application configurations
   const [checkDelay, setCheckDelay] = useState(null)                         // interval time of the checks
+  const [startTime, setStartTime] = useState(Date.now())                     // app's start time
+  const [playerVersion, setPlayerVersion] = useState('')
 
   // Get interval times from environment variables.
   const interval_registed = Number(String(import.meta.env.VITE_APP_INTERVAL_REGISTERED))
@@ -56,6 +58,16 @@ function App() {
           setScreen(screens.linked)
           setCheckDelay(interval_linked)
         } else {
+          // Check if player's version has been updated.
+          // If so, do page reload to load new data.
+          if (playerVersion && scenedata.version != playerVersion) {
+            console.log("New player version exists, reload page.")
+            location.reload(true)
+          } else if (!playerVersion) {
+            // Store player's version to state.
+            setPlayerVersion(scenedata.version)
+            console.log("Version " + scenedata.version)
+          }
           // The device has attached content, check if contents
           // hash differs from stored contents hash.
           if (currentHash != scenedata.hash) {
@@ -158,7 +170,7 @@ function App() {
       return (<Splash name={playerSettings.name} orientation={orientation} />)
       break;
     case screens.scene:
-      return (<Scene scenes={scenes} orientation={orientation} />)
+      return (<Scene scenes={scenes} orientation={orientation} startTime={startTime} version={playerVersion} />)
       break;
     default:
       return (<Splash notfound />)
