@@ -7,14 +7,5 @@ export default defineConfig({
   build: {
     outDir: '../public',
     emptyOutDir: false
-  },
-  server: {
-    proxy: {
-      '/rss': {
-        target: 'https://www.kyberturvallisuuskeskus.fi',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/rss/, '/sites/default/files/rss/vulns.xml'),
-      },
-    },
-  }  
+  }
 })

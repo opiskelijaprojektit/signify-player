@@ -67,6 +67,17 @@ app.get('/scenes', (req, res) => {
   res.json({hash: hash, updated: data.updated, scenes: data.scenes, version: process.env.VITE_APP_VERSION})
 })
 
+app.get('/scene-vulnerability', async (req, res) => {
+  const response = await fetch("https://www.kyberturvallisuuskeskus.fi/sites/default/files/rss/vulns.xml",
+    {
+      method: 'GET'
+    }
+  )
+  const result = await response.text()
+  res.type('application/xml')
+  res.send(result)
+})
+
 // Wrong endpoint in request.
 app.all('*', (req, res) => {
   res.send('Endpoint ' + req.url + ' not found!');
