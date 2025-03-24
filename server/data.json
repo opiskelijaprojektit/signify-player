@@ -97,6 +97,10 @@
       "type": "quote",      
       "duration": 8000
     },
+    { "id": 12,
+      "type": "tarot",
+      "duration": 10000    
+    }
     {
       "id": 7,
       "type": "status",

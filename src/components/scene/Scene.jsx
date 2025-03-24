@@ -17,6 +17,9 @@ import Stock from '../../scenes/stock'
 import Weather from '../../scenes/weather'
 import Vulnerability from '../../scenes/vulnerability/'
 
+// Imports the TarotCard component
+import TarotCard from '../../scenes/tarot/TarotCard'
+
 /**
  * Scene component, which handles the rendering and switching of scenes.
  *
@@ -36,6 +39,8 @@ function Scene(props) {
         break;
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        case "tarot":
+          return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
         break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
