@@ -54,4 +54,7 @@ Seuraavat henkilöt ovat antaneet oman panoksensa tämän projektin toteutukseen
 
  - Pekka Tapio Aalto
  - Sanna Aspiola
+ - Valtteri Pykäläinen
  - Vee Rämesammal
+ - Markus Tukiainen
+ - Ada Vuorinen
