@@ -52,7 +52,7 @@ function Scene(props) {
           </SwiperSlide>)
         break;
       case "news": 
-        return (<SwiperSlide key={scene.id}><News url={scene.data.baseUrl + scene.data.key + scene.data.query} /></SwiperSlide>)
+        return (<SwiperSlide key={scene.id}><News apikey={scene.data.key} /></SwiperSlide>)
         break;
       case "quote":
         return (<SwiperSlide key={scene.id}><Quote orientation={props.orientation} /></SwiperSlide>)

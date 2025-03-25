@@ -112,9 +112,7 @@
     { "id": 14,
       "type": "news",
       "data": {
-        "baseUrl": "https://api.thenewsapi.com/v1/news/top?api_token=",
-        "key": "YOURAPIKEYHERE",
-        "query": "&limit=1&locale=gb"
+        "key": "YOURAPIKEYHERE"
       },
       "duration": 8000
     },
