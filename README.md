@@ -53,4 +53,9 @@ Tätä projektia ylläpitää [Pekka Tapio Aalto](https://github.com/pekkatapio)
 Seuraavat henkilöt ovat antaneet oman panoksensa tämän projektin toteutukseen. 
 
  - Pekka Tapio Aalto
+ - Sanna Aspiola
+ - Vesa Pellikka
+ - Valtteri Pykäläinen
  - Vee Rämesammal
+ - Markus Tukiainen
+ - Ada Vuorinen
