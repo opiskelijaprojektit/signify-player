@@ -1,18 +1,10 @@
-/* Imports a custom font "Metropolis" from an external URL */
-@import url("https://fonts.cdnfonts.com/css/metropolis-2");
-
 /* Styles for the main Tarot container */
 .tarot {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: "Metropolis", sans-serif;
-    color: #fff5e1;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-    background-image: url("/server/media/Gray\ Stainless\ Steel\ Armor\ by\ Nik\ Shuliahin\ from\ Unsplash\ \(4491\ x\ 3071\).jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    color: var(--neutral-light);
+    text-shadow: 2px 2px 6px --var(neutral-darkest-alpha);
     background-position: bottom;
     padding: 0 20px;
 }
@@ -20,10 +12,9 @@
 /* Styles for the loading message */
 .loading-message {
     text-align: center;
-    font-family: "Metropolis", sans-serif;
     font-size: 24px;
-    color: #fff5e1;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    color: var(--neutral-light);
+    text-shadow: 2px 2px 6px --var(neutral-darkest-alpha);
     margin-top: 0;
     padding: 10px;
 }
@@ -51,7 +42,7 @@
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: --var(neutral-darkest-alpha);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     border-radius: 10px;
@@ -86,7 +77,7 @@
 .tarot-card-image img {
     width: 260px;
     height: auto;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 15px --var(neutral-darkest-alpha);
     border-radius: 5px;
 }
 
