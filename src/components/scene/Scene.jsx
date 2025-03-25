@@ -9,6 +9,7 @@ import './Scene.css'
 // Import scene components
 import Electricity from '../../scenes/electricity'
 import Image from '../../scenes/image'
+import SceneMovie from '../../scenes/scene-movie/Scene-movie';
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
 import Quote from '../../scenes/quote'
@@ -37,6 +38,13 @@ function Scene(props) {
         break;
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "movie":
+        return (
+          <SwiperSlide key={scene.id}>
+            {scene.data ? <SceneMovie sceneData={scene.data} /> :<p>Ladataan elokuvan tietoja...</p>}
+          </SwiperSlide>)
+        break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
             <div className="nameday_wrapper">

@@ -102,6 +102,14 @@
       "duration": 10000    
     },
     {
+      "id": 13,
+      "type": "movie",
+      "data": {
+        "api_key": "YOURAPIKEY"
+      },
+      "duration": 8000
+    },
+    {
       "id": 7,
       "type": "status",
       "duration": 10000
