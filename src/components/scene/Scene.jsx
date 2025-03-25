@@ -7,18 +7,16 @@ import 'swiper/css/effect-fade'
 import './Scene.css'
 
 // Import scene components
+import Electricity from '../../scenes/electricity'
 import Image from '../../scenes/image'
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
-import Electricity from '../../scenes/electricity'
 import Quote from '../../scenes/quote'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
+import TarotCard from '../../scenes/tarot/TarotCard'
 import Weather from '../../scenes/weather'
 import Vulnerability from '../../scenes/vulnerability/'
-
-// Imports the TarotCard component
-import TarotCard from '../../scenes/tarot/TarotCard'
 
 /**
  * Scene component, which handles the rendering and switching of scenes.
@@ -39,9 +37,6 @@ function Scene(props) {
         break;
       case "image":
         return (<SwiperSlide key={scene.id}><Image orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-        case "tarot":
-          return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
-        break;
       case "nameday":
         return (<SwiperSlide key={scene.id} className="nameday_slide">
             <div className="nameday_wrapper">
@@ -59,6 +54,9 @@ function Scene(props) {
       case "stock":
         return (<SwiperSlide key={scene.id}><Stock orientation={props.orientation} apikey={scene.data.apikey} symbol={scene.data.symbol} /></SwiperSlide>)
         break;
+      case "tarot":
+        return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
+        break;        
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
