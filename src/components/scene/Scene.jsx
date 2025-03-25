@@ -12,6 +12,7 @@ import Image from '../../scenes/image'
 import Movie from '../../scenes/movie';
 import NameDay from '../../scenes/nameday'
 import '../../scenes/nameday/Nameday.css'
+import News from '../../scenes/news/News'
 import Quote from '../../scenes/quote'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
@@ -49,6 +50,9 @@ function Scene(props) {
               <NameDay className="nameday_text" header={scene.data.header} />
             </div>
           </SwiperSlide>)
+        break;
+      case "news": 
+        return (<SwiperSlide key={scene.id}><News url={scene.data.baseUrl + scene.data.key + scene.data.query} /></SwiperSlide>)
         break;
       case "quote":
         return (<SwiperSlide key={scene.id}><Quote orientation={props.orientation} /></SwiperSlide>)
