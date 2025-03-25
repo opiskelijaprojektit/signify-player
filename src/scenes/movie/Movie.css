@@ -1,14 +1,9 @@
-@import url('https://fonts.cdnfonts.com/css/metropolis-2');
-
 .scene-movie {
-    font-family: 'Metropolis', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    height: 100vh;
     padding: 40px;
-    background: url('/images/scene-movie-background.jpg') no-repeat center center/cover;
     color: var(--neutral-lightest);
     box-sizing: border-box;
 }
@@ -78,7 +73,7 @@
   left: 5px; /* Kiinnitetään vasempaan reunaan */
   padding: 5px 10px;
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: var(--neutral-lightest);
   font-size: 12px;
   border-radius: 5px;
 }

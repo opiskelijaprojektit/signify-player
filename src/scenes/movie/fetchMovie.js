@@ -1,3 +1,12 @@
+/**
+ * Get the most popular films from TMDB and select
+ * one at random.
+ *
+ * @param   {string} apiKey
+ *          TMDB API key.
+ *
+ * @author Mira Salonen
+ */
 export async function fetchMovie(apiKey) {
     if (!apiKey) {
       console.error("API key is missing!");
