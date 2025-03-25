@@ -2,7 +2,7 @@
   "state": "2",
   "tag": "A1B-2C3",
   "token": "wannabetoken",
-  "name":  "Hall",
+  "name": "Hall",
   "descr": "Main entrance hall",
   "updated": "2025-01-31 12:34:00",
   "scenes": [
@@ -122,6 +122,18 @@
         "locale": "en-US"
       },
       "duration": 10000
+    },
+    {
+      "id": 16,
+      "type": "fact",
+      "data": {
+        "url": {
+          "landscape": "media/eab32587-9669-4fc7-8939-e59d52490a41.jpg",
+          "portrait": "media/e82845f8-bf81-42a2-bfce-03f48ff1f780.jpg"
+        },
+        "API": "https://uselessfacts.jsph.pl/random.json?language=en"
+      },
+      "duration": 8000
     },
     {
       "id": 7,

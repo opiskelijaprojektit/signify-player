@@ -7,5 +7,9 @@ export default defineConfig({
   build: {
     outDir: '../public',
     emptyOutDir: false
-  }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+  }  
 })
