@@ -1,6 +1,7 @@
 import logo from '../../assets/logos/signify-logo-white.svg'
 import { orientations } from '../../utils/types'
 import './Splash.css'
+import backgroundImage from './bg_splash.jpg'
 
 /**
  * This component takes care of the following screens:
@@ -14,7 +15,7 @@ import './Splash.css'
  */
 function Splash(props) {
   return (
-    <div className="splash">
+    <div className="splash" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={props.orientation == orientations.landscape ? "splash_screen splash-landscape" : "splash_screen splash-portrait"}>
         { // If orientation is landscape then add empty div element.
           // This will ensure that the content appears in the right
