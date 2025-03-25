@@ -54,6 +54,7 @@ Seuraavat henkilöt ovat antaneet oman panoksensa tämän projektin toteutukseen
 
  - Pekka Tapio Aalto
  - Sanna Aspiola
+ - Marjo Lumijärvi
  - Vesa Pellikka
  - Valtteri Pykäläinen
  - Vee Rämesammal

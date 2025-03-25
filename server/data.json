@@ -135,6 +135,17 @@
       },
       "duration": 8000
     },
+    { "id": 17,
+      "type": "book",
+      "data": {
+        "url": {
+          "landscape": "",
+          "portrait":  ""
+        },
+        "API_URL": "https://gutendex.com/books"
+      }, 
+      "duration": 18000
+    },
     {
       "id": 7,
       "type": "status",
