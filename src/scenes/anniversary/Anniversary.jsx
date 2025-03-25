@@ -3,6 +3,9 @@ import { getOTDData } from './anniversaryApi.js'
 import { useEffect } from "react"
 import useLocalStorage from "../../utils/useLocalStorage.js"
 import useInterval from "../../utils/useInterval.js"
+import Container from "../../components/container/Container.jsx"
+import backgroundLandscape from "./background-landscape.jpg"
+import backgroundPortrait from "./background-portrait.jpg"
 
 /**
  * An anniversary component that displays anniversaries
@@ -18,16 +21,19 @@ import useInterval from "../../utils/useInterval.js"
 function Anniversary(props) {
 
     // Variable to store background image url.
-    let bg_img_url
+    let background
     // Determines which stylesheet and background image is used, 
     // based on screen orientation.
     if (props.orientation == orientations.landscape) {
         import('./Anniversary_landscape.css')
-        bg_img_url = import.meta.env.VITE_MEDIA_ADDRESS + props.data.url.landscape
+        background = backgroundLandscape
     } else if (props.orientation == orientations.portrait) {
         import('./Anniversary_portrait.css')
-        bg_img_url = import.meta.env.VITE_MEDIA_ADDRESS + props.data.url.portrait
+        background = backgroundPortrait
     }
+
+    // Define the baseurl of the API data endpoints.
+    const baseurl = "https://api.wikimedia.org/feed/v1/wikipedia/"
 
     // Local storage variable for API data.
     const [anniversaryData, setAnniversaryData, resetAnniversaryData] = useLocalStorage('anniversaryData', {})
@@ -54,7 +60,7 @@ function Anniversary(props) {
         // If localStorage has no data,
         // or date doesn't match today,
         // retrieves data from API and stores it in localStorage.
-        getOTDData(props.data.api, lang, month, day)
+        getOTDData(baseurl, lang, month, day)
             .then(([events_result, births_result, deaths_result]) => {
                 setAnniversaryData({
                     date: dateToday,
@@ -69,7 +75,7 @@ function Anniversary(props) {
     // Fetches data when the component loads or dependencies change.
     useEffect(() => {
         fetchData()
-    }, [props.data.api, lang, month, day])
+    }, [lang, month, day])
 
     // Checks every minute if the day has changed.
     // Fetches data when the day changes.
@@ -88,7 +94,7 @@ function Anniversary(props) {
     const deathIndexes = [0, 2]
 
     return (
-        <div className="scene_anniversary" style={{backgroundImage: `url(${bg_img_url})`}}>
+        <Container className="scene_anniversary" backgroundImage={background}>
             <div className="scene_anniversary_header">
                 <h1>{Intl.DateTimeFormat(locale, {dateStyle: "long"}).format(now)}</h1>
             </div>
@@ -172,7 +178,7 @@ function Anniversary(props) {
                     }
                 </div>
             }
-        </div>
+        </Container>
     )
 }
 

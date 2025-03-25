@@ -1,12 +1,6 @@
-@import url('https://fonts.cdnfonts.com/css/metropolis-2');
-
 .scene_anniversary {
-    font-family: 'Metropolis', 'Helvetica', 'Arial', sans-serif;
     color: var(--neutral-darker);
     background-color: var(--neutral);
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
 }

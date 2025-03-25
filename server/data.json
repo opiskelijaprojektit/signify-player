@@ -119,12 +119,7 @@
     { "id": 15,
       "type": "anniversary",
       "data": {
-        "api": "https://api.wikimedia.org/feed/v1/wikipedia/",
-        "locale": "en-US",
-        "url": {
-          "landscape": "media/7415a19a-91b9-462b-8cb4-94c1413f664f.jpg",
-          "portrait": "media/6ddb1e94-1e7d-401b-8ef8-c2edfb329626.jpg"
-        }
+        "locale": "en-US"
       },
       "duration": 10000
     },
