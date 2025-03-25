@@ -8,6 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Electricity from '../../scenes/electricity'
+import Anniversary from '../../scenes/anniversary'
 import Image from '../../scenes/image'
 import Movie from '../../scenes/movie';
 import NameDay from '../../scenes/nameday'
@@ -34,6 +35,9 @@ function Scene(props) {
 
   const scenedeck = props.scenes.map(scene => {
     switch (scene.type) {
+      case "anniversary":
+        return (<SwiperSlide key={scene.id}><Anniversary orientation={props.orientation} data={scene.data} /></SwiperSlide>)
+        break;
       case "electricity":
         return (<SwiperSlide key={scene.id}><Electricity /></SwiperSlide>)
         break;
