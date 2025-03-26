@@ -1,0 +1,139 @@
+.scene-movie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 40px;
+    color: var(--neutral-lightest);
+    box-sizing: border-box;
+}
+
+/* Movie of the Day -otsikko */
+.movie-header {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    width: auto;
+}
+
+/* Elokuvan tiedot (vasemmalla) */
+.movie-info {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.movie-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.movie-info p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Elokuvan juliste (oikealla) */
+.movie-poster {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+}
+
+.movie-poster img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: -50px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* TMDB-attribuutio */
+.tmdb-attribution {
+  display: flex;
+  align-items: center; /* Keskitetään pystysuunnassa */
+  position: absolute;
+  bottom: 5px;
+  left: 5px; /* Kiinnitetään vasempaan reunaan */
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--neutral-lightest);
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.tmdb-attribution img {
+    height: 10px;
+    margin-right: 8px
+}
+
+.tmdb-attribution p {
+    margin: 0;
+    font-size: 9px;
+    text-align: left;
+}
+
+/* Pystytilan skaalautuvuus */
+@media (orientation: portrait) {
+    .scene-movie {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px; /* Vähennetään paddingia pienemmillä näytöillä */
+    }
+
+    .movie-header {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 5px;
+        padding: 4px 8px;
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .movie-name {
+      font-size: 1.1rem;
+      margin-top: -22px; /* Nostetaan elokuvan otsikkoa lähemmäs */
+  }
+
+    /* Säädetään teksti ja kuva pystytilassa */
+    .movie-info {
+      max-width: 90%;
+      text-align: center;
+      margin-bottom: 4px; /* Vähennetään väliä kuvan ja tekstin välillä */
+  }
+
+  .movie-poster {
+      max-width: 90%;
+      margin-top: -20px; /* Nostetaan kuvaa hieman ylemmäs */
+  }
+
+  .movie-poster img {
+      width: 90%; /* Pienennetään kuvan leveyttä hieman */
+      max-width: 200px; /* Rajoitetaan kuvan maksimi kokoa */
+  }
+
+  .movie-info p {
+      font-size: 1rem;
+      padding: 8px;
+      margin-bottom: 5px; /* Pienennetään väliä hieman */
+  }
+}

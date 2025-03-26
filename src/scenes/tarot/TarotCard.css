@@ -1,0 +1,254 @@
+/* Styles for the main Tarot container */
+.tarot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--neutral-light);
+    text-shadow: 2px 2px 6px --var(neutral-darkest-alpha);
+    background-position: bottom;
+    padding: 0 20px;
+}
+
+/* Styles for the loading message */
+.loading-message {
+    text-align: center;
+    font-size: 24px;
+    color: var(--neutral-light);
+    text-shadow: 2px 2px 6px --var(neutral-darkest-alpha);
+    margin-top: 0;
+    padding: 10px;
+}
+
+/* Animation for the loading message */
+.loading-message::after {
+    content: '...';
+    animation: ellipsis 1.5s infinite;
+}
+
+/* Keyframes for the animation */
+@keyframes ellipsis {
+    0% { content: '...'; }
+    33% { content: '..'; }
+    66% { content: '.'; }
+    100% { content: '...'; }
+}
+
+/* Styles for the Tarot reading container */
+.tarot-reading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    background-color: --var(neutral-darkest-alpha);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Styles for the main heading in the Tarot reading container */
+.tarot-reading-container h1 {
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* Styles for the Tarot card container */
+.tarot-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Styles for the image container in the Tarot card */
+.tarot-card-image {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styles for the image of the Tarot card */
+.tarot-card-image img {
+    width: 260px;
+    height: auto;
+    box-shadow: 5px 5px 15px --var(neutral-darkest-alpha);
+    border-radius: 5px;
+}
+
+/* Styles for the text container in the Tarot card */
+.tarot-card-texts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 20px; 
+}
+
+/* Styles for the card's name */
+.tarot-card-texts h2 {
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+/* Styles for the card's meaning */
+.tarot-card-texts h4 {
+    font-size: 22px;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the card's reading */
+.tarot-card-texts p {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+/* Media query for portrait-oriented screens */
+@media (orientation: portrait) {
+    .tarot {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 0 15px;
+    }
+
+    .tarot-reading-container {
+        width: 100%;
+        max-width: 90%;
+        text-align: center;
+        margin: auto;
+        padding: 15px;
+    }
+
+    .tarot-reading-container h1 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .tarot-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .tarot-card-image {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .tarot-card-image img {
+        width: 80%;
+        max-width: 200px;
+        height: auto;
+    }
+
+    .tarot-card-texts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 10px;
+    }
+
+    .tarot-card-texts h2, 
+    .tarot-card-texts h4 {
+        letter-spacing: 0.8px;
+    }
+
+    .tarot-card-texts h2 {
+        font-size: 22px;
+        margin-bottom: 2px;
+    }
+
+    .tarot-card-texts h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .tarot-card-texts p {
+        font-size: 15px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+}
+
+/* Media query for screens with a width of 400px or less */
+@media (max-width: 400px) {
+    .tarot {
+        justify-content: center;
+        height: 100vh;
+        padding: 0 10px;
+    }
+
+    .tarot-reading-container {
+        width: 100%;
+        max-width: 90%;
+        text-align: center;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .tarot-reading-container h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .tarot-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .tarot-card-image {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .tarot-card-image img {
+        width: 80%;
+        max-width: 150px;
+        height: auto;
+    }
+
+    .tarot-card-texts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 8px;
+    }
+
+    .tarot-card-texts h2,
+    .tarot-card-texts h4{
+        letter-spacing: 0.8px;
+    }
+
+    .tarot-card-texts h2 {
+        font-size: 18px;
+    }
+
+    .tarot-card-texts h4 {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .tarot-card-texts p {
+        font-size: 13px;
+    }
+}

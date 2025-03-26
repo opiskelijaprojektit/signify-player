@@ -1,0 +1,53 @@
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
+text {
+    font-family: 'Metropolis', sans-serif;
+}
+
+h1 {
+  background-color: antiquewhite; /* Sets background color */
+  font-family: 'Metropolis', sans-serif;/* Uses Metropolis font for h1 */
+  font-size: 38px; /*Increases the font size*/
+}
+
+.background-image {
+    background-size: cover;  /* Makes sure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+    position: relative; /* Allows for positioning of child elements if needed */
+    width: 100%; /* Ensures the background container spans the entire width */
+    height: 100vh; /* Ensures the element takes full viewport height */
+}
+  
+.container {
+    text-align: center; /* Centers the text */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Vertically center items */
+    width: 100%; /* Ensures the background container spans the entire width */
+    height: 100vh; /* Ensures the element takes full viewport height */
+    border-radius: 15px; /* Rounds the corners of the container */
+    border: 1px solid gray; /* Adds a gray border */
+    padding: 20px; /* Adds padding inside the container */
+    margin: 0 auto; /* Centers the container horizontally */
+    max-width: 1200px; /* Limits the maximum width of the container */
+    background-color: rgba(211, 211, 211, 0.5); /* Set background color to light grey and make it 50% transparent */
+    font-size: 28px; /*Increases the font size*/
+    font-family: 'Metropolis', sans-serif; /* Uses Metropolis font */
+}
+
+.book-details {
+    margin-top: 40px; /* Adds some space above the book details */
+    text-align: center; /* Center the details */
+}
+
+.cover-image {
+    margin-top: 40px; /* Adds some space above the cover image */
+    text-align: center; /* Centers the cover image */
+}
+
+  .cover-image img {
+    border-radius: 10px; /* Rounds the corners of the cover image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the cover image */
+}
+  
+  

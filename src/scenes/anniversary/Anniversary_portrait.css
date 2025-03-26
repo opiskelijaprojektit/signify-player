@@ -1,0 +1,118 @@
+.scene_anniversary {
+    color: var(--neutral-darker);
+    background-color: var(--neutral);
+}
+
+/* Header styling */
+
+.scene_anniversary_header {
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+}
+
+.scene_anniversary_header h1 {
+    font-size: 4vh;
+    margin: 0;
+    color: var(--neutral-light);
+    padding: 4vh 5vw;
+}
+
+/* Content styling starts here */
+
+.scene_anniversary_content {
+    font-size: 1.5vh;
+}
+
+.scene_anniversary_content h2 {
+    margin: 0 0 0.5em;
+    font-size: 2.1vh;
+    font-weight: 600;
+}
+
+/* Event styling */
+
+.events {
+    box-sizing: border-box;
+    padding: 2%;
+    position: absolute;
+    top: 36%;
+    left: 8%;
+    width: 67%;
+    height: 50.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.events h2 {
+    margin: 0;
+}
+
+.events :nth-child(2) {
+    width: 95%;
+}
+
+.event {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 0;
+}
+
+.event .img {
+    box-sizing: content-box;
+    min-height: 8vh;
+    min-width: 8vh;
+    max-width: 8vh;
+    border-radius: 5%;
+    background-color: var(--neutral);
+    background-size: cover;
+    background-position: center;
+}
+
+.event .year {
+    padding-right: 0.5em;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+}
+
+.event .text {
+    padding-left: 0.5em;
+}
+
+/* Birthday and death styling */
+
+.people {
+    box-sizing: border-box;
+    padding: 4vh 5vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.birthday, 
+.death {
+    flex: 50%;
+}
+
+.people_event .text {
+    align-self: center;
+}
+
+.death h2 {
+    text-align: right;
+}
+
+.death .text {
+    text-align: right;
+    padding: 0 0.5em 0 0;
+}
+
+.death .year {
+    padding: 0 0 0 0.5em;
+}
+
+.no_data {
+    display: none;
+}
