@@ -6,21 +6,19 @@
 }
 
 .today-date {
-    font-family: 'Metropolis', sans-serif;
     font-size: 3.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--neutral-lightest);
     margin-bottom: 10px;
 }
 
 .today-sun {
-    font-family: 'Metropolis', sans-serif;
     font-size: 2.5rem;   /* Make text larger */
     font-weight: bold;   /* Make it bold */
     color: #FFD700;      /* Set a golden color */
     text-align: center;  /* Center align text */
     margin-top: 10px;    /* Add space above */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: var(--neutral-darkest-alpha); /* Semi-transparent background */
     padding: 10px;       /* Add padding around text */
     border-radius: 10px; /* Rounded corners */
 }
@@ -28,11 +26,9 @@
 .sunrise {
     color: #eea929;
     font-size: 1.5rem;
-    font-family: 'Metropolis', sans-serif;
 }
 
 .sunset {
     color: #f04906;
     font-size: 1.5rem;
-    font-family: 'Metropolis', sans-serif;
 }
