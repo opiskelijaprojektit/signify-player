@@ -1,25 +1,9 @@
-@import url('https://fonts.cdnfonts.com/css/metropolis-2');
-
-text {
-    font-family: 'Metropolis', sans-serif;
-}
-
-h1 {
-  background-color: antiquewhite; /* Sets background color */
-  font-family: 'Metropolis', sans-serif;/* Uses Metropolis font for h1 */
+.book h1 {
+  /* background-color: antiquewhite; /* Sets background color */
   font-size: 38px; /*Increases the font size*/
 }
-
-.background-image {
-    background-size: cover;  /* Makes sure the image covers the entire background */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-position: center; /* Centers the image */
-    position: relative; /* Allows for positioning of child elements if needed */
-    width: 100%; /* Ensures the background container spans the entire width */
-    height: 100vh; /* Ensures the element takes full viewport height */
-}
   
-.container {
+.book-container {
     text-align: center; /* Centers the text */
     justify-content: space-between; /* Space between items */
     align-items: center; /* Vertically center items */
@@ -32,7 +16,6 @@ h1 {
     max-width: 1200px; /* Limits the maximum width of the container */
     background-color: rgba(211, 211, 211, 0.5); /* Set background color to light grey and make it 50% transparent */
     font-size: 28px; /*Increases the font size*/
-    font-family: 'Metropolis', sans-serif; /* Uses Metropolis font */
 }
 
 .book-details {
