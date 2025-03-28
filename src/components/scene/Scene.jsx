@@ -8,7 +8,7 @@ import './Scene.css'
 
 // Import scene components
 import Image from '../../scenes/image'
-import Calendar from '../../scenes/calendar/Calendar'
+import Calendar from '../../scenes/calendar'
 /**
  * Scene component, which handles the rendering and switching of scenes.
  *
