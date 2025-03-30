@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Calendar.css'
-
-
+import Container from "../../components/container/Container";
+import background from './background.jpg';
 
 
 const Calendar = () => {
@@ -44,6 +44,7 @@ const Calendar = () => {
   }
 
   return (
+    <Container className="calendar-image" backgroundImage={background}>
     <div className="calendar-app">
       <div className="calendar">
         <h1 className="heading">Calendar</h1>
@@ -83,7 +84,7 @@ const Calendar = () => {
       </div>
 
       </div>
-   
+      </Container>
   )
 }
 
