@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import './Calendar.css'
-
-
-
+import background from './background.jpg';
+import Container from "../../components/container/Container"
 
 const Calendar = () => {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -25,10 +24,6 @@ const Calendar = () => {
 
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear())
-  const [showEventPopup, setShowEventPopup] = useState(false)
-  const [events, setEvents] = useState([])
-
-
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay()
@@ -44,6 +39,7 @@ const Calendar = () => {
   }
 
   return (
+  <Container className="calendar-image" backgroundImage={background}>
     <div className="calendar-app">
       <div className="calendar">
         <h1 className="heading">Calendar</h1>
@@ -83,7 +79,7 @@ const Calendar = () => {
       </div>
 
       </div>
-   
+      </Container>
   )
 }
 
