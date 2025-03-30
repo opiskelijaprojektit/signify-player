@@ -25,8 +25,7 @@ const Calendar = () => {
 
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear())
-  const [showEventPopup, setShowEventPopup] = useState(false)
-  const [events, setEvents] = useState([])
+
 
 
 
