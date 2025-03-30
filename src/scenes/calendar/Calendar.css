@@ -1,5 +1,5 @@
 .calendar-app{
-    width: 45rem;
+    width: 45%;
     min-width: 90vmin;
     aspect-ratio: 3 / 2;
     background-color: #1e242d;
@@ -10,8 +10,10 @@
     column-gap: 5rem;
     position: relative;
     transform-style: preserve-3d;
-    margin-left: 30rem;
-    margin-top: 5rem;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   
   .calendar-app::after {
