@@ -2,8 +2,15 @@ import { useState } from 'react'
 import './Calendar.css'
 import Container from "../../components/container/Container";
 import background from './background.jpg';
+/**
+ * A component that shows the current day and month.
+ *
+ * @component
+ * @author Jesse Haapahuhta
+ */
 
 
+// Here is the days and months. You can change the order of the days.
 const Calendar = () => {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const monthsOfYear = [
@@ -21,7 +28,7 @@ const Calendar = () => {
     'December',
   ]
 
-  const currentDate = new Date()
+  const currentDate = new Date()                                                          // Gets the current date
 
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear())
@@ -42,8 +49,11 @@ const Calendar = () => {
     setCurrentYear((prevYear) => (currentMonth === 11 ? prevYear + 1 : prevYear))
   }
 
-  return (
-    <Container className="calendar-image" backgroundImage={background}>
+
+
+   // Returns the componment and uses the background image. The chevron left and right are invisble but you can still use them.
+  return (                                                                                
+    <Container className="calendar-image" backgroundImage={background}>                             
     <div className="calendar-app">
       <div className="calendar">
         <h1 className="heading">Calendar</h1>
