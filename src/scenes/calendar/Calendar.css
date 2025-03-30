@@ -151,4 +151,8 @@
       aspect-ratio: 3 / 2;
     }
   }
-  
+.calendar-image{
+  align-items: center;
+  display: flex;
+ justify-content: center;
+}
