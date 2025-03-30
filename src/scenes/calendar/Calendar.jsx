@@ -25,12 +25,10 @@ const Calendar = () => {
 
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear())
-  const [selectedDate, setSelectedDate] = useState(currentDate)
   const [showEventPopup, setShowEventPopup] = useState(false)
   const [events, setEvents] = useState([])
-  const [eventTime, setEventTime] = useState({ hours: '00', minutes: '00' })
-  const [eventText, setEventText] = useState('')
-  const [editingEvent, setEditingEvent] = useState(null)
+
+
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay()
@@ -43,27 +41,6 @@ const Calendar = () => {
   const nextMonth = () => {
     setCurrentMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1))
     setCurrentYear((prevYear) => (currentMonth === 11 ? prevYear + 1 : prevYear))
-  }
-
-  const handleDayClick = (day) => {
-    const clickedDate = new Date(currentYear, currentMonth, day)
-    const today = new Date()
-
-    if (clickedDate >= today || isSameDay(clickedDate, today)) {
-      setSelectedDate(clickedDate)
-      setShowEventPopup(true)
-      setEventTime({ hours: '00', minutes: '00' })
-      setEventText('')
-      setEditingEvent(null)
-    }
-  }
-
-  const isSameDay = (date1, date2) => {
-    return (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
-    )
   }
 
   const handleEventSubmit = () => {
