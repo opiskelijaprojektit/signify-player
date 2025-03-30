@@ -94,7 +94,7 @@
   .days {
     display: flex;
     flex-wrap: wrap;
-
+    text-align: center;
   }
   /*Here is the customation of the days(1,2,3.. etc*/
   .days span {
