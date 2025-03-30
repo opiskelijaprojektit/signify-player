@@ -39,13 +39,14 @@
     color: #fff;
     letter-spacing: 0.3rem;
     padding-left: 1.3rem;
+    margin-top: 0.5rem;
   }
   
   .navigate-date {
     display: flex;
     align-items: center;
     column-gap: 1rem;
-    margin: 3.5rem 0;
+    margin: 1.5rem 0;
   }
   
   .navigate-date h2 {
@@ -63,20 +64,20 @@
   .buttons i {
     width: 3.5rem;
     height: 3.5rem;
-    background-color: #2c3542;
+    background-color: #1e242d;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    color: #c97f1a;
+    color: #cc9241;
     cursor: pointer;
   }
   
   .weekdays {
     width: 100%;
     display: flex;
-    margin: 3rem 0;
+    margin: 1rem 0;
   }
   
   .weekdays span {
@@ -93,6 +94,7 @@
   .days {
     display: flex;
     flex-wrap: wrap;
+
   }
   
   .days span {
@@ -108,17 +110,12 @@
   }
   
   .current-day {
-    background-color: #ef9011;
+    background-color: #9611ef;
     border-radius: 50%;
-    box-shadow: 0 0 1.5rem 1rem rgba(239, 144, 17, 0.3);
+    box-shadow: 0 0 1.5rem 1rem rgba(137, 105, 255, 0.3);
   }
   
-  .events {
-    width: 60%;
-    height: 100%;
-    padding: 3rem 0;
-    overflow-y: auto;
-  }
+
   
   .events::-webkit-scrollbar {
     display: none;
