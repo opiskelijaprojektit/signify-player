@@ -379,4 +379,9 @@
       aspect-ratio: 3 / 2;
     }
   }
-  
+  .calendar-image{
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
