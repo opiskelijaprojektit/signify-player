@@ -2,11 +2,12 @@
   "state": "2",
   "tag": "A1B-2C3",
   "token": "wannabetoken",
-  "name":  "Hall",
+  "name": "Hall",
   "descr": "Main entrance hall",
   "updated": "2025-01-31 12:34:00",
   "scenes": [
-    { "id": 1,
+    {
+      "id": 1,
       "type": "image",
       "data": {
         "url": {
@@ -17,6 +18,38 @@
       "duration": 10000
     },
     { "id": 2,
+      "type": "weather",
+      "data": {
+        "location": "Sastamala",
+        "locale": "fi-FI",
+        "timezone": "Europe/Helsinki",
+        "url": {
+          "landscape": "media/37583e36-f1e6-4ee7-8609-7a81c3708647.jpg",
+          "portrait": "media/1dc5cb85-ffe1-46a9-a5bf-86719238c51b.jpg"
+        }
+      },
+      "duration": 10000
+    },
+    { "id": 3,
+      "type": "nameday",
+      "data": {
+        "url": {
+          "landscape":"media/61221625-e0a9-4237-866a-24d9e549081d.jpg",
+          "portrait": "media/e19f7257-030c-4363-b927-3f900f897af6.jpg"
+        },
+        "header": "Best Wishes on Your Name Day!"
+      },
+      "duration": 8000
+    },
+    { "id": 8,
+      "type": "stock",
+      "data": {
+        "apikey": "YOUR_API_KEY",
+        "symbol": "KO" 
+      },
+      "duration": 8000
+    },
+    { "id": 4,
       "type": "image",
       "data": {
         "url": {
@@ -26,7 +59,7 @@
       },
       "duration": 8000
     },
-    { "id": 6,
+    { "id": 5,
       "type": "image",
       "data": {
         "url": {
@@ -36,7 +69,7 @@
       },
       "duration": 8000
     },
-    { "id": 7,
+    { "id": 6,
       "type": "image",
       "data": {
         "url": {
@@ -46,11 +79,82 @@
       },
       "duration": 8000
     },
-    { "id": 3,
-    "type": "calendar",
-    "duration": 8000
+    { "id": 18,
+      "type": "calendar",
+      "duration": 8000
+    },
+    { "id": 9,
+      "type": "electricity",
+      "duration": 8000
+    },
+    { "id": 10,
+      "type": "vulnerability",
+      "data": { 
+        "url": {
+          "landscape": "media/c8e89a64-391e-4464-9d88-449f2532611c.jpg",
+          "portrait": "media/117b6ee6-e578-4dc7-a738-5df7a81ef1b6.jpg"
+        }
+      },
+      "duration": 8000
+    },
+    { "id": 11,
+      "type": "quote",      
+      "duration": 8000
+    },
+    { "id": 12,
+      "type": "tarot",
+      "duration": 10000    
+    },
+    {
+      "id": 13,
+      "type": "movie",
+      "data": {
+        "api_key": "YOURAPIKEY"
+      },
+      "duration": 8000
+    },
+    { "id": 14,
+      "type": "news",
+      "data": {
+        "key": "YOURAPIKEYHERE"
+      },
+      "duration": 8000
+    },
+    { "id": 15,
+      "type": "anniversary",
+      "data": {
+        "locale": "en-US"
+      },
+      "duration": 10000
+    },
+    {
+      "id": 16,
+      "type": "fact",
+      "data": {
+        "url": {
+          "landscape": "media/eab32587-9669-4fc7-8939-e59d52490a41.jpg",
+          "portrait": "media/e82845f8-bf81-42a2-bfce-03f48ff1f780.jpg"
+        },
+        "API": "https://uselessfacts.jsph.pl/random.json?language=en"
+      },
+      "duration": 8000
+    },
+    { "id": 17,
+      "type": "book",
+      "data": {
+        "url": {
+          "landscape": "",
+          "portrait":  ""
+        },
+        "API_URL": "https://gutendex.com/books"
+      }, 
+      "duration": 18000
+    },
+    {
+      "id": 7,
+      "type": "status",
+      "duration": 10000
     }
-    
+   
   ]
-
 }
