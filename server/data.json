@@ -79,6 +79,10 @@
       },
       "duration": 8000
     },
+    { "id": 18,
+      "type": "calendar",
+      "duration": 8000
+    },
     { "id": 9,
       "type": "electricity",
       "duration": 8000
@@ -151,5 +155,6 @@
       "type": "status",
       "duration": 10000
     }
+   
   ]
 }

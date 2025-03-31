@@ -9,6 +9,7 @@ import "./Scene.css"
 // Import scene components
 import Anniversary from '../../scenes/anniversary'
 import Book from '../../scenes/book'
+import Calendar from '../../scenes/calendar'
 import Electricity from '../../scenes/electricity'
 import Fact from "../../scenes/fact"
 import Image from '../../scenes/image'
@@ -41,8 +42,11 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Anniversary orientation={props.orientation} data={scene.data} /></SwiperSlide>)
         break;
       case "book":
-          return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
-          break;
+        return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
+      case "calendar":
+        return (<SwiperSlide key={scene.id}><Calendar orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        break;
       case "electricity":
         return (<SwiperSlide key={scene.id}><Electricity /></SwiperSlide>)
         break;
