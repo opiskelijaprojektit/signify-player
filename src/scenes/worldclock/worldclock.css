@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* Background */
 .WorldClockBody {
   background: rgb(217, 237, 146);
   background: radial-gradient(circle, rgba(217, 237, 146, 1) 0%, rgba(82, 182, 154, 1) 43%, rgba(24, 78, 119, 1) 100%);
@@ -14,34 +15,19 @@
   height: 100vh;
 }
 
+/* Main container for WorldClock */
 .worldclock {
   background-color: #ffffff;
   padding: 2.5rem 1.875rem;
   border-radius: 0.625rem;
   box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   max-height: 90vh;
-  overflow-y: auto;
-}
-
-.worldclock::-webkit-scrollbar {
-  width: 0.75rem;
-}
-
-.worldclock::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.worldclock::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 0.625rem;
 }
 
 /* Header */
-
 .worldclock .header {
   text-align: center;
   margin-bottom: 1.875rem;
@@ -53,100 +39,33 @@
   white-space: nowrap;
 }
 
-/* Search bar */
-
-.worldclock .search-container {
-  position: relative;
-  margin-bottom: 2.5rem;
-  width: 100%;
-  max-width: 25rem;
-}
-
-.worldclock input[type="text"] {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  box-sizing: border-box;
-  border-radius: 0.3125rem;
-  border: 1px solid #ccc;
-}
-
-/* Dropdown */
-
-.worldclock .dropdown {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  border: 1px solid #ddd;
-  max-height: 12.5rem;
-  overflow-y: auto;
-  z-index: 1;
-}
-
-.worldclock .dropdown li {
-  padding: 0.625rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.worldclock .dropdown li img {
-  width: 1.25rem;
-  height: auto;
-}
-
-.worldclock .dropdown li:hover {
-  background-color: #f0f0f0;
-}
-
 /* Country list */
-
 .worldclock .country-list {
   list-style-type: none;
   padding-left: 0.625rem;
   max-height: 31.25rem;
-  overflow-y: auto
-}
-
-.worldclock .country-list::-webkit-scrollbar {
-  width: 0.75rem;
-}
-
-.worldclock .country-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.worldclock .country-list::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 0.625rem;
 }
 
 /* Country item */
-
 .worldclock .country-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.9375rem;
+  padding: 1rem;
   gap: 1rem;
   border: 1px solid #ddd;
   border-radius: 0.3125rem;
-  margin-bottom: 0.9375rem;
+  margin-bottom: 1rem;
   background-color: #f6f6f6;
   width: 100%;
 }
 
 .worldclock .country-item img {
-  width: 2.5rem;
+  width: 3rem;
   height: auto;
 }
 
+/* Country info */
 .worldclock .country-info {
   display: flex;
   flex-direction: column;
@@ -154,48 +73,32 @@
   flex: 1;
 }
 
+.worldclock .country-info p {
+  margin: 0.3125rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
 .worldclock .country-info p:first-child {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 0.3125rem;
 }
 
 .worldclock .country-info p:last-child {
-  font-size: 1rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: #777;
 }
 
-/* Button */
+/* Mobile Styles */
 
-.worldclock button {
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  margin-left: 0.625rem;
-}
-
-.worldclock button:hover {
-  color: darkgray;
-}
-
-/* Mobile */
-
+/* Tablet */
 @media (max-width: 768px) {
   .worldclock {
     padding: 1.25rem;
   }
 
-  .worldclock .search-container {
-    max-width: 100%;
-  }
-
   .worldclock .header h1 {
     font-size: 2rem;
-  }
-
-  .worldclock .dropdown {
-    max-height: 10rem;
   }
 
   .worldclock .country-item {
@@ -203,7 +106,7 @@
   }
 
   .worldclock .country-item img {
-    width: 2rem;
+    width: 2.5rem;
   }
 
   .worldclock .country-info p:first-child {
@@ -215,22 +118,15 @@
   }
 }
 
+/* Mobile */
 @media (max-width: 425px) {
   .worldclock {
     padding: 1rem;
     max-width: 100%;
   }
 
-  .worldclock .search-container {
-    max-width: 100%;
-  }
-
   .worldclock .header h1 {
     font-size: 1.75rem;
-  }
-
-  .worldclock .dropdown {
-    max-height: 8rem;
   }
 
   .worldclock .country-item {
@@ -242,18 +138,4 @@
     width: 2rem;
     height: auto;
   }
-
-  .worldclock .country-info p:first-child {
-    font-size: 1rem;
-  }
-
-  .worldclock .country-info p:last-child {
-    font-size: 0.875rem;
-  }
-
-  .worldclock button {
-    font-size: 1.125rem;
-  }
 }
-
-

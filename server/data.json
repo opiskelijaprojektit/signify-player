@@ -50,7 +50,7 @@
     "type": "WorldClock",
     "data": {
       "format": "HH:mm:ss",
-      "timezone": "await fetchTime(playerSettings.token)"
+      "timezone": "Europe/Helsinki"
     },
     "duration": null
   },

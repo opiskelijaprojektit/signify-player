@@ -1,42 +1,10 @@
 import { useState, useEffect } from "react";
 import "./worldclock.css";
 
-const apiKey = "MC7M2SA2J4L8";//TODO HANDLAA API KEY kutsu backendistä jotta API key pysyy paremmin salassa
+const apiKey = "MC7M2SA2J4L8"; //TODO HANDLAA API KEY kutsu backendistä
 const proxyUrl = "https://api.allorigins.win/get?url=";
-const timeZoneListUrl = `https://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json`;
 
-const fetchCountries = async (query) => {
-  try {
-    const response = await fetch(proxyUrl + encodeURIComponent(timeZoneListUrl));
-    if (!response.ok) {
-      throw new Error("Failed to fetch countries");
-    }
-    
-    const data = await response.json();
-    const jsonResponse = JSON.parse(data.contents);
-
-    if (jsonResponse.status === "OK") {
-      return jsonResponse.zones
-        .map((zone) => ({
-          name: zone.countryName.replace(/_/g, " "),
-          city: (zone.cityName || zone.zoneName.split("/").pop()).replace(/_/g, " "),
-          code: zone.countryCode,
-          timezone: zone.zoneName,
-          flag: `https://flagcdn.com/w320/${zone.countryCode.toLowerCase()}.png`,
-        }))
-        .filter((country) =>
-          `${country.name} - ${country.city}`.toLowerCase().includes(query.toLowerCase())
-        );
-    } else {
-      console.error("Invalid response from API:", jsonResponse);
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching countries:", error);
-    return [];
-  }
-};
-
+// Fetch the time and country code for a given timezone
 const fetchTime = async (timezone) => {
   const apiUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${timezone}`;
 
@@ -50,48 +18,65 @@ const fetchTime = async (timezone) => {
     const jsonResponse = JSON.parse(data.contents);
 
     if (jsonResponse.status === "OK") {
-      return jsonResponse.formatted;
+      return {
+        time: jsonResponse.formatted,
+        countryCode: jsonResponse.countryCode, // Extract the country code from the API response
+      };
     } else {
       console.error("Invalid response from API:", jsonResponse);
-      return "N/A";
+      return { time: "N/A", countryCode: "FI" }; // Default country code to FI in case of failure
     }
   } catch (error) {
     console.error("Error fetching time:", error);
-    return "Error: Failed to fetch time";
+    return { time: "Error: Failed to fetch time", countryCode: "FI" }; // Default country code to FI in case of error
   }
 };
 
 function WorldClock() {
-  const [query, setQuery] = useState("");
-  const [countries, setCountries] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [timezones, setTimezones] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (query.length > 2) {
-        const fetchedCountries = await fetchCountries(query);
-        setCountries(fetchedCountries);
-      } else {
-        setCountries([]);
+    // Fetch the timezone data
+    const loadTimezoneData = async () => {
+      try {
+        const response = await fetch("server/data.json");
+        const json = await response.json();
+        setTimezones(json.scenes.filter(scene => scene.type === "WorldClock").map(scene => scene.data.timezone)); // Extract timezones from the JSON file
+      } catch (error) {
+        console.error("Error loading timezones:", error);
       }
     };
-    fetchData();
-  }, [query]);
 
-  const addCountry = async (country) => {
-    if (!selected.find((c) => c.name === country.name && c.city === country.city)) {
-      const time = await fetchTime(country.timezone);
-      setSelected((prevSelected) => [...prevSelected, { ...country, time }]);
-    }
-    setQuery("");
-    setCountries([]);
-  };
-
-  const removeCountry = (name, city) => {
-    setSelected((prevSelected) => prevSelected.filter((c) => c.name !== name || c.city !== city));
-  };
+    loadTimezoneData();
+  }, []);
 
   useEffect(() => {
+    // Fetch the time for each timezone once the timezone data is available
+    const loadTimes = async () => {
+      if (timezones.length === 0) return;
+
+      const timezoneData = await Promise.all(
+        timezones.map(async (timezone) => {
+          const { time, countryCode } = await fetchTime(timezone);
+          return {
+            name: timezone.split("/")[0],
+            city: timezone.split("/").pop().replace(/_/g, " "),
+            timezone,
+            time,
+            flag: `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`, // Use country code from API response
+          };
+        })
+      );
+
+      setSelected(timezoneData);
+    };
+
+    loadTimes();
+  }, [timezones]);
+
+  useEffect(() => {
+    // Update the time every second
     const interval = setInterval(() => {
       setSelected((prevSelected) =>
         prevSelected.map((country) => {
@@ -99,7 +84,7 @@ function WorldClock() {
           const options = {
             timeZone: country.timezone,
           };
-          const time = now.toLocaleString("en-US", options);
+          const time = now.toLocaleString("en-FI", options);
           return { ...country, time };
         })
       );
@@ -114,32 +99,14 @@ function WorldClock() {
         <div className="header">
           <h1>World Clock</h1>
         </div>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search for a country"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          {countries.length > 0 && (
-            <ul className="dropdown">
-              {countries.map((country) => (
-                <li key={`${country.name}-${country.city}`} onClick={() => addCountry(country)}>
-                  <img src={country.flag} alt={country.name} width="20" /> {country.name} - {country.city}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
         <ul className="country-list">
           {selected.map((country) => (
             <li key={`${country.name}-${country.city}`} className="country-item">
               <img src={country.flag} alt={country.name} width="40" />
               <div className="country-info">
-                <p>{country.name} - {country.city}</p>
                 <p>{country.time}</p>
+                <p>{country.timezone}</p>
               </div>
-              <button onClick={() => removeCountry(country.name, country.city)}>&#10006;</button>
             </li>
           ))}
         </ul>
