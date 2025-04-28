@@ -32,7 +32,7 @@ function Scene(props) {
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
         break;
-	   case "scene-timeleft":
+	   case "timeleft":
         return (<SwiperSlide key={scene.id}><TimeLeft data={scene.data} /></SwiperSlide>)
 		break;
       default:

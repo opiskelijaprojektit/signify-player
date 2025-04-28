@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./TimeLeft.css";
 
+/**
+*@author Tuomas Aalto
+*/
+
 const TimeLeft = ({ data }) => {
   const { targetDateTime: initialTarget, background } = data;
   const savedTarget = localStorage.getItem("targetDateTime");

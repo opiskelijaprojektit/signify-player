@@ -8,7 +8,7 @@
   "scenes": [
     { 
       "id": 123,
-      "type": "scene-timeleft", 
+      "type": "timeleft", 
       "data": {
         "background": {
           "portrait": "media/timeleft_portrait.jpg",
