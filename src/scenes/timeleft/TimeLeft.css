@@ -1,0 +1,92 @@
+/* Elementin aktivointi animaatio */
+.animate {
+  animation: pop-fade 1s ease;
+}
+
+@keyframes pop-fade {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Taustakuvan ja ajanlaskennan tyyli */
+.timeleft-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Metropolis', sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.large-text {
+  font-size: 4rem;
+}
+
+.small-text {
+  font-size: 2rem;
+}
+
+.time-units {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.time-units h2 {
+  margin: 0 10px;
+}
+
+/* Date picker -input kenttä */
+input[type="datetime-local"] {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* File input kenttä */
+input[type="file"] {
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 0;
+}
+
+input[type="file"]::file-selector-button {
+  font-size: initial;
+}
+
+/* Virheilmoituksen tyyli */
+.error-message {
+  margin-top: 10px;
+  color: red;
+  font-size: 20px;
+}
