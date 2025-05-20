@@ -15,11 +15,11 @@ const TimeLeft = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // API
+  // ⏬ Hakee tiedot API:sta
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/timeleft");
+        const res = await fetch("https://your-api-url.com/timedata"); // <-- Vaihda oikea osoite
         const data = await res.json();
 
         const savedTarget = localStorage.getItem("targetDateTime");
@@ -44,7 +44,7 @@ const TimeLeft = () => {
     fetchData();
   }, []);
 
-  // Päivitys sekunnin välein
+  // ⏱ Päivittää aikaa sekunnin välein
   useEffect(() => {
     if (!targetDateTime) return;
 
@@ -57,6 +57,7 @@ const TimeLeft = () => {
     return () => clearInterval(timer);
   }, [targetDateTime, timeLeft]);
 
+  // 📐 Kuuntelija ikkunan koon mukaan taustalle
   const handleResize = () => {
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const backgroundUrl = userBackground || background[orientation];
@@ -68,7 +69,7 @@ const TimeLeft = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [userBackground, background]);
 
-  // Taustakuvan vaihtaminen
+  // 🖼 Taustakuvan vaihtaminen
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -146,6 +147,26 @@ const TimeLeft = () => {
             </h2>
           </div>
         )}
+
+        <div style={{ marginTop: "20px", textAlign: "center", display: "inline-flex", alignItems: "center" }}>
+          <label>Näytä tunnit, minuutit ja sekunnit?</label>
+          <input
+            type="checkbox"
+            checked={showHoursAndMinutes}
+            onChange={() => setShowHoursAndMinutes(!showHoursAndMinutes)}
+            style={{ marginLeft: "10px" }}
+          />
+        </div>
+
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <label>Lisää taustakuva</label><br />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            id="file-upload"
+          />
+        </div>
       </div>
     </div>
   );
