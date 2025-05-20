@@ -12,8 +12,8 @@
       "data": {
 		"targetDateTime": "2025-10-24T00:00:00",
         "background": {
-          "portrait": "media/timeleft_portrait.jpg",
-          "landscape": "media/timeleft_landscape.jpg"
+          "portrait": "http://localhost:3000/media//timeleft_portrait.jpg",
+          "landscape": "http://localhost:3000/media//timeleft_landscape.jpg"
         },
         "showHoursAndMinutes": true
       },

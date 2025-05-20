@@ -1,4 +1,3 @@
-/* Elementin aktivointi animaatio */
 .animate {
   animation: pop-fade 1s ease;
 }
@@ -18,7 +17,6 @@
   }
 }
 
-/* Taustakuvan ja ajanlaskennan tyyli */
 .timeleft-container {
   width: 100%;
   height: 100%;

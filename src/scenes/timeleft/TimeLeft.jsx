@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from "react";
-import "./TimeLeft.css";
-
 /**
  * @author Tuomas Aalto
  */
 
+import React, { useState, useEffect } from "react";
+import "./TimeLeft.css";
+
 const TimeLeft = () => {
   const [targetDateTime, setTargetDateTime] = useState(null);
   const [background, setBackground] = useState({ portrait: "", landscape: "" });
-  const [userBackground, setUserBackground] = useState(null);
   const [timeLeft, setTimeLeft] = useState(null);
   const [previousTimeLeft, setPreviousTimeLeft] = useState(null);
-  const [showHoursAndMinutes, setShowHoursAndMinutes] = useState(true);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const showHoursAndMinutes = true; // Vaihda false, jos haluat piilottaa minuutit ja sekunnit
+  
+  useEffect(() => {
+  const handleResize = () => {
+    setBackground((prev) => ({ ...prev })); // Trigger re-render
+  };
 
-  // API
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);}, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +29,6 @@ const TimeLeft = () => {
         const data = await res.json();
 
         const savedTarget = localStorage.getItem("targetDateTime");
-        const savedBackground = localStorage.getItem("backgroundImage");
 
         const target = savedTarget || data.targetDateTime;
         const bg = data.background;
@@ -32,7 +37,6 @@ const TimeLeft = () => {
         setTimeLeft(getTimeLeft(target));
         setPreviousTimeLeft(getTimeLeft(target));
         setBackground(bg);
-        setUserBackground(savedBackground || bg["portrait"]);
         setLoading(false);
       } catch (err) {
         console.error("Virhe API-kutsussa:", err);
@@ -44,7 +48,6 @@ const TimeLeft = () => {
     fetchData();
   }, []);
 
-  // Päivitys sekunnin välein
   useEffect(() => {
     if (!targetDateTime) return;
 
@@ -56,31 +59,6 @@ const TimeLeft = () => {
 
     return () => clearInterval(timer);
   }, [targetDateTime, timeLeft]);
-
-  const handleResize = () => {
-    const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
-    const backgroundUrl = userBackground || background[orientation];
-    setUserBackground(backgroundUrl);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [userBackground, background]);
-
-  // Taustakuvan vaihtaminen
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageUrl = reader.result;
-        setUserBackground(imageUrl);
-        localStorage.setItem("backgroundImage", imageUrl);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   function getTimeLeft(targetTime) {
     const now = new Date();
@@ -96,26 +74,18 @@ const TimeLeft = () => {
     const diffMinutes = Math.floor((diffMs / (1000 * 60)) % 60);
     const diffSeconds = Math.floor((diffMs / 1000) % 60);
 
-    return {
-      days: diffDays,
-      hours: diffHours,
-      minutes: diffMinutes,
-      seconds: diffSeconds,
-    };
+    return { days: diffDays, hours: diffHours, minutes: diffMinutes, seconds: diffSeconds };
   }
 
   const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
-  const backgroundUrl = userBackground || background[orientation];
+  const backgroundUrl = background[orientation];
 
   if (loading) return <div>Ladataan näkymää...</div>;
   if (error) return <div>{error}</div>;
   if (!timeLeft) return null;
 
   return (
-    <div
-      className="timeleft-container"
-      style={{ backgroundImage: `url(${backgroundUrl})` }}
-    >
+    <div className="timeleft-container" style={{ backgroundImage: `url(${backgroundUrl})` }}>
       <div className="content-box">
         <h1
           className={`fade-pop large-text ${timeLeft.days !== previousTimeLeft?.days ? "animate" : ""}`}

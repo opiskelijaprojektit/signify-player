@@ -68,6 +68,7 @@ app.get('/scenes', (req, res) => {
 })
 
 // TimeLeft-näkymälle tarvittava data
+app.use("/media", express.static("media"));
 app.get('/timeleft', (req, res) => {
   const data = loadData();
   const scene = data.scenes.find(s => s.type === "timeleft");
