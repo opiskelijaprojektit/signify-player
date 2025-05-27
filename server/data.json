@@ -164,6 +164,14 @@
       },
       "duration": 30000
     },
+    { "id": 20,
+      "type": "WorldClock",
+      "data": {
+        "format": "HH:mm:ss",
+        "timezone": "Europe/Helsinki"
+      },
+      "duration": null
+    },    
     {
       "id": 7,
       "type": "status",

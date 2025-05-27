@@ -50,6 +50,7 @@ function App() {
     // Get the content attached to the device.
     getScenes(playerSettings.token).then(
       scenedata => {
+        console.log(`Scenes fetched:`, scenedata.scenes);
         // Check if content is attached to the device.
         if (scenedata.scenes.length == 0) {
           // There is no content attached to the device,
@@ -78,6 +79,7 @@ function App() {
             setScenes(scenedata.scenes)
             setCurrentHash(scenedata.hash)
             setScreen(screens.scene)
+            console.log(screens.scene)
             setCheckDelay(interval_scenes)
           }
         }
