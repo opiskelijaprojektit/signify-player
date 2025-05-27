@@ -78,6 +78,21 @@ app.get('/scene-vulnerability', async (req, res) => {
   res.send(result)
 })
 
+// TimeLeft-näkymälle tarvittava data
+app.use("/media", express.static("media"));
+app.get('/timeleft', (req, res) => {
+  const data = loadData();
+  const scene = data.scenes.find(s => s.type === "timeleft");
+
+  if (scene) {
+    res.json(scene.data);
+  } else {
+    res.status(404).json({ error: "Virhe! Timeleft scene ei löytynyt" });
+  }
+});
+
+
+
 // Wrong endpoint in request.
 app.all('*', (req, res) => {
   res.send('Endpoint ' + req.url + ' not found!');

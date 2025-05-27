@@ -6,7 +6,7 @@
   "descr": "Main entrance hall",
   "updated": "2025-01-31 12:34:00",
   "scenes": [
-    {
+    { 
       "id": 1,
       "type": "image",
       "data": {
@@ -17,7 +17,8 @@
       },
       "duration": 10000
     },
-    { "id": 2,
+    {
+      "id": 2,
       "type": "weather",
       "data": {
         "location": "Sastamala",
@@ -149,6 +150,19 @@
         "API_URL": "https://gutendex.com/books"
       }, 
       "duration": 18000
+    },
+    { 
+      "id": 18,
+      "type": "timeleft", 
+      "data": {
+		    "targetDateTime": "2025-10-24T00:00:00",
+        "background": {
+          "portrait": "http://localhost:3000/media//timeleft_portrait.jpg",
+          "landscape": "http://localhost:3000/media//timeleft_landscape.jpg"
+        },
+        "showHoursAndMinutes": true
+      },
+      "duration": 30000
     },
     {
       "id": 7,

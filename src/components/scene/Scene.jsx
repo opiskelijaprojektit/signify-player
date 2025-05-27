@@ -21,6 +21,7 @@ import Quote from '../../scenes/quote'
 import Status from '../../scenes/status'
 import Stock from '../../scenes/stock'
 import TarotCard from '../../scenes/tarot/TarotCard'
+import TimeLeft from '../../scenes/timeleft'
 import Today from '../../scenes/today'
 import Weather from '../../scenes/weather'
 import Vulnerability from '../../scenes/vulnerability/'
@@ -82,6 +83,9 @@ function Scene(props) {
       case "tarot":
         return (<SwiperSlide key={scene.id}><TarotCard /></SwiperSlide>)
         break;
+	   case "timeleft":
+        return (<SwiperSlide key={scene.id}><TimeLeft data={scene.data} /></SwiperSlide>)
+		    break;
       case "today":
         return (<SwiperSlide key={scene.id}><Today orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
