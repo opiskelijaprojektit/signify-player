@@ -46,7 +46,7 @@ function Scene(props) {
         return (<SwiperSlide key={scene.id}><Book orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
         break;
       case "calendar":
-        return (<SwiperSlide key={scene.id}><Calendar orientation={props.orientation} url={scene.data.url} /></SwiperSlide>)
+        return (<SwiperSlide key={scene.id}><Calendar orientation={props.orientation} /></SwiperSlide>)
         break;
       case "electricity":
         return (<SwiperSlide key={scene.id}><Electricity /></SwiperSlide>)
