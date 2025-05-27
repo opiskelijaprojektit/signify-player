@@ -1,0 +1,105 @@
+.scene_anniversary {
+    color: var(--neutral-darker);
+    background-color: var(--neutral);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styling */
+
+.scene_anniversary_header {
+    width: 100%;
+    text-align: center;
+}
+
+.scene_anniversary_header h1 {
+    font-size: 5vh;
+    margin: 0;
+    padding-top: 10vh;
+}
+
+/* Content styling starts here */
+
+.scene_anniversary_content {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.scene_anniversary_content h2 {
+    margin: 0;
+    font-size: 2.35vh;
+    font-weight: 600;
+}
+
+.scene_anniversary_events {
+    box-sizing: border-box;
+    position: absolute;
+    padding: 1%;
+    font-size: 1.8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Event styling */
+
+.events {
+    width: 21%;
+    height: 53.5%;
+    top: 27%;
+    left: 26%;
+}
+
+.event {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 0;
+}
+
+.event .img {
+    box-sizing: content-box;
+    min-height: 8vh;
+    min-width: 8vh;
+    border-radius: 5%;
+    background-color: var(--neutral);
+    background-size: cover;
+    background-position: center;
+}
+
+.event .year {
+    padding-right: 0.5em;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+}
+
+.event .text {
+    padding-left: 0.5em;
+}
+
+/* Birthday and death styling */
+
+.people {
+    width: 19.5%;
+    height: 51%;
+    top: 31%;
+    left: 54%;
+}
+
+.people_event .text {
+    align-self: center;
+}
+
+.death h2 {
+    text-align: right;
+}
+
+.death .text {
+    text-align: right;
+    padding: 0 0.5em 0 0;
+}
+
+.death .year {
+    padding: 0 0 0 0.5em;
+}

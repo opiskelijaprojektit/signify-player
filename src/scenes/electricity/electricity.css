@@ -1,0 +1,49 @@
+/*
+ * @file Sahko.css
+ * @description Tämä tiedosto määrittelee sähkön hintanäkymän ulkoasun ja tyylit.
+ * @author Vesa Pellikka
+ */
+
+.stockdata-container {
+    text-align: center;              /* Kaikki tekstit keskitetään */
+    padding: 20px;                   /* Lisätään sisämarginaali */
+    background-attachment:  fixed;   /* Taustakuva kiinnitetään */
+    display: flex;                   /* Käytetään joustavaa asettelua elementtien sijoitteluun */
+    flex-direction: column;          /* Lapsielementit pinotaan pystysuunnassa */
+    justify-content: center;         /* Sisältö keskitetään pystysuunnassa */
+    align-items: center;             /* Sisältö keskitetään vaakasuunnassa */
+}
+
+.stockdata-title {
+    text-align: center;               /* Keskittää otsikon tekstin */
+    color: var(--neutral-lightest);   /* Tekstin väri valkoinen */
+    font-size: 40px;                  /* Suuri fonttikoko otsikolle */
+    text-shadow: 2px 2px 4px var(--neutral-darkest);  /* Tekstin varjostus (2px varjo vaakasuunnassa, 2px pystysuunnassa, 4px sumennus) */
+    margin-left: 0px;                 /* Vasenta marginaali */
+    margin-top: 85px;                 /* Otsikon yläpuolelli */
+}
+
+/* Hintatiedot */
+.stockdata-prices {
+    text-align: center;               /* Teksti keskitetään vaakasuunnassa */
+    color: var(--neutral-lightest);   /* Tekstin väri valkoinen */
+    font-size: 20px;                  /* Fonttikoko asetetaan 20 pikseliksi */
+    text-shadow: 2px 2px 4px var(--neutral-darkest);  /* Tekstin varjostus (2px varjo vaakasuunnassa, 2px pystysuunnassa, 4px sumennus) */
+    margin-left: 0px;                 /* Vasenta marginaali */
+    margin-top: 10px;                 /* Väli yläpuolella olevaan sisältöön */
+    padding-left: 10px;               /* Sisennys vasemmalle */
+}
+
+/* Kaavion keskitys ja koko */
+.stockdata-graph {
+    width: 90vw;                      /* Kaavio vie 90% näytön leveydestä */
+    max-width: 1500px;                /* Maksimileveys on 1500px */
+    height: 350px;                    /* Kaavion korkeus 350px */
+    background-color: rgba(24, 10, 148, 0); /* Taustaväri*/
+    padding: 1px;                     /* Täyte kaavion ympärillä */
+    border-radius: 8px;               /* Pyöristetyt reunat kaaviolle */
+    display: flex;                    /* Flexbox-asettelu kaavion keskittämiseksi */
+    align-items: center;              /* Keskitetään kaavio pystysuunnassa */
+    justify-content: center;          /* Keskitetään kaavio vaakasuunnassa */
+    margin-top: 30px;                 /* Jätetään 30px tilaa kaavion yläpuolelle */
+}

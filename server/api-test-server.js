@@ -64,8 +64,34 @@ app.post('/check', (req, res) => {
 app.get('/scenes', (req, res) => {
   const data = loadData()
   const hash = calculateHash(JSON.stringify(data.scenes))
-  res.json({hash: hash, updated: data.updated, scenes: data.scenes})
+  res.json({hash: hash, updated: data.updated, scenes: data.scenes, version: process.env.VITE_APP_VERSION})
 })
+
+app.get('/scene-vulnerability', async (req, res) => {
+  const response = await fetch("https://www.kyberturvallisuuskeskus.fi/sites/default/files/rss/vulns.xml",
+    {
+      method: 'GET'
+    }
+  )
+  const result = await response.text()
+  res.type('application/xml')
+  res.send(result)
+})
+
+// TimeLeft-näkymälle tarvittava data
+app.use("/media", express.static("media"));
+app.get('/timeleft', (req, res) => {
+  const data = loadData();
+  const scene = data.scenes.find(s => s.type === "timeleft");
+
+  if (scene) {
+    res.json(scene.data);
+  } else {
+    res.status(404).json({ error: "Virhe! Timeleft scene ei löytynyt" });
+  }
+});
+
+
 
 // Wrong endpoint in request.
 app.all('*', (req, res) => {

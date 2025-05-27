@@ -1,5 +1,3 @@
-@import url('https://fonts.cdnfonts.com/css/metropolis-2');
-
 .scene_weather {
   display: flex;
   flex: auto;
@@ -10,7 +8,6 @@
   justify-content: center;
   align-items: center;
   color: var(--neutral-lightest);
-  font-family: 'Metropolis', sans-serif;
 }
 
 .weather_screen_landscape {
@@ -22,7 +19,7 @@
 }
 
 .weather_forecast {
-  background-color: var(--neutral-darker-aplha);
+  background-color: var(--neutral-darker-alpha);
   padding:1em;
   border-radius: 50px;
 }
@@ -40,21 +37,21 @@
   text-align: center;
 }
 
-table {
+.scene_weather table {
   border-collapse: collapse;
 }
 
-tbody {
-  border: 0.2em solid black;
+.scene_weather tbody {
+  border: 0.2em solid var(--neutral-darkest);
 }
 
-tr {
-  border: 0 solid black;
+.scene_weather tr {
+  border: 0 solid var(--neutral-darkest);
 }
 
-td, th {
+.scene_weather td, .scene_weather th {
   padding:0.5em;
-  border: 0.2em solid black;
+  border: 0.2em solid var(--neutral-darkest);
 }
 
 .forecast_source {
