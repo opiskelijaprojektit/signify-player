@@ -1,0 +1,34 @@
+.today-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.today-date {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--neutral-lightest);
+    margin-bottom: 10px;
+}
+
+.today-sun {
+    font-size: 2.5rem;   /* Make text larger */
+    font-weight: bold;   /* Make it bold */
+    color: #FFD700;      /* Set a golden color */
+    text-align: center;  /* Center align text */
+    margin-top: 10px;    /* Add space above */
+    background: var(--neutral-darkest-alpha); /* Semi-transparent background */
+    padding: 10px;       /* Add padding around text */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.sunrise {
+    color: #eea929;
+    font-size: 1.5rem;
+}
+
+.sunset {
+    color: #f04906;
+    font-size: 1.5rem;
+}

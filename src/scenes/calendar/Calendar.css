@@ -1,0 +1,150 @@
+.calendar-app{                        /*Here is the main component of the app*/
+    width: 45%;
+    min-width: 90vmin;
+    aspect-ratio: 3 / 2;
+    background-color: #1e242d;
+    padding: 3rem;
+    border-radius: 3rem;
+    border: 1rem solid #0f1319;
+    display: flex;
+    column-gap: 5rem;
+    position: relative;
+    transform-style: preserve-3d;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .calendar-app::after {
+    content: '';
+    position: absolute;
+    bottom: -12rem;
+    left: 50%;
+    transform: translate(-50%) rotateX(50deg);
+    width: 90%;
+    height: 16rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20rem;
+    filter: blur(4rem);
+  }
+  
+  .calendar {
+    width: 40%;
+  }
+  /* Here is the heading customation "Calendar"*/
+  .heading {
+    font-family: 'Metropolis', sans-serif;
+    font-size: clamp(4rem, 3.8cqi, 7rem);
+    color: #fff;
+    letter-spacing: 0.3rem;
+    padding-left: 1.3rem;
+    margin-top: 0.5rem;
+  }
+  
+  .navigate-date {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  /*Here is the customation of the year and month*/
+  .navigate-date h2 {
+    font-size: clamp(1.5rem, 1.5cqi, 2.5rem);
+    color: #bbb;
+    padding-left: 1.3rem;
+  }
+  
+  .buttons {
+    display: flex;
+    column-gap: 1rem;
+    margin-left: auto;
+  }
+  /*Here is the customation of the next and prev month buttons*/
+  .buttons i {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #1e242d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #cc9241;
+    cursor: pointer;
+  }
+  
+  .weekdays {
+    width: 100%;
+    display: flex;
+    margin: 1rem 0;
+  }
+  /*Here is the customation of the weekdays(sun,mon.. etc*/
+  .weekdays span {
+    width: calc(100% / 7);
+    font-size: clamp(1rem, 0.8cqi, 1.3rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #78879e;
+    letter-spacing: 0.1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .days {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  /*Here is the customation of the days(1,2,3.. etc*/
+  .days span {
+    font-size: clamp(1.2rem, 1cqi, 1.6rem);
+    width: calc(100% / 7);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ddd;
+    cursor: pointer;
+    text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+  /*Here you can edit how the current day shows up*/
+  .current-day {
+    background-color: #9611ef;
+    border-radius: 50%;
+    box-shadow: 0 0 1.5rem 1rem rgba(137, 105, 255, 0.3);
+  }
+
+
+
+  @media (max-width: 500px) {
+    .calendar-app {
+      aspect-ratio: 10 / 9;
+    }
+  
+    .calendar {
+      width: 100%;
+    }
+  
+    .event-popup {
+      top: 23%;
+      width: 80%;
+    }
+  
+    .events {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .calendar-app {
+      aspect-ratio: 3 / 2;
+    }
+  }
+  /*Here we center the calendar on the background image*/
+  .calendar-image{                    
+    justify-content: center;      
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
