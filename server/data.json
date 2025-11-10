@@ -18,6 +18,13 @@
       "duration": 10000
     },
     {
+      "id": 21,
+      "type": "webpage",
+      "data": {
+        "url": "https://staff.hayo.fi/grafana/public-dashboards/c537928e52d3408baeb903bd689555eb?orgId=1&refresh=auto"
+      }
+    },
+    {
       "id": 2,
       "type": "weather",
       "data": {

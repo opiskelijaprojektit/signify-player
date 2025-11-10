@@ -24,6 +24,7 @@ import TarotCard from '../../scenes/tarot/TarotCard'
 import TimeLeft from '../../scenes/timeleft'
 import Today from '../../scenes/today'
 import Weather from '../../scenes/weather'
+import Webpage from '../../scenes/webpage'
 import WorldClock from '../../scenes/worldclock'
 import Vulnerability from '../../scenes/vulnerability/'
 
@@ -92,6 +93,9 @@ function Scene(props) {
         break;
       case "weather":
         return (<SwiperSlide key={scene.id}><Weather orientation={props.orientation} url={scene.data.url} location={scene.data.location} locale={scene.data.locale} timezone={scene.data.timezone} /></SwiperSlide>)
+        break;
+      case "webpage":
+        return (<SwiperSlide key={scene.id}><Webpage url={scene.data.url} /></SwiperSlide>)
         break;
       case "WorldClock":
         return (<SwiperSlide key={scene.id}><WorldClock format={scene.data.format} timezone={scene.data.timezone} /></SwiperSlide>)

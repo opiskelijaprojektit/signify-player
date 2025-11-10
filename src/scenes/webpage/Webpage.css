@@ -1,0 +1,11 @@
+.webpage {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: var(--neutral-darkest);
+  color: var(--neutral);
+}
+
+.webpage-frame {
+  width: 100%;
+  height: 100%;
+}
